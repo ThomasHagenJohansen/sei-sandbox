@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" ?> 
+<root>
+	<Entry start="09:00" end="09:15" head="Hej der" body="Hej med dig, du gamle." />
+	<Entry start="09:15" end="09:30" head="hmm" body="jabdabadoo." />
+</root>

@@ -1,0 +1,149 @@
+<?xml version="1.0" standalone="yes" ?>
+<xs:schema id="TestDS" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+	<xs:element name="TestDS" msdata:IsDataSet="true">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="Info">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="textBox" type="xs:string" minOccurs="0" />
+							<xs:element name="checkBoxNormal" type="xs:boolean" minOccurs="0" />
+							<xs:element name="checkBoxInverted" type="xs:boolean" minOccurs="0" />
+							<xs:element name="checkBoxSpeciel" type="xs:integer" minOccurs="0" />
+							<xs:element name="comboBox" type="xs:integer" minOccurs="0" />
+							<xs:element name="radioButtonIndex" type="xs:integer" minOccurs="0" />
+							<xs:element name="radioButtonText" type="xs:string" minOccurs="0" />
+							<xs:element name="dateTimePicker" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="hScrollBar" type="xs:integer" minOccurs="0" />
+							<xs:element name="vScrollBar" type="xs:integer" minOccurs="0" />
+							<xs:element name="domainUpDown" type="xs:string" minOccurs="0" />
+							<xs:element name="numericUpDown" type="xs:integer" minOccurs="0" />
+							<xs:element name="trackBar" type="xs:integer" minOccurs="0" />
+							<xs:element name="progressBar" type="xs:integer" minOccurs="0" />
+							<xs:element name="richTextBox" type="xs:string" minOccurs="0" />
+							<xs:element name="bitmask" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="MultiControl_TextBox">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="txLine" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="MultiControl_ListView" msdata:IsDataSet="true">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="uiRowID" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+								type="xs:string" minOccurs="0" />
+							<xs:element name="uiSkemaID" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+								type="xs:string" minOccurs="0" />
+							<xs:element name="txLine" type="xs:string" minOccurs="0" />
+							<xs:element name="iTal" type="xs:integer" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="ListView">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="uiRowID" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+								type="xs:string" minOccurs="0" />
+							<xs:element name="uiSkemaID" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+								type="xs:string" minOccurs="0" />
+							<xs:element name="txString" type="xs:string" minOccurs="0" />
+							<xs:element name="iInteger" type="xs:integer" minOccurs="0" />
+							<xs:element name="bFlag" type="xs:boolean" minOccurs="0" />
+							<xs:element name="bInverted" type="xs:boolean" minOccurs="0" />
+							<xs:element name="dtDate" type="xs:dateTime" minOccurs="0" />
+							<xs:element name="txBitmask" type="xs:string" minOccurs="0" />
+							<xs:element name="txValueChange" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="Paging">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="uiRowID" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+								type="xs:string" minOccurs="0" />
+							<xs:element name="uiSkemaID" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+								type="xs:string" minOccurs="0" />
+							<xs:element name="iTransport" type="xs:integer" minOccurs="0" />
+							<xs:element name="txTekst" type="xs:string" minOccurs="0" />
+							<xs:element name="bFlag" type="xs:boolean" minOccurs="0" />
+							<xs:element name="dtDato" type="xs:dateTime" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="PagingListView">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="uiRowID" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+								type="xs:string" minOccurs="0" />
+							<xs:element name="uiParentID" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+								type="xs:string" minOccurs="0" />
+							<xs:element name="uiSkemaID" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+								type="xs:string" minOccurs="0" />
+							<xs:element name="txTekst" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="PagingMulti_TextBox">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="uiParentID" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+								type="xs:string" minOccurs="0" />
+							<xs:element name="txLine" type="xs:string" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="PagingMulti_ListView">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="uiRowID" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+								type="xs:string" minOccurs="0" />
+							<xs:element name="uiParentID" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+								type="xs:string" minOccurs="0" />
+							<xs:element name="uiSkemaID" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+								type="xs:string" minOccurs="0" />
+							<xs:element name="txLine" type="xs:string" minOccurs="0" />
+							<xs:element name="iTal" type="xs:integer" minOccurs="0" />
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+		</xs:complexType>
+		<xs:key name="TestDSKey1" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//Paging" />
+			<xs:field xpath="uiRowID" />
+		</xs:key>
+		<xs:key name="TestDSKey2" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//PagingListView" />
+			<xs:field xpath="uiRowID" />
+		</xs:key>
+		<xs:key name="TestDSKey3" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//PagingMulti_ListView" />
+			<xs:field xpath="uiRowID" />
+		</xs:key>
+		<xs:key name="TestDSKey4" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//MultiControl_ListView" />
+			<xs:field xpath="uiRowID" />
+		</xs:key>
+		<xs:key name="TestDSKey5" msdata:PrimaryKey="true">
+			<xs:selector xpath=".//ListView" />
+			<xs:field xpath="uiRowID" />
+		</xs:key>
+		<xs:keyref name="PagingPagingMulti_ListView" refer="TestDSKey1">
+			<xs:selector xpath=".//PagingMulti_ListView" />
+			<xs:field xpath="uiParentID" />
+		</xs:keyref>
+		<xs:keyref name="PagingPagingMulti_TextBox" refer="TestDSKey1">
+			<xs:selector xpath=".//PagingMulti_TextBox" />
+			<xs:field xpath="uiParentID" />
+		</xs:keyref>
+		<xs:keyref name="PagingPagingListView" refer="TestDSKey1">
+			<xs:selector xpath=".//PagingListView" />
+			<xs:field xpath="uiParentID" />
+		</xs:keyref>
+	</xs:element>
+</xs:schema>

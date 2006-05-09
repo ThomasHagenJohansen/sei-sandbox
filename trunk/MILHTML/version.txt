@@ -1,0 +1,65 @@
+
+
+HTML PARSER FOR .NET v1.4
+
+Date:	29th March 2004
+Author:	Andy Powney (andy@powney.demon.co.uk)
+
+
+INTRODUCTION
+============
+
+	This library produces a domain tree of a given HTML document, allowing the
+developer to navigate and change the document in an methodical way. In addition
+to the basic HTML production, this library can also be used to produce XHTML
+documents, as it includes a full HTML 4 entity encoder.
+
+	Included in this release is a demonstration application in VB.NET showing how to 
+use the library. I hope that it is all fairly self-explanatory.
+	
+
+COMMENTS & BUG REPORTS
+======================
+
+	If you have found a bug, or want to provide me with your wish-list, please email
+me at mailto:andy@powney.demon.co.uk?subject=MIL-HTML. I am really interested in knowing
+how useful you find this library.
+
+THANKS
+======
+
+	Thanks to Bill and Unruled Boy for their responses.
+
+LEGAL
+=====	
+
+	This is free to use, and you do so at your own risk. The usual GNU licence applies,
+so you're not allowed to release this source code with amendments without my permission.
+
+
+VERSION HISTORY
+===============
+
+1.4
+	Bugfix: XHTML elements are in the proper case
+	Bugfix: XHTML <html> will default to xmlns="http://www.w3.org/1999/xhtml"
+
+1.3
+
+	Bugfix: <!DOCTYPE...> and <!...> now treated as comments
+	Bugfix: Malformed or incomplete attribute values causing infinite loop fixed
+
+1.2
+	Bugfix: <tag/> now handled properly
+	Bugfix:	Parse errors of scripts
+	Bugfix: Parse errors of styles
+	HTML 4 entity encoding
+	DOM tree navigation
+	Basic node searching
+	HTML production
+	XHTML production (as per http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd)
+	Added some component model stuff & comments
+	Hid the parser
+
+1.1
+	Initial release

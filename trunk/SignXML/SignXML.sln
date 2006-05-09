@@ -1,0 +1,37 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SignXML", "SignXML.csproj", "{BC51CE5B-5134-4BED-8982-A7700E9351CB}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.hob.OCESCertificates", "..\..\Components\CertificateList\dk.hob.OCESCertificates.csproj", "{255D918F-5CCC-4569-9D5E-5969F6825EA8}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.hob.Log", "..\..\Components\Log\dk.hob.Log.csproj", "{2EB1CF6B-179B-49D4-9DF8-3E2FEC349F3E}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Release = Release
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{BC51CE5B-5134-4BED-8982-A7700E9351CB}.Debug.ActiveCfg = Debug|.NET
+		{BC51CE5B-5134-4BED-8982-A7700E9351CB}.Debug.Build.0 = Debug|.NET
+		{BC51CE5B-5134-4BED-8982-A7700E9351CB}.Release.ActiveCfg = Release|.NET
+		{BC51CE5B-5134-4BED-8982-A7700E9351CB}.Release.Build.0 = Release|.NET
+		{255D918F-5CCC-4569-9D5E-5969F6825EA8}.Debug.ActiveCfg = Debug|.NET
+		{255D918F-5CCC-4569-9D5E-5969F6825EA8}.Debug.Build.0 = Debug|.NET
+		{255D918F-5CCC-4569-9D5E-5969F6825EA8}.Release.ActiveCfg = Release|.NET
+		{255D918F-5CCC-4569-9D5E-5969F6825EA8}.Release.Build.0 = Release|.NET
+		{2EB1CF6B-179B-49D4-9DF8-3E2FEC349F3E}.Debug.ActiveCfg = Debug|.NET
+		{2EB1CF6B-179B-49D4-9DF8-3E2FEC349F3E}.Debug.Build.0 = Debug|.NET
+		{2EB1CF6B-179B-49D4-9DF8-3E2FEC349F3E}.Release.ActiveCfg = Release|.NET
+		{2EB1CF6B-179B-49D4-9DF8-3E2FEC349F3E}.Release.Build.0 = Release|.NET
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,48 @@
+<project name="PIDaxisWS" default="axisws">
+
+    <target name="axisws">
+
+        <property name="axis.home" value="./apache/axis/1.1"/>
+        <path id="axis.classpath">
+            <fileset dir="${axis.home}/lib">
+                <include name="**/*.jar"/>
+            </fileset>
+        </path>
+
+        <taskdef resource="axis-tasks.properties" classpathref="axis.classpath"/>
+
+        <property name="dir.build" value="build"/>
+        <property name="dir.src" value="src"/>
+        <property name="file.distwsdl" value="https://test.pid.certifikat.dk/pidwsv2/pidws?WSDL"/>
+
+        <delete dir="${dir.build}"/>
+        <mkdir dir="${dir.build}"/>
+
+        <axis-wsdl2java
+            all="true"
+            output="${dir.src}"
+            testcase="false"
+            verbose="true"
+            skeletonDeploy="true"
+            url="${file.distwsdl}"
+            helpergen="false">
+            
+            <mapping
+                namespace="http://localhost/"
+                package="dk.hob.ei.helpers.cprpid" />
+            <mapping
+                namespace="java:dk.certifikat.pid.webservices"
+                package="dk.hob.ei.helpers.cprpid" />
+        </axis-wsdl2java>
+
+        <javac srcdir="${dir.src}"
+            destdir="${dir.build}"
+            classpathref="axis.classpath"
+            debug="on"
+            deprecation="off"/>
+
+    </target>
+
+</project>
+
+

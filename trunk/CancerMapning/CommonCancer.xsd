@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema targetNamespace="http://tempuri.org/XMLSchema.xsd" elementFormDefault="qualified"
+	xmlns="http://tempuri.org/XMLSchema.xsd" xmlns:mstns="http://tempuri.org/XMLSchema.xsd"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"
+	id="CommonCancerSchema">
+	<xs:element name="CommonCancer">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="uiSkemaId" msdata:DataType="System.Guid, mscorlib, Version=1.0.5000.0, Culture=neutral, PublicKeyToken=b77a5c561934e089"
+					type="xs:string" minOccurs="1" maxOccurs="1" />
+				<xs:element name="txCprNr" type="xs:string" minOccurs="1" maxOccurs="1" />
+				<xs:element name="dtIncidensdato" type="xs:dateTime" minOccurs="1" maxOccurs="1" />
+				<xs:element name="txDiagnosekode" type="xs:string" minOccurs="1" maxOccurs="1" />
+				<xs:element name="txLateralitet" minOccurs="0" maxOccurs="1">
+					<xs:simpleType>
+						<xs:restriction base="xs:string">
+							<xs:enumeration value="TUL1" />
+							<xs:enumeration value="TUL2" />
+							<xs:enumeration value="TUL3" />
+						</xs:restriction>
+					</xs:simpleType>
+				</xs:element>
+				<xs:choice minOccurs="0" maxOccurs="1">
+					<xs:element name="txAA" type="xs:string" minOccurs="0" maxOccurs="1" />
+					<xs:element name="TNM" minOccurs="0" maxOccurs="1">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="txT" type="xs:string" minOccurs="1" maxOccurs="1" />
+								<xs:element name="txN" type="xs:string" minOccurs="1" maxOccurs="1" />
+								<xs:element name="txM" type="xs:string" minOccurs="1" maxOccurs="1" />
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:choice>
+				<xs:element name="txMakroGrundlag" type="xs:string" maxOccurs="unbounded" minOccurs="1" />
+				<xs:element name="txMikroGrundlag" type="xs:string" maxOccurs="unbounded" minOccurs="1" />
+			</xs:sequence>
+		</xs:complexType>
+		<xs:key name="CommonCancerKey1">
+			<xs:selector xpath="." />
+			<xs:field xpath="mstns:uiSkemaId" />
+		</xs:key>
+	</xs:element>
+</xs:schema>

@@ -1,0 +1,47 @@
+Microsoft Visual Studio Solution File, Format Version 8.00
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Test", "Test\Test.vbproj", "{DC8FBE42-38CF-4F3E-936D-C0ED2E631A2E}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dk.hob.Windows.Forms.Html", "..\..\Components\HOB\dk.hob.Windows.Forms.Html\dk.hob.Windows.Forms.Html.csproj", "{D0530A97-C3B8-4C57-A13A-3F2FDD9DE21B}"
+	ProjectSection(ProjectDependencies) = postProject
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfiguration) = preSolution
+		Debug = Debug
+		Debug - Sign = Debug - Sign
+		DebugSign = DebugSign
+		Release = Release
+		ReleaseNoSign = ReleaseNoSign
+	EndGlobalSection
+	GlobalSection(ProjectConfiguration) = postSolution
+		{DC8FBE42-38CF-4F3E-936D-C0ED2E631A2E}.Debug.ActiveCfg = Debug|.NET
+		{DC8FBE42-38CF-4F3E-936D-C0ED2E631A2E}.Debug.Build.0 = Debug|.NET
+		{DC8FBE42-38CF-4F3E-936D-C0ED2E631A2E}.Debug - Sign.ActiveCfg = Debug|.NET
+		{DC8FBE42-38CF-4F3E-936D-C0ED2E631A2E}.Debug - Sign.Build.0 = Debug|.NET
+		{DC8FBE42-38CF-4F3E-936D-C0ED2E631A2E}.DebugSign.ActiveCfg = Debug|.NET
+		{DC8FBE42-38CF-4F3E-936D-C0ED2E631A2E}.DebugSign.Build.0 = Debug|.NET
+		{DC8FBE42-38CF-4F3E-936D-C0ED2E631A2E}.Release.ActiveCfg = Release|.NET
+		{DC8FBE42-38CF-4F3E-936D-C0ED2E631A2E}.Release.Build.0 = Release|.NET
+		{DC8FBE42-38CF-4F3E-936D-C0ED2E631A2E}.ReleaseNoSign.ActiveCfg = Release|.NET
+		{DC8FBE42-38CF-4F3E-936D-C0ED2E631A2E}.ReleaseNoSign.Build.0 = Release|.NET
+		{D0530A97-C3B8-4C57-A13A-3F2FDD9DE21B}.Debug.ActiveCfg = Debug|.NET
+		{D0530A97-C3B8-4C57-A13A-3F2FDD9DE21B}.Debug.Build.0 = Debug|.NET
+		{D0530A97-C3B8-4C57-A13A-3F2FDD9DE21B}.Debug - Sign.ActiveCfg = Debug - Sign|.NET
+		{D0530A97-C3B8-4C57-A13A-3F2FDD9DE21B}.Debug - Sign.Build.0 = Debug - Sign|.NET
+		{D0530A97-C3B8-4C57-A13A-3F2FDD9DE21B}.DebugSign.ActiveCfg = DebugSign|.NET
+		{D0530A97-C3B8-4C57-A13A-3F2FDD9DE21B}.DebugSign.Build.0 = DebugSign|.NET
+		{D0530A97-C3B8-4C57-A13A-3F2FDD9DE21B}.Release.ActiveCfg = Release|.NET
+		{D0530A97-C3B8-4C57-A13A-3F2FDD9DE21B}.Release.Build.0 = Release|.NET
+		{D0530A97-C3B8-4C57-A13A-3F2FDD9DE21B}.ReleaseNoSign.ActiveCfg = ReleaseNoSign|.NET
+		{D0530A97-C3B8-4C57-A13A-3F2FDD9DE21B}.ReleaseNoSign.Build.0 = ReleaseNoSign|.NET
+	EndGlobalSection
+	GlobalSection(SolutionItems) = postSolution
+		version.txt = version.txt
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+	EndGlobalSection
+	GlobalSection(ExtensibilityAddIns) = postSolution
+	EndGlobalSection
+EndGlobal
