@@ -52,6 +52,14 @@ namespace DataGrid
 		private System.Windows.Forms.ImageList imageList1;
 		private dk.hob.Windows.Forms.DataGrid.DataGridColumn dataGridColumn13;
 		private System.Windows.Forms.Button button3;
+		private dk.hob.Windows.Forms.DataGrid.DataGrid dataGrid3;
+		private dk.hob.Windows.Forms.DataGrid.DataGridColumn dataGridColumn14;
+		private dk.hob.Windows.Forms.DataGrid.DataGridColumn dataGridColumn15;
+		private dk.hob.Windows.Forms.DataGrid.DataGridColumn dataGridColumn16;
+		private dk.hob.Windows.Forms.DataGrid.DataGrid dataGrid4;
+		private dk.hob.Windows.Forms.DataGrid.DataGridColumn dataGridColumn17;
+		private dk.hob.Windows.Forms.DataGrid.DataGridColumn dataGridColumn18;
+		private dk.hob.Windows.Forms.DataGrid.DataGridColumn dataGridColumn19;
 		private System.Data.DataColumn dataColumn6;
 
 		public Form1()
@@ -64,17 +72,36 @@ namespace DataGrid
 			//
 			// TODO: Add any constructor code after InitializeComponent call
 			//
-			ComboBoxDropListWrapper ctrl = (ComboBoxDropListWrapper)dataGrid1.ColumnTypes[0];
+			ComboBoxDropListWrapper ctrl = (ComboBoxDropListWrapper)dataGrid1.Columns[0].ColumnType;
 			ctrl.SetItems(new String[] { "Hejsa", "Dav", "Farvel" } );
 
-			ComboBoxWrapper ctrl1 = (ComboBoxWrapper)dataGrid1.ColumnTypes[11];
+			ComboBoxWrapper ctrl1 = (ComboBoxWrapper)dataGrid1.Columns[11].ColumnType;
 			ctrl1.SetItems(new String[] { "Her er lidt", "at vælge imellem", "Du kan også skrive selv" } );
+
+			DataRow dr = dataTable1.NewRow();
+			dr[0] = "En tekst";
+			dr[1] = 42;
+			dr[2] = DateTime.Now;
+			dataTable1.Rows.Add(dr);
 
 			for (int j = 0; j < 10; j++)
 			{
-				DataRow dr = dataTable1.NewRow();
+				dr = dataTable1.NewRow();
 				dataTable1.Rows.Add(dr);
 			}
+
+/*			ArrayList list = new ArrayList();
+			list.Add(4);
+			list.Add(34);
+			list.Add(47);
+			dataGrid2.DataSource = list;
+*/
+//			dataGrid3.DataSource = dataTable1;
+
+			dataGrid4.Items.AddRange(new DataGridItemCollection[] {
+							new DataGridItemCollection(new DataGridItem[] { new DataGridItem("kafkjfdk") }),
+							new DataGridItemCollection(new DataGridItem[] { new DataGridItem("fjsdifjusi") }),
+							new DataGridItemCollection(new DataGridItem[] { new DataGridItem("sfksdjfmsdlisl") }) } );
 		}
 
 		/// <summary>
@@ -110,7 +137,6 @@ namespace DataGrid
 			System.Windows.Forms.ListViewItem listViewItem8 = new System.Windows.Forms.ListViewItem("trytrytr");
 			System.Resources.ResourceManager resources = new System.Resources.ResourceManager(typeof(Form1));
 			this.dataGrid2 = new System.Windows.Forms.DataGrid();
-			this.dataSet1 = new System.Data.DataSet();
 			this.dataTable1 = new System.Data.DataTable();
 			this.dataColumn1 = new System.Data.DataColumn();
 			this.dataColumn2 = new System.Data.DataColumn();
@@ -118,6 +144,7 @@ namespace DataGrid
 			this.dataColumn4 = new System.Data.DataColumn();
 			this.dataColumn5 = new System.Data.DataColumn();
 			this.dataColumn6 = new System.Data.DataColumn();
+			this.dataSet1 = new System.Data.DataSet();
 			this.listView1 = new System.Windows.Forms.ListView();
 			this.columnHeader1 = new System.Windows.Forms.ColumnHeader();
 			this.columnHeader2 = new System.Windows.Forms.ColumnHeader();
@@ -143,31 +170,35 @@ namespace DataGrid
 			this.button1 = new System.Windows.Forms.Button();
 			this.button2 = new System.Windows.Forms.Button();
 			this.button3 = new System.Windows.Forms.Button();
+			this.dataGrid3 = new dk.hob.Windows.Forms.DataGrid.DataGrid();
+			this.dataGridColumn14 = new dk.hob.Windows.Forms.DataGrid.DataGridColumn();
+			this.dataGridColumn15 = new dk.hob.Windows.Forms.DataGrid.DataGridColumn();
+			this.dataGridColumn16 = new dk.hob.Windows.Forms.DataGrid.DataGridColumn();
+			this.dataGrid4 = new dk.hob.Windows.Forms.DataGrid.DataGrid();
+			this.dataGridColumn17 = new dk.hob.Windows.Forms.DataGrid.DataGridColumn();
+			this.dataGridColumn18 = new dk.hob.Windows.Forms.DataGrid.DataGridColumn();
+			this.dataGridColumn19 = new dk.hob.Windows.Forms.DataGrid.DataGridColumn();
 			((System.ComponentModel.ISupportInitialize)(this.dataGrid2)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataTable1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dataSet1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dataGrid1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.hobBindingComponent1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dataGrid3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.dataGrid4)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// dataGrid2
 			// 
 			this.dataGrid2.AccessibleName = "DataGrid";
 			this.dataGrid2.AccessibleRole = System.Windows.Forms.AccessibleRole.Table;
-			this.dataGrid2.CaptionText = "Title";
-			this.dataGrid2.DataMember = "Table1";
-			this.dataGrid2.DataSource = this.dataSet1;
+			this.dataGrid2.CaptionText = ".NET";
+			this.dataGrid2.DataMember = "";
+			this.dataGrid2.DataSource = this.dataTable1;
 			this.dataGrid2.HeaderForeColor = System.Drawing.SystemColors.ControlText;
-			this.dataGrid2.Location = new System.Drawing.Point(56, 248);
+			this.dataGrid2.Location = new System.Drawing.Point(64, 248);
 			this.dataGrid2.Name = "dataGrid2";
 			this.dataGrid2.Size = new System.Drawing.Size(512, 160);
 			this.dataGrid2.TabIndex = 3;
-			// 
-			// dataSet1
-			// 
-			this.dataSet1.DataSetName = "NewDataSet";
-			this.dataSet1.Locale = new System.Globalization.CultureInfo("da-DK");
-			this.dataSet1.Tables.AddRange(new System.Data.DataTable[] {
-																		  this.dataTable1});
 			// 
 			// dataTable1
 			// 
@@ -187,10 +218,12 @@ namespace DataGrid
 			// dataColumn2
 			// 
 			this.dataColumn2.ColumnName = "Column2";
+			this.dataColumn2.DataType = typeof(int);
 			// 
 			// dataColumn3
 			// 
 			this.dataColumn3.ColumnName = "Column3";
+			this.dataColumn3.DataType = typeof(System.DateTime);
 			// 
 			// dataColumn4
 			// 
@@ -203,6 +236,13 @@ namespace DataGrid
 			// dataColumn6
 			// 
 			this.dataColumn6.ColumnName = "Column6";
+			// 
+			// dataSet1
+			// 
+			this.dataSet1.DataSetName = "NewDataSet";
+			this.dataSet1.Locale = new System.Globalization.CultureInfo("da-DK");
+			this.dataSet1.Tables.AddRange(new System.Data.DataTable[] {
+																		  this.dataTable1});
 			// 
 			// listView1
 			// 
@@ -273,53 +313,11 @@ namespace DataGrid
 																								   this.dataGridColumn11,
 																								   this.dataGridColumn12,
 																								   this.dataGridColumn13});
-			this.dataGrid1.ColumnTypes = new dk.hob.Windows.Forms.DataGrid.Wrappers.ColumnControl[] {
-																										new dk.hob.Windows.Forms.DataGrid.Wrappers.ComboBoxDropListWrapper(this.dataGrid1, new string[0], new object[0]),
-																										new dk.hob.Windows.Forms.DataGrid.Wrappers.TextBoxWrapper(this.dataGrid1, new string[] {
-																																																   "MaxLength"}, new object[] {
-																																																								  32767}),
-																										new dk.hob.Windows.Forms.DataGrid.Wrappers.TextBoxWrapper(this.dataGrid1, new string[] {
-																																																   "MaxLength"}, new object[] {
-																																																								  32767}),
-																										new dk.hob.Windows.Forms.DataGrid.Wrappers.TextBoxWrapper(this.dataGrid1, new string[] {
-																																																   "MaxLength"}, new object[] {
-																																																								  32767}),
-																										new dk.hob.Windows.Forms.DataGrid.Wrappers.TextBoxWrapper(this.dataGrid1, new string[] {
-																																																   "MaxLength"}, new object[] {
-																																																								  8}),
-																										new dk.hob.Windows.Forms.DataGrid.Wrappers.CheckBoxWrapper(this.dataGrid1, new string[0], new object[0]),
-																										new dk.hob.Windows.Forms.DataGrid.Wrappers.StringLookupPairWrapper(this.dataGrid1, new string[] {
-																																																			"DisplayKeyFirst"}, new object[] {
-																																																												 false}),
-																										null,
-																										new dk.hob.Windows.Forms.DataGrid.Wrappers.CPRWrapper(this.dataGrid1, new string[] {
-																																															   "AllowForeign",
-																																															   "ShowHelp"}, new object[] {
-																																																							 false,
-																																																							 dk.hob.Windows.Forms.HelpTypes.Bubble}),
-																										new dk.hob.Windows.Forms.DataGrid.Wrappers.DateTimeWrapper(this.dataGrid1, new string[] {
-																																																	"MarkOnFocus",
-																																																	"IsTimeAndDateControl"}, new object[] {
-																																																											  -1,
-																																																											  true}),
-																										new dk.hob.Windows.Forms.DataGrid.Wrappers.NumberBoxWrapper(this.dataGrid1, new string[] {
-																																																	 "ShowMinusOne",
-																																																	 "MaxLength"}, new object[] {
-																																																									false,
-																																																									10}),
-																										new dk.hob.Windows.Forms.DataGrid.Wrappers.ComboBoxWrapper(this.dataGrid1, new string[0], new object[0]),
-																										new dk.hob.Windows.Forms.DataGrid.Wrappers.ImageWrapper(this.dataGrid1, new string[0], new object[0])};
 			this.dataGrid1.ImageList = this.imageList1;
 			this.dataGrid1.Location = new System.Drawing.Point(56, 16);
 			this.dataGrid1.Name = "dataGrid1";
 			this.dataGrid1.Size = new System.Drawing.Size(896, 216);
 			this.dataGrid1.TabIndex = 1;
-			this.hobBindingComponent1.SetTableBindings(this.dataGrid1, new dk.hob.Windows.Forms.Binding.HOBTableBinding[] {
-																															  new dk.hob.Windows.Forms.Binding.HOBTableBinding("GridTable", "DataBinding", "uiRowID", "", new dk.hob.Windows.Forms.Binding.HOBColumnBindingCollection(new dk.hob.Windows.Forms.Binding.HOBColumnBinding[] {
-																																																																																			  new dk.hob.Windows.Forms.Binding.HOBColumnBinding("Col1", dk.hob.Windows.Forms.Binding.HOBBindingType.Index, true, null),
-																																																																																			  new dk.hob.Windows.Forms.Binding.HOBColumnBinding("Col2", dk.hob.Windows.Forms.Binding.HOBBindingType.String, true, null),
-																																																																																			  new dk.hob.Windows.Forms.Binding.HOBColumnBinding("Col3", dk.hob.Windows.Forms.Binding.HOBBindingType.String, true, null),
-																																																																																			  new dk.hob.Windows.Forms.Binding.HOBColumnBinding("Col4", dk.hob.Windows.Forms.Binding.HOBBindingType.String, false, null)}), ((short)(0)))});
 			this.dataGrid1.ColumnControlInitializing += new dk.hob.Windows.Forms.DataGrid.ColumnControlEventHandler(this.Grid_ColumnControlInitializing);
 			this.dataGrid1.RowAdded += new dk.hob.Windows.Forms.DataGrid.RowEventHandler(this.Grid_RowAdded);
 			this.dataGrid1.BeginEdit += new dk.hob.Windows.Forms.DataGrid.CellEventHandler(this.Grid_BeginEdit);
@@ -330,38 +328,55 @@ namespace DataGrid
 			// 
 			// dataGridColumn1
 			// 
+			this.dataGridColumn1.ColumnType = new dk.hob.Windows.Forms.DataGrid.Wrappers.ComboBoxDropListWrapper(this.dataGrid1, new string[0], new object[0]);
 			this.dataGridColumn1.Label = "ComboDrop";
 			this.dataGridColumn1.Width = 78;
 			// 
 			// dataGridColumn2
 			// 
 			this.dataGridColumn2.AllowNull = true;
+			this.dataGridColumn2.ColumnType = new dk.hob.Windows.Forms.DataGrid.Wrappers.TextBoxWrapper(this.dataGrid1, new string[] {
+																																		 "MaxLength"}, new object[] {
+																																										32767});
 			this.dataGridColumn2.Label = "Svin!";
 			this.dataGridColumn2.Width = 76;
 			// 
 			// dataGridColumn3
 			// 
+			this.dataGridColumn3.ColumnType = new dk.hob.Windows.Forms.DataGrid.Wrappers.TextBoxWrapper(this.dataGrid1, new string[] {
+																																		 "MaxLength"}, new object[] {
+																																										32767});
 			this.dataGridColumn3.Label = "Låst";
 			this.dataGridColumn3.ReadOnly = true;
 			this.dataGridColumn3.Width = 54;
 			// 
 			// dataGridColumn4
 			// 
+			this.dataGridColumn4.ColumnType = new dk.hob.Windows.Forms.DataGrid.Wrappers.TextBoxWrapper(this.dataGrid1, new string[] {
+																																		 "MaxLength"}, new object[] {
+																																										32767});
 			this.dataGridColumn4.Label = "teterte";
 			this.dataGridColumn4.Width = 79;
 			// 
 			// dataGridColumn5
 			// 
+			this.dataGridColumn5.ColumnType = new dk.hob.Windows.Forms.DataGrid.Wrappers.TextBoxWrapper(this.dataGrid1, new string[] {
+																																		 "MaxLength"}, new object[] {
+																																										8});
 			this.dataGridColumn5.Label = "erttyfjh";
 			this.dataGridColumn5.Width = 50;
 			// 
 			// dataGridColumn6
 			// 
+			this.dataGridColumn6.ColumnType = new dk.hob.Windows.Forms.DataGrid.Wrappers.CheckBoxWrapper(this.dataGrid1, new string[0], new object[0]);
 			this.dataGridColumn6.Label = "GU!";
 			this.dataGridColumn6.Width = 114;
 			// 
 			// dataGridColumn7
 			// 
+			this.dataGridColumn7.ColumnType = new dk.hob.Windows.Forms.DataGrid.Wrappers.StringLookupPairWrapper(this.dataGrid1, new string[] {
+																																				  "DisplayKeyFirst"}, new object[] {
+																																													   false});
 			this.dataGridColumn7.Label = "Sygehus";
 			this.dataGridColumn7.Width = 171;
 			// 
@@ -372,25 +387,42 @@ namespace DataGrid
 			// 
 			// dataGridColumn9
 			// 
+			this.dataGridColumn9.ColumnType = new dk.hob.Windows.Forms.DataGrid.Wrappers.CPRWrapper(this.dataGrid1, new string[] {
+																																	 "AllowForeign",
+																																	 "ShowHelp"}, new object[] {
+																																								   false,
+																																								   dk.hob.Windows.Forms.HelpTypes.Bubble});
 			this.dataGridColumn9.Label = "CPR";
 			this.dataGridColumn9.Width = 94;
 			// 
 			// dataGridColumn10
 			// 
+			this.dataGridColumn10.ColumnType = new dk.hob.Windows.Forms.DataGrid.Wrappers.DateTimeWrapper(this.dataGrid1, new string[] {
+																																		   "MarkOnFocus",
+																																		   "IsTimeAndDateControl"}, new object[] {
+																																													 -1,
+																																													 true});
 			this.dataGridColumn10.Label = "Dato";
 			this.dataGridColumn10.Width = 107;
 			// 
 			// dataGridColumn11
 			// 
+			this.dataGridColumn11.ColumnType = new dk.hob.Windows.Forms.DataGrid.Wrappers.NumberBoxWrapper(this.dataGrid1, new string[] {
+																																			"ShowMinusOne",
+																																			"MaxLength"}, new object[] {
+																																										   false,
+																																										   10});
 			this.dataGridColumn11.Label = "Tal";
 			// 
 			// dataGridColumn12
 			// 
+			this.dataGridColumn12.ColumnType = new dk.hob.Windows.Forms.DataGrid.Wrappers.ComboBoxWrapper(this.dataGrid1, new string[0], new object[0]);
 			this.dataGridColumn12.Label = "ComboSkriv";
 			this.dataGridColumn12.Width = 20;
 			// 
 			// dataGridColumn13
 			// 
+			this.dataGridColumn13.ColumnType = new dk.hob.Windows.Forms.DataGrid.Wrappers.ImageWrapper(this.dataGrid1, new string[0], new object[0]);
 			this.dataGridColumn13.Label = "Billede";
 			// 
 			// imageList1
@@ -423,10 +455,89 @@ namespace DataGrid
 			this.button3.Text = "Skift billede";
 			this.button3.Click += new System.EventHandler(this.SwitchPicture);
 			// 
+			// dataGrid3
+			// 
+			this.dataGrid3.AllowSorting = false;
+			this.dataGrid3.CaptionText = "Our own";
+			this.dataGrid3.Columns.AddRange(new dk.hob.Windows.Forms.DataGrid.DataGridColumn[] {
+																								   this.dataGridColumn14,
+																								   this.dataGridColumn15,
+																								   this.dataGridColumn16});
+			this.dataGrid3.DataSource = this.dataTable1;
+			this.dataGrid3.Location = new System.Drawing.Point(584, 248);
+			this.dataGrid3.Name = "dataGrid3";
+			this.dataGrid3.Size = new System.Drawing.Size(368, 160);
+			this.dataGrid3.TabIndex = 8;
+			// 
+			// dataGridColumn14
+			// 
+			this.dataGridColumn14.ColumnType = new dk.hob.Windows.Forms.DataGrid.Wrappers.TextBoxWrapper(null, new string[] {
+																																"MaxLength"}, new object[] {
+																																							   32767});
+			this.dataGridColumn14.Label = "Streng";
+			// 
+			// dataGridColumn15
+			// 
+			this.dataGridColumn15.ColumnType = new dk.hob.Windows.Forms.DataGrid.Wrappers.NumberBoxWrapper(null, new string[] {
+																																  "ShowMinusOne",
+																																  "MaxLength"}, new object[] {
+																																								 false,
+																																								 10});
+			this.dataGridColumn15.Label = "Tal";
+			// 
+			// dataGridColumn16
+			// 
+			this.dataGridColumn16.ColumnType = new dk.hob.Windows.Forms.DataGrid.Wrappers.DateTimeWrapper(null, new string[] {
+																																 "MarkOnFocus",
+																																 "IsTimeAndDateControl"}, new object[] {
+																																										   -1,
+																																										   false});
+			this.dataGridColumn16.Label = "Dato";
+			// 
+			// dataGrid4
+			// 
+			this.dataGrid4.CaptionVisible = false;
+			this.dataGrid4.Columns.AddRange(new dk.hob.Windows.Forms.DataGrid.DataGridColumn[] {
+																								   this.dataGridColumn17,
+																								   this.dataGridColumn18,
+																								   this.dataGridColumn19});
+			this.dataGrid4.CursorVisible = false;
+			this.dataGrid4.GridLinesVisible = dk.hob.Windows.Forms.DataGrid.GridLines.None;
+			this.dataGrid4.Location = new System.Drawing.Point(584, 416);
+			this.dataGrid4.Name = "dataGrid4";
+			this.dataGrid4.PixelsToAdd = 4;
+			this.dataGrid4.ReadOnly = true;
+			this.dataGrid4.RowHeadersVisible = false;
+			this.dataGrid4.Size = new System.Drawing.Size(344, 120);
+			this.dataGrid4.TabIndex = 9;
+			// 
+			// dataGridColumn17
+			// 
+			this.dataGridColumn17.ColumnType = new dk.hob.Windows.Forms.DataGrid.Wrappers.TextBoxWrapper(null, new string[] {
+																																"MaxLength"}, new object[] {
+																																							   32767});
+			this.dataGridColumn17.Label = "Column1";
+			// 
+			// dataGridColumn18
+			// 
+			this.dataGridColumn18.ColumnType = new dk.hob.Windows.Forms.DataGrid.Wrappers.TextBoxWrapper(null, new string[] {
+																																"MaxLength"}, new object[] {
+																																							   32767});
+			this.dataGridColumn18.Label = "Column2";
+			// 
+			// dataGridColumn19
+			// 
+			this.dataGridColumn19.ColumnType = new dk.hob.Windows.Forms.DataGrid.Wrappers.TextBoxWrapper(null, new string[] {
+																																"MaxLength"}, new object[] {
+																																							   32767});
+			this.dataGridColumn19.Label = "Column3";
+			// 
 			// Form1
 			// 
 			this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
-			this.ClientSize = new System.Drawing.Size(968, 565);
+			this.ClientSize = new System.Drawing.Size(968, 614);
+			this.Controls.Add(this.dataGrid4);
+			this.Controls.Add(this.dataGrid3);
 			this.Controls.Add(this.button3);
 			this.Controls.Add(this.button2);
 			this.Controls.Add(this.button1);
@@ -439,9 +550,12 @@ namespace DataGrid
 			this.Text = "Form1";
 			this.Closing += new System.ComponentModel.CancelEventHandler(this.Form_Closing);
 			((System.ComponentModel.ISupportInitialize)(this.dataGrid2)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.dataTable1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dataSet1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dataGrid1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.hobBindingComponent1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dataGrid3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.dataGrid4)).EndInit();
 			this.ResumeLayout(false);
 
 		}

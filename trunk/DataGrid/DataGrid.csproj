@@ -124,6 +124,11 @@
                     Project = "{E19039B1-F24A-43A0-8DAB-C7CE5E4AE074}"
                     Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
                 />
+                <Reference
+                    Name = "dk.hob.IO"
+                    Project = "{44ADDF25-5DDF-4D2F-A4C8-D05C091BCBDE}"
+                    Package = "{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}"
+                />
             </References>
         </Build>
         <Files>
