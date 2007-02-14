@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSPY v5 rel. 3 U (http://www.xmlspy.com) by Olaf (Sundhedsstyrelsen) -->
+<root>
+	<record>
+		<Kode>4341000016009</Kode>
+		<Tekst>Bornholms Regionskommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4361000016005</Kode>
+		<Tekst>Dragør Kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4131000016000</Kode>
+		<Tekst>Vordingborg kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4111000016006</Kode>
+		<Tekst>Ærø kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4091000016003</Kode>
+		<Tekst>Århus kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4151000016005</Kode>
+		<Tekst>Vesthimmerlands kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4191000016004</Kode>
+		<Tekst>Vejen kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4211000016000</Kode>
+		<Tekst>Tønder kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4401000016003</Kode>
+		<Tekst>Skanderborg kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4291000016007</Kode>
+		<Tekst>Skive kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4601000016000</Kode>
+		<Tekst>Odder kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4641000016002</Kode>
+		<Tekst>Nyborg kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4681000016008</Kode>
+		<Tekst>Læsø kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4751000016006</Kode>
+		<Tekst>Lemvig kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4781000016002</Kode>
+		<Tekst>Langeland kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4861000016002</Kode>
+		<Tekst>Kalundborg kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4841000016003</Kode>
+		<Tekst>Hørsholm Kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4891000016006</Kode>
+		<Tekst>Ikast-Brande Kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4761000016009</Kode>
+		<Tekst>Hjørring Ny Kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4631000016009</Kode>
+		<Tekst>Greve Kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4671000016006</Kode>
+		<Tekst>Gribskov Kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4591000016009</Kode>
+		<Tekst>Gladsaxe Kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4461000016004</Kode>
+		<Tekst>Fredericia Kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4421000016005</Kode>
+		<Tekst>Favrskov Ny Kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4381000016003</Kode>
+		<Tekst>Esbjerg Ny Kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4551000016003</Kode>
+		<Tekst>Frederiksværk-Hundested Ny Kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4501000016004</Kode>
+		<Tekst>Frederiksberg Kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+	<record>
+		<Kode>4301000016006</Kode>
+		<Tekst>Assens Ny Kommune</Tekst>
+		<FraDato>2007-01-01</FraDato>
+		<TilDato>2500-01-01</TilDato>
+	</record>
+</root>

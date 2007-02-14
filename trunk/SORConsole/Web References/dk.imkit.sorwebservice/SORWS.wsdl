@@ -1,0 +1,2281 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://www.sst.dk/sor/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" targetNamespace="http://www.sst.dk/sor/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.sst.dk/sor/">
+      <s:element name="GetParents">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sorId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetParentsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetParentsResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSubtree">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sorId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSubtreeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSubtreeResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserSubtrees">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserSubtreesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserSubtreesResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUnitType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sorId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUnitTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUnitTypeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSorType">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sorId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSorTypeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSorTypeResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetChildren">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sorId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetChildrenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetChildrenResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetChildrenAtNextLevel">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sorId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetChildrenAtNextLevelResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetChildrenAtNextLevelResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInheritedSpecialities">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sorId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInheritedSpecialitiesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInheritedSpecialitiesResult" type="tns:ArrayOfSorClinicalSpeciality" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSorClinicalSpeciality">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="sorClinicalSpeciality" nillable="true" type="tns:sorClinicalSpeciality" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="sorClinicalSpeciality">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="longSpecialityCode" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="longSpecialityType" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="strSpecialityValue" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetNonInheritedSpecialities">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sorId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetNonInheritedSpecialitiesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetNonInheritedSpecialitiesResult" type="tns:ArrayOfSorClinicalSpeciality" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllSpecialities">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sorId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetAllSpecialitiesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetAllSpecialitiesResult" type="tns:ArrayOfSorClinicalSpeciality" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemSuppliers">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetSystemSuppliersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSystemSuppliersResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHealthInstitutionTypes">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetHealthInstitutionTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHealthInstitutionTypesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetInstitutionOwnerTypes">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetInstitutionOwnerTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetInstitutionOwnerTypesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOrganizationalUnitTypes">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetOrganizationalUnitTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOrganizationalUnitTypesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetClinicalSpecialities">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetClinicalSpecialitiesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetClinicalSpecialitiesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSpecialityTypes">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetSpecialityTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSpecialityTypesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCommunicationSuppliers">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetCommunicationSuppliersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCommunicationSuppliersResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemTypes">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetSystemTypesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSystemTypesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SORSearchUnits">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="unitNameFilter" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="localCodeFilter" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="specialityCode" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SORSearchUnitsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SORSearchUnitsResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateUserCredentials">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateUserCredentialsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="ValidateUserCredentialsResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSORGroup">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSORGroupResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSORGroupResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetIO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sorId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetIOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetIOResult" type="tns:sorInstitutionOwner" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="sorInstitutionOwner">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="strName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="longSorCode" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="longType" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="paPostal" type="tns:sorPhysicalAddress" />
+          <s:element minOccurs="0" maxOccurs="1" name="vaVirtual" type="tns:sorVirtualAddress" />
+          <s:element minOccurs="1" maxOccurs="1" name="dtFromDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="dtToDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="strUpdatedBy" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="dtUpdatedAt" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="sorPhysicalAddress">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="strStreetName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strStreetBuildingID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strFloorID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strSuiteID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strPostCodeID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strDistrictName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strCountryCodeID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strMunicipalityCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strStreetCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strAddressAccessID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strNote" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="boolInherited" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="boolSkipAddressValidation" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="sorVirtualAddress">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="strCanRcvEpiCrisis" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strCanRcvOpEPIcrisis" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strCanRcvCorrespondance" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strCanRcvReferral" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strContactPerson" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strContactPhoneNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strContactEmailAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strOnlyInternal" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strNonActive" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="longEanLocationCode" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="longSystemSupplier" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="longSystemType" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="longCommunicationSupplier" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="strEmailAddress" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strWebsite" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strPhoneNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strFaxNumber" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strNote" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="boolInherited" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetHI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sorId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHIResult" type="tns:sorHealthInstitution" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="sorHealthInstitution">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="strName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="longSorCode" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="longType" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="strShak1Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="paPostal" type="tns:sorPhysicalAddress" />
+          <s:element minOccurs="0" maxOccurs="1" name="paVisiting" type="tns:sorPhysicalAddress" />
+          <s:element minOccurs="0" maxOccurs="1" name="vaVirtual" type="tns:sorVirtualAddress" />
+          <s:element minOccurs="1" maxOccurs="1" name="longParentSorCode" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="dtFromDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="dtToDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="strUpdatedBy" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="dtUpdatedAt" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="strParentName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetOU">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sorId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetOUResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetOUResult" type="tns:sorOrganizationalUnit" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="sorOrganizationalUnit">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="strName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="longSorCode" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="longType" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="strLocalCode" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strShak1Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strProviderID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="paPostal" type="tns:sorPhysicalAddress" />
+          <s:element minOccurs="0" maxOccurs="1" name="paVisiting" type="tns:sorPhysicalAddress" />
+          <s:element minOccurs="0" maxOccurs="1" name="paActivity" type="tns:sorPhysicalAddress" />
+          <s:element minOccurs="0" maxOccurs="1" name="vaVirtual" type="tns:sorVirtualAddress" />
+          <s:element minOccurs="0" maxOccurs="1" name="csarrSpecialities" type="tns:ArrayOfSorClinicalSpeciality" />
+          <s:element minOccurs="0" maxOccurs="1" name="csarrInheritedSpecialities" type="tns:ArrayOfSorClinicalSpeciality" />
+          <s:element minOccurs="0" maxOccurs="1" name="strNurseResp" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strAdmitted" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="intBedCapacity" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="strOutpatient" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strDoctors" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strNurses" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strPatServices" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strAttendances" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="longParentSorCode" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="dtFromDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="dtToDate" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="strUpdatedBy" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="dtUpdatedAt" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="strParentSORType" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strParentName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="CreateIO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IO" type="tns:sorInstitutionOwner" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateIOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateIOResult" type="tns:sorInstitutionOwner" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AuthHeader" type="tns:AuthHeader" />
+      <s:complexType name="AuthHeader">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="strUserName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strPassword" type="s:string" />
+        </s:sequence>
+        <s:anyAttribute />
+      </s:complexType>
+      <s:element name="CreateHI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HI" type="tns:sorHealthInstitution" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateHIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateHIResult" type="tns:sorHealthInstitution" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateOU">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OU" type="tns:sorOrganizationalUnit" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateOUResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateOUResult" type="tns:sorOrganizationalUnit" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EditIO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IO" type="tns:sorInstitutionOwner" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EditIOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EditIOResult" type="tns:sorInstitutionOwner" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EditOU">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OU" type="tns:sorOrganizationalUnit" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EditOUResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EditOUResult" type="tns:sorOrganizationalUnit" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EditHI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HI" type="tns:sorHealthInstitution" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EditHIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EditHIResult" type="tns:sorHealthInstitution" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateIO">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="IO" type="tns:sorInstitutionOwner" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateIOResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidateIOResult" type="tns:sorInstitutionOwner" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateHI">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="HI" type="tns:sorHealthInstitution" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateHIResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidateHIResult" type="tns:sorHealthInstitution" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateOU">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="OU" type="tns:sorOrganizationalUnit" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateOUResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidateOUResult" type="tns:sorOrganizationalUnit" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Search">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="searchParameters" type="tns:sorSearch" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="sorSearch">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="speciality" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="organizationName" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="sorId" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="dtFromDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="longEanLocationCode" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="longCommunicationSupplier" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="longSystemType" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="longSystemSupplier" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="strCanRcvCorrespondance" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="strCanRcvReferral" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="strCanRcvEpiCrisis" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="strCanRcvOpEPIcrisis" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="strProviderId" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="longOrganizationType" type="s:long" />
+          <s:element minOccurs="1" maxOccurs="1" name="longRegion" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="strPostCodeIDFrom" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strPostCodeIDTo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strShak1Code" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="strLocalCode" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="boolClosedUnits" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="boolMyUnits" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="strUserName" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="SearchResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SearchResult" type="tns:ArrayOfSorSearchResult" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfSorSearchResult">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="sorSearchResult" nillable="true" type="tns:sorSearchResult" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="sorSearchResult">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="entity_code" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="entity_type" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="entity_name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pa_phone_number" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="va_website" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pa_street_name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pa_street_building_id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pa_floor_id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pa_suite_id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pa_post_code_id" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="pa_district_name" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="owner_name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="owner_code" type="s:long" />
+          <s:element minOccurs="0" maxOccurs="1" name="institution_name" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="institution_code" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetHistory">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="longSorID" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetHistoryResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetHistoryResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CloseEntity">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="sorId" type="s:long" />
+            <s:element minOccurs="1" maxOccurs="1" name="dtToDate" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CloseEntityResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CloseEntityResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTableAll">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tableName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTableAllResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTableAllResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTable">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tableName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTableResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTableResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FLPRGetTableDelta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tableName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="from" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FLPRGetTableDeltaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FLPRGetTableDeltaResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FLPRGetTableAt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="tableName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="atTime" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FLPRGetTableAtResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="FLPRGetTableAtResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FLPRUploadDelta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="fromDate" type="s:dateTime" />
+            <s:element minOccurs="0" maxOccurs="1" name="serverURI" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="format" type="tns:OUTPUT_FORMAT" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="OUTPUT_FORMAT">
+        <s:restriction base="s:string">
+          <s:enumeration value="XML" />
+          <s:enumeration value="CSV" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="FLPRUploadDeltaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FLPRUploadDeltaResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FLPRUpload">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="atTime" type="s:dateTime" />
+            <s:element minOccurs="1" maxOccurs="1" name="format" type="tns:OUTPUT_FORMAT" />
+            <s:element minOccurs="0" maxOccurs="1" name="serverURI" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="password" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="FLPRUploadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="FLPRUploadResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserRightsAll">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserRightsAllResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserRightsAllResult" type="tns:ArrayOfLong" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfLong">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="long" type="s:long" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="GetUserRightsTop">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserRightsTopResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserRightsTopResult" type="tns:ArrayOfLong" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserRights">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="userName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="sorId" type="s:long" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserRightsResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetUserRightsResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetParentsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetParents" />
+  </wsdl:message>
+  <wsdl:message name="GetParentsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetParentsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSubtreeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSubtree" />
+  </wsdl:message>
+  <wsdl:message name="GetSubtreeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSubtreeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserSubtreesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserSubtrees" />
+  </wsdl:message>
+  <wsdl:message name="GetUserSubtreesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserSubtreesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUnitTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUnitType" />
+  </wsdl:message>
+  <wsdl:message name="GetUnitTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUnitTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSorTypeSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSorType" />
+  </wsdl:message>
+  <wsdl:message name="GetSorTypeSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSorTypeResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetChildrenSoapIn">
+    <wsdl:part name="parameters" element="tns:GetChildren" />
+  </wsdl:message>
+  <wsdl:message name="GetChildrenSoapOut">
+    <wsdl:part name="parameters" element="tns:GetChildrenResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetChildrenAtNextLevelSoapIn">
+    <wsdl:part name="parameters" element="tns:GetChildrenAtNextLevel" />
+  </wsdl:message>
+  <wsdl:message name="GetChildrenAtNextLevelSoapOut">
+    <wsdl:part name="parameters" element="tns:GetChildrenAtNextLevelResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInheritedSpecialitiesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInheritedSpecialities" />
+  </wsdl:message>
+  <wsdl:message name="GetInheritedSpecialitiesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInheritedSpecialitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetNonInheritedSpecialitiesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetNonInheritedSpecialities" />
+  </wsdl:message>
+  <wsdl:message name="GetNonInheritedSpecialitiesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetNonInheritedSpecialitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSpecialitiesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetAllSpecialities" />
+  </wsdl:message>
+  <wsdl:message name="GetAllSpecialitiesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetAllSpecialitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemSuppliersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystemSuppliers" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemSuppliersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemSuppliersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHealthInstitutionTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetHealthInstitutionTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetHealthInstitutionTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetHealthInstitutionTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetInstitutionOwnerTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetInstitutionOwnerTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetInstitutionOwnerTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetInstitutionOwnerTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOrganizationalUnitTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOrganizationalUnitTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetOrganizationalUnitTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOrganizationalUnitTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetClinicalSpecialitiesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetClinicalSpecialities" />
+  </wsdl:message>
+  <wsdl:message name="GetClinicalSpecialitiesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetClinicalSpecialitiesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSpecialityTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSpecialityTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetSpecialityTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSpecialityTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCommunicationSuppliersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCommunicationSuppliers" />
+  </wsdl:message>
+  <wsdl:message name="GetCommunicationSuppliersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCommunicationSuppliersResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemTypesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystemTypes" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemTypesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemTypesResponse" />
+  </wsdl:message>
+  <wsdl:message name="SORSearchUnitsSoapIn">
+    <wsdl:part name="parameters" element="tns:SORSearchUnits" />
+  </wsdl:message>
+  <wsdl:message name="SORSearchUnitsSoapOut">
+    <wsdl:part name="parameters" element="tns:SORSearchUnitsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateUserCredentialsSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateUserCredentials" />
+  </wsdl:message>
+  <wsdl:message name="ValidateUserCredentialsSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateUserCredentialsResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSORGroupSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSORGroup" />
+  </wsdl:message>
+  <wsdl:message name="GetSORGroupSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSORGroupResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetIOSoapIn">
+    <wsdl:part name="parameters" element="tns:GetIO" />
+  </wsdl:message>
+  <wsdl:message name="GetIOSoapOut">
+    <wsdl:part name="parameters" element="tns:GetIOResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHISoapIn">
+    <wsdl:part name="parameters" element="tns:GetHI" />
+  </wsdl:message>
+  <wsdl:message name="GetHISoapOut">
+    <wsdl:part name="parameters" element="tns:GetHIResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetOUSoapIn">
+    <wsdl:part name="parameters" element="tns:GetOU" />
+  </wsdl:message>
+  <wsdl:message name="GetOUSoapOut">
+    <wsdl:part name="parameters" element="tns:GetOUResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateIOSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateIO" />
+  </wsdl:message>
+  <wsdl:message name="CreateIOSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateIOResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateIOAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="CreateHISoapIn">
+    <wsdl:part name="parameters" element="tns:CreateHI" />
+  </wsdl:message>
+  <wsdl:message name="CreateHISoapOut">
+    <wsdl:part name="parameters" element="tns:CreateHIResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateHIAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="CreateOUSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateOU" />
+  </wsdl:message>
+  <wsdl:message name="CreateOUSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateOUResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateOUAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="EditIOSoapIn">
+    <wsdl:part name="parameters" element="tns:EditIO" />
+  </wsdl:message>
+  <wsdl:message name="EditIOSoapOut">
+    <wsdl:part name="parameters" element="tns:EditIOResponse" />
+  </wsdl:message>
+  <wsdl:message name="EditIOAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="EditOUSoapIn">
+    <wsdl:part name="parameters" element="tns:EditOU" />
+  </wsdl:message>
+  <wsdl:message name="EditOUSoapOut">
+    <wsdl:part name="parameters" element="tns:EditOUResponse" />
+  </wsdl:message>
+  <wsdl:message name="EditOUAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="EditHISoapIn">
+    <wsdl:part name="parameters" element="tns:EditHI" />
+  </wsdl:message>
+  <wsdl:message name="EditHISoapOut">
+    <wsdl:part name="parameters" element="tns:EditHIResponse" />
+  </wsdl:message>
+  <wsdl:message name="EditHIAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="ValidateIOSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateIO" />
+  </wsdl:message>
+  <wsdl:message name="ValidateIOSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateIOResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateHISoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateHI" />
+  </wsdl:message>
+  <wsdl:message name="ValidateHISoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateHIResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateOUSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidateOU" />
+  </wsdl:message>
+  <wsdl:message name="ValidateOUSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateOUResponse" />
+  </wsdl:message>
+  <wsdl:message name="SearchSoapIn">
+    <wsdl:part name="parameters" element="tns:Search" />
+  </wsdl:message>
+  <wsdl:message name="SearchSoapOut">
+    <wsdl:part name="parameters" element="tns:SearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetHistorySoapIn">
+    <wsdl:part name="parameters" element="tns:GetHistory" />
+  </wsdl:message>
+  <wsdl:message name="GetHistorySoapOut">
+    <wsdl:part name="parameters" element="tns:GetHistoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="CloseEntitySoapIn">
+    <wsdl:part name="parameters" element="tns:CloseEntity" />
+  </wsdl:message>
+  <wsdl:message name="CloseEntitySoapOut">
+    <wsdl:part name="parameters" element="tns:CloseEntityResponse" />
+  </wsdl:message>
+  <wsdl:message name="CloseEntityAuthHeader">
+    <wsdl:part name="AuthHeader" element="tns:AuthHeader" />
+  </wsdl:message>
+  <wsdl:message name="GetTableAllSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTableAll" />
+  </wsdl:message>
+  <wsdl:message name="GetTableAllSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTableAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTableSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTable" />
+  </wsdl:message>
+  <wsdl:message name="GetTableSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTableResponse" />
+  </wsdl:message>
+  <wsdl:message name="FLPRGetTableDeltaSoapIn">
+    <wsdl:part name="parameters" element="tns:FLPRGetTableDelta" />
+  </wsdl:message>
+  <wsdl:message name="FLPRGetTableDeltaSoapOut">
+    <wsdl:part name="parameters" element="tns:FLPRGetTableDeltaResponse" />
+  </wsdl:message>
+  <wsdl:message name="FLPRGetTableAtSoapIn">
+    <wsdl:part name="parameters" element="tns:FLPRGetTableAt" />
+  </wsdl:message>
+  <wsdl:message name="FLPRGetTableAtSoapOut">
+    <wsdl:part name="parameters" element="tns:FLPRGetTableAtResponse" />
+  </wsdl:message>
+  <wsdl:message name="FLPRUploadDeltaSoapIn">
+    <wsdl:part name="parameters" element="tns:FLPRUploadDelta" />
+  </wsdl:message>
+  <wsdl:message name="FLPRUploadDeltaSoapOut">
+    <wsdl:part name="parameters" element="tns:FLPRUploadDeltaResponse" />
+  </wsdl:message>
+  <wsdl:message name="FLPRUploadSoapIn">
+    <wsdl:part name="parameters" element="tns:FLPRUpload" />
+  </wsdl:message>
+  <wsdl:message name="FLPRUploadSoapOut">
+    <wsdl:part name="parameters" element="tns:FLPRUploadResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserRightsAllSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserRightsAll" />
+  </wsdl:message>
+  <wsdl:message name="GetUserRightsAllSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserRightsAllResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserRightsTopSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserRightsTop" />
+  </wsdl:message>
+  <wsdl:message name="GetUserRightsTopSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserRightsTopResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserRightsSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserRights" />
+  </wsdl:message>
+  <wsdl:message name="GetUserRightsSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserRightsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="SORWSSoap">
+    <wsdl:operation name="GetParents">
+      <wsdl:input message="tns:GetParentsSoapIn" />
+      <wsdl:output message="tns:GetParentsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubtree">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Used in generation of the webpage 'Mine Enheder'</wsdl:documentation>
+      <wsdl:input message="tns:GetSubtreeSoapIn" />
+      <wsdl:output message="tns:GetSubtreeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserSubtrees">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get subtrees of SOR IDs that the user can edit</wsdl:documentation>
+      <wsdl:input message="tns:GetUserSubtreesSoapIn" />
+      <wsdl:output message="tns:GetUserSubtreesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnitType">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get the type of the OU</wsdl:documentation>
+      <wsdl:input message="tns:GetUnitTypeSoapIn" />
+      <wsdl:output message="tns:GetUnitTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSorType">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Is entity an 'IO', 'HI' or 'OU'</wsdl:documentation>
+      <wsdl:input message="tns:GetSorTypeSoapIn" />
+      <wsdl:output message="tns:GetSorTypeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChildren">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get all child entities</wsdl:documentation>
+      <wsdl:input message="tns:GetChildrenSoapIn" />
+      <wsdl:output message="tns:GetChildrenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetChildrenAtNextLevel">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get children at next level</wsdl:documentation>
+      <wsdl:input message="tns:GetChildrenAtNextLevelSoapIn" />
+      <wsdl:output message="tns:GetChildrenAtNextLevelSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInheritedSpecialities">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get inherited specialities</wsdl:documentation>
+      <wsdl:input message="tns:GetInheritedSpecialitiesSoapIn" />
+      <wsdl:output message="tns:GetInheritedSpecialitiesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetNonInheritedSpecialities">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get specialities</wsdl:documentation>
+      <wsdl:input message="tns:GetNonInheritedSpecialitiesSoapIn" />
+      <wsdl:output message="tns:GetNonInheritedSpecialitiesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSpecialities">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get all specialities</wsdl:documentation>
+      <wsdl:input message="tns:GetAllSpecialitiesSoapIn" />
+      <wsdl:output message="tns:GetAllSpecialitiesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemSuppliers">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get system suppliers</wsdl:documentation>
+      <wsdl:input message="tns:GetSystemSuppliersSoapIn" />
+      <wsdl:output message="tns:GetSystemSuppliersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHealthInstitutionTypes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get health institution types</wsdl:documentation>
+      <wsdl:input message="tns:GetHealthInstitutionTypesSoapIn" />
+      <wsdl:output message="tns:GetHealthInstitutionTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetInstitutionOwnerTypes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get institution owner types</wsdl:documentation>
+      <wsdl:input message="tns:GetInstitutionOwnerTypesSoapIn" />
+      <wsdl:output message="tns:GetInstitutionOwnerTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOrganizationalUnitTypes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get organizational unit types</wsdl:documentation>
+      <wsdl:input message="tns:GetOrganizationalUnitTypesSoapIn" />
+      <wsdl:output message="tns:GetOrganizationalUnitTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetClinicalSpecialities">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get clinical specialities</wsdl:documentation>
+      <wsdl:input message="tns:GetClinicalSpecialitiesSoapIn" />
+      <wsdl:output message="tns:GetClinicalSpecialitiesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSpecialityTypes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get types of clinical specialities</wsdl:documentation>
+      <wsdl:input message="tns:GetSpecialityTypesSoapIn" />
+      <wsdl:output message="tns:GetSpecialityTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCommunicationSuppliers">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get communication suppliers</wsdl:documentation>
+      <wsdl:input message="tns:GetCommunicationSuppliersSoapIn" />
+      <wsdl:output message="tns:GetCommunicationSuppliersSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemTypes">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get system types</wsdl:documentation>
+      <wsdl:input message="tns:GetSystemTypesSoapIn" />
+      <wsdl:output message="tns:GetSystemTypesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SORSearchUnits">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Search unit</wsdl:documentation>
+      <wsdl:input message="tns:SORSearchUnitsSoapIn" />
+      <wsdl:output message="tns:SORSearchUnitsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUserCredentials">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Validate user credentials</wsdl:documentation>
+      <wsdl:input message="tns:ValidateUserCredentialsSoapIn" />
+      <wsdl:output message="tns:ValidateUserCredentialsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSORGroup">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Return group user is member of</wsdl:documentation>
+      <wsdl:input message="tns:GetSORGroupSoapIn" />
+      <wsdl:output message="tns:GetSORGroupSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIO">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get institution owner</wsdl:documentation>
+      <wsdl:input message="tns:GetIOSoapIn" />
+      <wsdl:output message="tns:GetIOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHI">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get health institution</wsdl:documentation>
+      <wsdl:input message="tns:GetHISoapIn" />
+      <wsdl:output message="tns:GetHISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOU">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get organizational unit</wsdl:documentation>
+      <wsdl:input message="tns:GetOUSoapIn" />
+      <wsdl:output message="tns:GetOUSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateIO">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates IO</wsdl:documentation>
+      <wsdl:input message="tns:CreateIOSoapIn" />
+      <wsdl:output message="tns:CreateIOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateHI">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates HI</wsdl:documentation>
+      <wsdl:input message="tns:CreateHISoapIn" />
+      <wsdl:output message="tns:CreateHISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CreateOU">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Creates OU</wsdl:documentation>
+      <wsdl:input message="tns:CreateOUSoapIn" />
+      <wsdl:output message="tns:CreateOUSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EditIO">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Edits IO</wsdl:documentation>
+      <wsdl:input message="tns:EditIOSoapIn" />
+      <wsdl:output message="tns:EditIOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EditOU">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Edits OU</wsdl:documentation>
+      <wsdl:input message="tns:EditOUSoapIn" />
+      <wsdl:output message="tns:EditOUSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EditHI">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Edits HI</wsdl:documentation>
+      <wsdl:input message="tns:EditHISoapIn" />
+      <wsdl:output message="tns:EditHISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateIO">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Validates IO</wsdl:documentation>
+      <wsdl:input message="tns:ValidateIOSoapIn" />
+      <wsdl:output message="tns:ValidateIOSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateHI">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Validates HI</wsdl:documentation>
+      <wsdl:input message="tns:ValidateHISoapIn" />
+      <wsdl:output message="tns:ValidateHISoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidateOU">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Validates OU</wsdl:documentation>
+      <wsdl:input message="tns:ValidateOUSoapIn" />
+      <wsdl:output message="tns:ValidateOUSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Search">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Search</wsdl:documentation>
+      <wsdl:input message="tns:SearchSoapIn" />
+      <wsdl:output message="tns:SearchSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetHistory">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get history</wsdl:documentation>
+      <wsdl:input message="tns:GetHistorySoapIn" />
+      <wsdl:output message="tns:GetHistorySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CloseEntity">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Close entity</wsdl:documentation>
+      <wsdl:input message="tns:CloseEntitySoapIn" />
+      <wsdl:output message="tns:CloseEntitySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTableAll">
+      <wsdl:input message="tns:GetTableAllSoapIn" />
+      <wsdl:output message="tns:GetTableAllSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTable">
+      <wsdl:input message="tns:GetTableSoapIn" />
+      <wsdl:output message="tns:GetTableSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FLPRGetTableDelta">
+      <wsdl:input message="tns:FLPRGetTableDeltaSoapIn" />
+      <wsdl:output message="tns:FLPRGetTableDeltaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FLPRGetTableAt">
+      <wsdl:input message="tns:FLPRGetTableAtSoapIn" />
+      <wsdl:output message="tns:FLPRGetTableAtSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FLPRUploadDelta">
+      <wsdl:input message="tns:FLPRUploadDeltaSoapIn" />
+      <wsdl:output message="tns:FLPRUploadDeltaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="FLPRUpload">
+      <wsdl:input message="tns:FLPRUploadSoapIn" />
+      <wsdl:output message="tns:FLPRUploadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserRightsAll">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get all user rights</wsdl:documentation>
+      <wsdl:input message="tns:GetUserRightsAllSoapIn" />
+      <wsdl:output message="tns:GetUserRightsAllSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserRightsTop">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Get SOR IDs of the topmost entities that the user can edit</wsdl:documentation>
+      <wsdl:input message="tns:GetUserRightsTopSoapIn" />
+      <wsdl:output message="tns:GetUserRightsTopSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserRights">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Check if user has rights to a given sorId</wsdl:documentation>
+      <wsdl:input message="tns:GetUserRightsSoapIn" />
+      <wsdl:output message="tns:GetUserRightsSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SORWSSoap" type="tns:SORWSSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetParents">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetParents" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubtree">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetSubtree" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserSubtrees">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetUserSubtrees" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnitType">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetUnitType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSorType">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetSorType" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChildren">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetChildren" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChildrenAtNextLevel">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetChildrenAtNextLevel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInheritedSpecialities">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetInheritedSpecialities" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNonInheritedSpecialities">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetNonInheritedSpecialities" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSpecialities">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetAllSpecialities" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemSuppliers">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetSystemSuppliers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHealthInstitutionTypes">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetHealthInstitutionTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInstitutionOwnerTypes">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetInstitutionOwnerTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrganizationalUnitTypes">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetOrganizationalUnitTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClinicalSpecialities">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetClinicalSpecialities" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSpecialityTypes">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetSpecialityTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCommunicationSuppliers">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetCommunicationSuppliers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemTypes">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetSystemTypes" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SORSearchUnits">
+      <soap:operation soapAction="http://www.sst.dk/sor/SORSearchUnits" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUserCredentials">
+      <soap:operation soapAction="http://www.sst.dk/sor/ValidateUserCredentials" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSORGroup">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetSORGroup" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIO">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetIO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHI">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetHI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOU">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetOU" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateIO">
+      <soap:operation soapAction="http://www.sst.dk/sor/CreateIO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateIOAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateHI">
+      <soap:operation soapAction="http://www.sst.dk/sor/CreateHI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateHIAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOU">
+      <soap:operation soapAction="http://www.sst.dk/sor/CreateOU" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CreateOUAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditIO">
+      <soap:operation soapAction="http://www.sst.dk/sor/EditIO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:EditIOAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditOU">
+      <soap:operation soapAction="http://www.sst.dk/sor/EditOU" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:EditOUAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditHI">
+      <soap:operation soapAction="http://www.sst.dk/sor/EditHI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:EditHIAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateIO">
+      <soap:operation soapAction="http://www.sst.dk/sor/ValidateIO" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateHI">
+      <soap:operation soapAction="http://www.sst.dk/sor/ValidateHI" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateOU">
+      <soap:operation soapAction="http://www.sst.dk/sor/ValidateOU" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Search">
+      <soap:operation soapAction="http://www.sst.dk/sor/Search" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHistory">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetHistory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloseEntity">
+      <soap:operation soapAction="http://www.sst.dk/sor/CloseEntity" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+        <soap:header message="tns:CloseEntityAuthHeader" part="AuthHeader" use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTableAll">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetTableAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTable">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetTable" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FLPRGetTableDelta">
+      <soap:operation soapAction="http://www.sst.dk/sor/FLPRGetTableDelta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FLPRGetTableAt">
+      <soap:operation soapAction="http://www.sst.dk/sor/FLPRGetTableAt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FLPRUploadDelta">
+      <soap:operation soapAction="http://www.sst.dk/sor/FLPRUploadDelta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FLPRUpload">
+      <soap:operation soapAction="http://www.sst.dk/sor/FLPRUpload" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserRightsAll">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetUserRightsAll" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserRightsTop">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetUserRightsTop" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserRights">
+      <soap:operation soapAction="http://www.sst.dk/sor/GetUserRights" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="SORWSSoap12" type="tns:SORWSSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+    <wsdl:operation name="GetParents">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetParents" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubtree">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetSubtree" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserSubtrees">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetUserSubtrees" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnitType">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetUnitType" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSorType">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetSorType" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChildren">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetChildren" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetChildrenAtNextLevel">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetChildrenAtNextLevel" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInheritedSpecialities">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetInheritedSpecialities" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetNonInheritedSpecialities">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetNonInheritedSpecialities" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllSpecialities">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetAllSpecialities" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemSuppliers">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetSystemSuppliers" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHealthInstitutionTypes">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetHealthInstitutionTypes" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetInstitutionOwnerTypes">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetInstitutionOwnerTypes" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOrganizationalUnitTypes">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetOrganizationalUnitTypes" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetClinicalSpecialities">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetClinicalSpecialities" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSpecialityTypes">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetSpecialityTypes" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCommunicationSuppliers">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetCommunicationSuppliers" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemTypes">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetSystemTypes" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SORSearchUnits">
+      <soap12:operation soapAction="http://www.sst.dk/sor/SORSearchUnits" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateUserCredentials">
+      <soap12:operation soapAction="http://www.sst.dk/sor/ValidateUserCredentials" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSORGroup">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetSORGroup" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIO">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetIO" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHI">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetHI" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOU">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetOU" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateIO">
+      <soap12:operation soapAction="http://www.sst.dk/sor/CreateIO" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+        <soap12:header message="tns:CreateIOAuthHeader" part="AuthHeader" use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateHI">
+      <soap12:operation soapAction="http://www.sst.dk/sor/CreateHI" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+        <soap12:header message="tns:CreateHIAuthHeader" part="AuthHeader" use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CreateOU">
+      <soap12:operation soapAction="http://www.sst.dk/sor/CreateOU" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+        <soap12:header message="tns:CreateOUAuthHeader" part="AuthHeader" use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditIO">
+      <soap12:operation soapAction="http://www.sst.dk/sor/EditIO" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+        <soap12:header message="tns:EditIOAuthHeader" part="AuthHeader" use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditOU">
+      <soap12:operation soapAction="http://www.sst.dk/sor/EditOU" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+        <soap12:header message="tns:EditOUAuthHeader" part="AuthHeader" use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EditHI">
+      <soap12:operation soapAction="http://www.sst.dk/sor/EditHI" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+        <soap12:header message="tns:EditHIAuthHeader" part="AuthHeader" use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateIO">
+      <soap12:operation soapAction="http://www.sst.dk/sor/ValidateIO" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateHI">
+      <soap12:operation soapAction="http://www.sst.dk/sor/ValidateHI" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidateOU">
+      <soap12:operation soapAction="http://www.sst.dk/sor/ValidateOU" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Search">
+      <soap12:operation soapAction="http://www.sst.dk/sor/Search" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetHistory">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetHistory" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloseEntity">
+      <soap12:operation soapAction="http://www.sst.dk/sor/CloseEntity" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+        <soap12:header message="tns:CloseEntityAuthHeader" part="AuthHeader" use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTableAll">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetTableAll" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTable">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetTable" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FLPRGetTableDelta">
+      <soap12:operation soapAction="http://www.sst.dk/sor/FLPRGetTableDelta" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FLPRGetTableAt">
+      <soap12:operation soapAction="http://www.sst.dk/sor/FLPRGetTableAt" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FLPRUploadDelta">
+      <soap12:operation soapAction="http://www.sst.dk/sor/FLPRUploadDelta" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="FLPRUpload">
+      <soap12:operation soapAction="http://www.sst.dk/sor/FLPRUpload" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserRightsAll">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetUserRightsAll" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserRightsTop">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetUserRightsTop" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserRights">
+      <soap12:operation soapAction="http://www.sst.dk/sor/GetUserRights" style="document" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      <wsdl:input>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SORWS">
+    <wsdl:port name="SORWSSoap" binding="tns:SORWSSoap">
+      <soap:address location="http://sorwebservice.imkit.dk/SORws.asmx" />
+    </wsdl:port>
+    <wsdl:port name="SORWSSoap12" binding="tns:SORWSSoap12">
+      <soap12:address location="http://sorwebservice.imkit.dk/SORws.asmx" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
