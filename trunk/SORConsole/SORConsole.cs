@@ -52,7 +52,7 @@ namespace SORConsole
 			try
 			{
 				sorSearchResult[] wsResult = ws.Search(searchParameters);
-				strRes = "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?><root>";
+				strRes = "<?xml version=\"1.0\" encoding=\"iso-8859-1\"?>\r\n<root>\r\n";
 				            
 				for (int i = 0; i < wsResult.Length; i++)
 				{
@@ -71,15 +71,14 @@ namespace SORConsole
 				}
 				strRes += "</root>";
 
-				/**/
+				/*
 				XmlDocument doc = new XmlDocument();
 				doc.LoadXml(strRes);
 				XmlWriter xmlwriter = new XmlWriter();
-				xmlwriter.
 				doc.WriteTo(xmlwriter);
-				/**/
+				/*
 				/* Output XML-file */
-				TextWriter tw = new StreamWriter(new FileStream("output.xml", FileMode.Create),System.Text.Encoding.Unicode);
+				TextWriter tw = new StreamWriter(new FileStream("output.xml", FileMode.Create),System.Text.Encoding.GetEncoding("iso-8859-1"));
 				tw.Write(strRes);
 				tw.Close();
                 //Console.WriteLine(strRes);
@@ -100,13 +99,13 @@ namespace SORConsole
 			String strTo = (dtTo == DateTime.MinValue || dtTo == DateTime.MaxValue ? maxDate.ToString("yyyy-MM-dd") : dtTo.Date.ToString("yyyy-MM-dd"));
 
 			String strTmpRes = "";
-			strTmpRes += "<record>";
-			strTmpRes += "<Kode>"+longCode+"</Kode>";
-			strTmpRes += "<Tekst>"+strName+"</Tekst>";
-			strTmpRes += "<FraDato>"+strFrom+"</FraDato>";
-			strTmpRes += "<TilDato>"+strTo+"</TilDato>";
+			strTmpRes += "\t<record>\r\n";
+			strTmpRes += "\t\t<Kode>"+longCode+"</Kode>\r\n";
+			strTmpRes += "\t\t<Tekst>"+strName+"</Tekst>\r\n";
+			strTmpRes += "\t\t<FraDato>"+strFrom+"</FraDato>\r\n";
+			strTmpRes += "\t\t<TilDato>"+strTo+"</TilDato>\r\n";
 			//strRes += "<Sex />";
-			strTmpRes += "</record>";
+			strTmpRes += "\t</record>\r\n";
 			if (nvcSletCode.Get(""+longCode)!=strName)
 				strRes += strTmpRes;
 
