@@ -22,24 +22,24 @@ namespace SORConsole
 		static void Main(string[] args)
 		{
 			/* Read item to be deleted */
-			XmlDocument xmlDoc = new XmlDocument();
-			String sletFile="skalslettes.xml";
-			nvcSletCode = new NameValueCollection();
+            //XmlDocument xmlDoc = new XmlDocument();
+            //String sletFile="skalslettes.xml";
+            //nvcSletCode = new NameValueCollection();
 
-			xmlDoc.Load(sletFile);
-			XmlNodeList nodelist = xmlDoc.DocumentElement.ChildNodes;
-			foreach(XmlNode node in nodelist)
-			{
-				if(node.NodeType == XmlNodeType.Element)
-				{
-					// Attempt to get values						
-					XmlNode Code = node.SelectSingleNode("Kode");
-					XmlNode Text = node.SelectSingleNode("Tekst");
-					String strCode = Code.InnerText.Trim();
-					String strText = Text.InnerText.Trim();
-					nvcSletCode.Add(strCode,strText);
-				}
-			}
+            //xmlDoc.Load(sletFile);
+            //XmlNodeList nodelist = xmlDoc.DocumentElement.ChildNodes;
+            //foreach(XmlNode node in nodelist)
+            //{
+            //    if(node.NodeType == XmlNodeType.Element)
+            //    {
+            //        // Attempt to get values						
+            //        XmlNode Code = node.SelectSingleNode("Kode");
+            //        XmlNode Text = node.SelectSingleNode("Tekst");
+            //        String strCode = Code.InnerText.Trim();
+            //        String strText = Text.InnerText.Trim();
+            //        nvcSletCode.Add(strCode,strText);
+            //    }
+            //}
 
 			/* Perform search in WS */
 			sorSearch searchParameters = new sorSearch();
@@ -86,43 +86,66 @@ namespace SORConsole
 			catch (Exception ex)
 			{
 				Console.WriteLine("Fejl: " + ex);
-			}		
+			}
+
+            Console.WriteLine("slut");
+            Console.ReadLine();
 
 		}
 
 		protected static void AddRow(string entity_code, string entity_name, DateTime dtFrom, DateTime dtTo)
 		{
-			long longCode = long.Parse(entity_code);
-			String strName = entity_name;
-			DateTime maxDate = new DateTime(2500,1,1);
-			String strFrom = dtFrom.ToString("yyyy-MM-dd");
-			String strTo = (dtTo == DateTime.MinValue || dtTo == DateTime.MaxValue ? maxDate.ToString("yyyy-MM-dd") : dtTo.Date.ToString("yyyy-MM-dd"));
+                long longCode = long.Parse(entity_code);
+                String strName = entity_name;
+                DateTime maxDate = new DateTime(2500, 1, 1);
+                String strFrom = dtFrom.ToString("yyyy-MM-dd");
+                String strTo = (dtTo == DateTime.MinValue || dtTo == DateTime.MaxValue ? maxDate.ToString("yyyy-MM-dd") : dtTo.Date.ToString("yyyy-MM-dd"));
 
-			String strTmpRes = "";
-			strTmpRes += "\t<record>\r\n";
-			strTmpRes += "\t\t<Kode>"+longCode+"</Kode>\r\n";
-			strTmpRes += "\t\t<Tekst>"+strName+"</Tekst>\r\n";
-			strTmpRes += "\t\t<FraDato>"+strFrom+"</FraDato>\r\n";
-			strTmpRes += "\t\t<TilDato>"+strTo+"</TilDato>\r\n";
-			//strRes += "<Sex />";
-			strTmpRes += "\t</record>\r\n";
-			if (nvcSletCode.Get(""+longCode)!=strName)
-				strRes += strTmpRes;
+                String strTmpRes = "";
+                strTmpRes += "\t<record>\r\n";
+                strTmpRes += "\t\t<Kode>" + longCode + "</Kode>\r\n";
+                strTmpRes += "\t\t<Tekst>" + strName + "</Tekst>\r\n";
+                strTmpRes += "\t\t<FraDato>" + strFrom + "</FraDato>\r\n";
+                strTmpRes += "\t\t<TilDato>" + strTo + "</TilDato>\r\n";
+                //strRes += "<Sex />";
+                strTmpRes += "\t</record>\r\n";
+                //if (nvcSletCode.Get(""+longCode)!=strName)
+                    strRes += strTmpRes;
+
 
 		}
 
 		private static void PrintUnits(DataSet dsOU)
 		{
+            
 			if (dsOU != null && dsOU.Tables.Count > 0 && dsOU.Tables[0] != null)
 			{
 				DataTable dtOU = dsOU.Tables[0];
 				for (int k = 0; k < dtOU.Rows.Count; k++)
 				{
 					sorOrganizationalUnit ou = ws.GetOU(long.Parse(dtOU.Rows[k]["entity_code"].ToString()));
-					AddRow(dtOU.Rows[k]["entity_code"].ToString(), dtOU.Rows[k]["entity_name"].ToString(),
-						ou.dtFromDate, ou.dtToDate);
-					DataSet dsChildOU = ws.GetChildrenAtNextLevel(long.Parse(dtOU.Rows[k]["entity_code"].ToString()));
-					PrintUnits(dsChildOU);
+
+                    try
+                    {
+                        Console.WriteLine("PrintUnits: "+dtOU.Rows[k]["entity_code"].ToString() ?? "");
+                        AddRow(
+                            dtOU.Rows[k]["entity_code"].ToString() ?? "",
+                            dtOU.Rows[k]["entity_name"].ToString() ?? "",
+                            (ou!=null) ? ou.dtFromDate : DateTime.MinValue, //Fejler ved enkelte tilfælde ou er null
+                            (ou!=null) ? ou.dtToDate : DateTime.MaxValue
+                        );
+                        DataSet dsChildOU = ws.GetChildrenAtNextLevel(long.Parse(dtOU.Rows[k]["entity_code"].ToString()));
+                        PrintUnits(dsChildOU);
+                    }
+                    catch (Exception exp)
+                    {
+                        Console.WriteLine("Fejl: " + exp.ToString());
+                        Console.WriteLine("1:"+dtOU.Rows[k]["entity_code"].ToString() ?? "");
+                        Console.WriteLine("2:" + dtOU.Rows[k]["entity_name"].ToString() ?? "");
+                        Console.WriteLine("3:" + ou.dtFromDate.ToString());
+                        Console.WriteLine("4:" + ou.dtToDate.ToString());
+
+                    }
 				}
 			}
 			return;
