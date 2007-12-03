@@ -243,6 +243,8 @@ namespace DBTest
 					TestSmallDelete(runner, executer, builder, db, table1, connInfo);
 					TestTransactions(runner, executer, db, table2, connInfo);
 					TestUpdate(runner, executer, builder, db, table2, connInfo);
+					TestFunctions(runner, executer, builder, db, table2, connInfo);
+					TestUnion(runner, executer, builder, db, table1, table2, connInfo);
 					TestSQLBuild(builder, db, table1);
 
 					{
@@ -711,14 +713,6 @@ namespace DBTest
 					ShowContents(sqlSelect, runner, executer, conn);
 					Output("");
 
-					sqlSelect = new SQL_SelectStatement();
-					sqlSelect.AddTable(table);
-					IFunction func = new Func_SubString(table, "Tekst", 3, 8);
-					sqlSelect.AddFunction(new Func_SubString(func, 0, 2));
-					Output(builder.ToSQL(sqlSelect));
-					ShowContents(sqlSelect, runner, executer, conn);
-					Output("");
-
 					Output("Delete");
 					SQL_DeleteStatement sqlDelete = new SQL_DeleteStatement(table);
 					sqlDelete.AddCriteria(new Crit_MatchCriteria(table, "Valg", MatchType.Equal, false));
@@ -727,6 +721,109 @@ namespace DBTest
 					Output("");
 
 					ShowContents(runner, executer, conn, table);
+				}
+				finally
+				{
+					conn.Close();
+				}
+			}
+			catch(Exception ex)
+			{
+				Output("TestUpdate failed with an exception:");
+				Output(ex);
+			}
+			finally
+			{
+				Output("");
+				Output("");
+			}
+		}
+
+		private void TestFunctions(DBRunner runner, ISQLExecuter executer, ISQL builder, DBDatabase db, DBTable table, IConnectionInfo connInfo)
+		{
+			Output("TestFunctions:");
+			Output("");
+
+			try
+			{
+				DBConnection conn = runner.OpenConnection(executer, db, connInfo);
+
+				try
+				{
+					Output("Insert single row");
+					SQL_InsertStatement sqlInsert = new SQL_InsertStatement(table);
+					sqlInsert.AddColumns("Noegle", "Tal", "StortTal", "Dato", "Valg");
+					sqlInsert.AddValues(Guid.NewGuid(), 87, (long)2394287487, DateTime.Now, false);
+					Output(builder.ToSQL(sqlInsert));
+					runner.Insert(executer, conn, sqlInsert);
+					Output("Row inserted");
+					Output("");
+
+					ShowContents(runner, executer, conn, table);
+					Output("");
+
+					SQL_SelectStatement sqlSelect = new SQL_SelectStatement();
+					sqlSelect.AddTable(table);
+					IFunction func = new Func_SubString(table, "Tekst", 3, 8);
+					sqlSelect.AddFunction(new Func_SubString(func, 0, 2));
+					Output(builder.ToSQL(sqlSelect));
+					ShowContents(sqlSelect, runner, executer, conn);
+				}
+				finally
+				{
+					conn.Close();
+				}
+			}
+			catch(Exception ex)
+			{
+				Output("TestUpdate failed with an exception:");
+				Output(ex);
+			}
+			finally
+			{
+				Output("");
+				Output("");
+			}
+		}
+
+		private void TestUnion(DBRunner runner, ISQLExecuter executer, ISQL builder, DBDatabase db, DBTable table1, DBTable table2, IConnectionInfo connInfo)
+		{
+			Output("TestUnion:");
+			Output("");
+
+			try
+			{
+				DBConnection conn = runner.OpenConnection(executer, db, connInfo);
+
+				try
+				{
+					Output("Insert more test rows");
+					SQL_InsertStatement sqlInsert = new SQL_InsertStatement(table1);
+					sqlInsert.AddColumns("Noegle", "Tekst", "Tal", "StortTal", "Dato", "Valg");
+					sqlInsert.AddValues(Guid.NewGuid(), "Giv mig en bog!", 123, (long)213142566, DateTime.Now, true);
+					Output(builder.ToSQL(sqlInsert));
+					runner.Insert(executer, conn, sqlInsert);
+					Output("Rows inserted");
+					Output("");
+
+					ShowContents(runner, executer, conn, table1);
+					Output("");
+					ShowContents(runner, executer, conn, table2);
+					Output("");
+
+					SQL_SelectStatement sqlSelect1 = new SQL_SelectStatement();
+					sqlSelect1.AddColumns(table1, "Noegle", "Tekst", "Tal", "StortTal");
+
+					SQL_SelectStatement sqlSelect2 = new SQL_SelectStatement();
+					sqlSelect2.AddColumns(table2, "Noegle", "Tekst", "Tal", "StortTal");
+
+					SQL_SelectStatement sqlUnion = new SQL_SelectStatement();
+					sqlUnion.AddColumns(table1, "Noegle", "Tekst", "Tal", "StortTal");
+					sqlUnion.AddUnion(sqlSelect1);
+					sqlUnion.AddUnion(sqlSelect2);
+					sqlUnion.AddSort(table1, "Tal", Order.Ascending);
+					Output(builder.ToSQL(sqlUnion));
+					ShowContents(sqlUnion, runner, executer, conn);
 				}
 				finally
 				{
