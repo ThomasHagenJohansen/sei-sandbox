@@ -36,9 +36,6 @@ namespace DBTest
 			//
 			InitializeComponent();
 
-			//
-			// TODO: Add any constructor code after InitializeComponent call
-			//
 			providerComboBox.SelectedIndex = 0;
 		}
 
@@ -140,8 +137,8 @@ namespace DBTest
 
 			if (providerComboBox.SelectedIndex >= 0)
 			{
-				Guid id = ThreadManager.AddThread(new ThreadManager.ThreadFunc(TestThread));
-				ThreadManager.StartThread(id);
+				Guid id = ThreadManager.AddThread(TestThread);
+				ThreadManager.StartThread(id, providerComboBox.SelectedIndex);
 			}
 		}
 
@@ -149,11 +146,11 @@ namespace DBTest
 		{
 			try
 			{
-				ISQL builder = null;
-				ISQLExecuter executer = null;
-				IConnectionInfo connInfo = null;
+				ISQL builder;
+				ISQLExecuter executer;
+				IConnectionInfo connInfo;
 
-				switch (providerComboBox.SelectedIndex)
+				switch ((int)userData)
 				{
 					// VistaDB
 					case 0:
@@ -165,7 +162,7 @@ namespace DBTest
 
 						builder  = new VistaDB_SQL();
 						executer = new VistaDB_SQLExecuter((VistaDB_SQL)builder, path);
-						connInfo = new VistaDB_ConnectionInfo();
+						connInfo = new VistaDB_ConnectionInfo(true);
 						break;
 					}
 
@@ -177,6 +174,9 @@ namespace DBTest
 						connInfo = new DB2_ConnectionInfo("sei-backend", "testdb", "eisst", "EISSTEISST");
 						break;
 					}
+
+					default:
+						return;
 				}
 
 				// Create and start the runner
@@ -186,34 +186,34 @@ namespace DBTest
 				{
 					// Show provider
 					IProvider prov = executer.Provider;
-					Output("Provider: " + prov.Name + " - Version: " + prov.Version.ToString());
+					Output("Provider: " + prov.Name + " - Version: " + prov.Version);
 					Output("");
 
 					// Create the database and test tables
 					DBDatabase db = new DBDatabase("DBTest.MyTest");
 
 					DBTable table1 = db.AddTable("Table1");
-					table1.AddColumn("Noegle", ColumnType.Guid, ColumnFlag.PrimaryKey | ColumnFlag.NotNull);
-					table1.AddColumn("Tekst", ColumnType.String, 20, ColumnFlag.None);
-					table1.AddColumn("Tal", ColumnType.Int, ColumnFlag.PrimaryKey | ColumnFlag.NotNull);
-					table1.AddColumn("Dato", ColumnType.DateTime, ColumnFlag.IndexAsc);
-					table1.AddColumn("LilleTal", ColumnType.Small, ColumnFlag.None);
-					table1.AddColumn("StortTal", ColumnType.Long, ColumnFlag.NotNull);
-					table1.AddColumn("StorTekst", ColumnType.Clob, 32 * 1024, ColumnFlag.None);
-					table1.AddColumn("Valg", ColumnType.Boolean, ColumnFlag.NotNull);
-					table1.AddColumn("Billede", ColumnType.Blob, 10 * 1024 * 1024, ColumnFlag.Compressed);
-					table1.AddColumn("AutoTaeller", ColumnType.Int, ColumnFlag.NotNull | ColumnFlag.Identity);
+					table1.AddColumn("uiNoegle", ColumnType.Guid, ColumnFlag.PrimaryKey | ColumnFlag.NotNull);
+					table1.AddColumn("txTekst", ColumnType.String, 20, ColumnFlag.None);
+					table1.AddColumn("iTal", ColumnType.Int, ColumnFlag.PrimaryKey | ColumnFlag.NotNull);
+					table1.AddColumn("dtDato", ColumnType.DateTime, ColumnFlag.IndexAsc);
+					table1.AddColumn("sLilleTal", ColumnType.Small, ColumnFlag.None);
+					table1.AddColumn("lStortTal", ColumnType.Long, ColumnFlag.NotNull);
+					table1.AddColumn("txStorTekst", ColumnType.Clob, 32 * 1024, ColumnFlag.None);
+					table1.AddColumn("bValg", ColumnType.Boolean, ColumnFlag.NotNull);
+					table1.AddColumn("biBillede", ColumnType.Blob, 10 * 1024 * 1024, ColumnFlag.Compressed);
+					table1.AddColumn("iAutoTaeller", ColumnType.Int, ColumnFlag.NotNull | ColumnFlag.Identity);
 
 					DBTable table2 = db.AddTable("Table2");
-					table2.AddColumn("Noegle", ColumnType.Guid, ColumnFlag.PrimaryKey | ColumnFlag.NotNull);
-					table2.AddColumn("Tekst", ColumnType.String, 20, ColumnFlag.None);
-					table2.AddColumn("Tal", ColumnType.Int, ColumnFlag.PrimaryKey | ColumnFlag.NotNull);
-					table2.AddColumn("Dato", ColumnType.DateTime, ColumnFlag.IndexAsc);
-					table2.AddColumn("LilleTal", ColumnType.Small, ColumnFlag.None);
-					table2.AddColumn("StortTal", ColumnType.Long, ColumnFlag.NotNull);
-					table2.AddColumn("StorTekst", ColumnType.Clob, 32 * 1024, ColumnFlag.None);
-					table2.AddColumn("Valg", ColumnType.Boolean, ColumnFlag.NotNull);
-					table2.AddColumn("Billede", ColumnType.Blob, 10 * 1024 * 1024, ColumnFlag.Compressed);
+					table2.AddColumn("uiNoegle", ColumnType.Guid, ColumnFlag.PrimaryKey | ColumnFlag.NotNull);
+					table2.AddColumn("txTekst", ColumnType.String, 20, ColumnFlag.None);
+					table2.AddColumn("iTal", ColumnType.Int, ColumnFlag.PrimaryKey | ColumnFlag.NotNull);
+					table2.AddColumn("dtDato", ColumnType.DateTime, ColumnFlag.IndexAsc);
+					table2.AddColumn("sLilleTal", ColumnType.Small, ColumnFlag.None);
+					table2.AddColumn("lStortTal", ColumnType.Long, ColumnFlag.NotNull);
+					table2.AddColumn("txStorTekst", ColumnType.Clob, 32 * 1024, ColumnFlag.None);
+					table2.AddColumn("bValg", ColumnType.Boolean, ColumnFlag.NotNull);
+					table2.AddColumn("biBillede", ColumnType.Blob, 10 * 1024 * 1024, ColumnFlag.Compressed);
 
 					TestDatabase(runner, executer, db);
 					TestConnection(runner, executer, db, connInfo);
@@ -238,6 +238,7 @@ namespace DBTest
 						}
 					}
 
+					TestTable2(runner, executer, db, "Table1", connInfo);
 					TestSmallInsert(runner, executer, builder, db, table1, connInfo);
 					TestSmallSelect(runner, executer, builder, db, table1, connInfo);
 					TestSmallDelete(runner, executer, builder, db, table1, connInfo);
@@ -278,24 +279,24 @@ namespace DBTest
 			}
 		}
 
+		private delegate void Output_Delegate(String msg);
+
+		private void OutputInvoke(String msg)
+		{
+			int index = outputListBox.Items.Add(msg);
+			outputListBox.TopIndex = index;
+			System.Diagnostics.Debug.WriteLine(msg);
+		}
+
 		private void Output(String str)
 		{
-			int index = outputListBox.Items.Add(str);
-			outputListBox.TopIndex = index;
-			System.Diagnostics.Debug.WriteLine(str);
+			Invoke(new Output_Delegate(OutputInvoke), str);
 		}
 
 		private void Output(Exception ex)
 		{
-			int index = -1;
-
 			foreach (String line in ex.ToString().Split('\n'))
-			{
-				index = outputListBox.Items.Add(line.TrimEnd());
-				System.Diagnostics.Debug.WriteLine(line.TrimEnd());
-			}
-
-			outputListBox.TopIndex = index;
+				Output(line.Trim());
 		}
 
 		private void TestDatabase(DBRunner runner, ISQLExecuter executer, DBDatabase db)
@@ -306,7 +307,7 @@ namespace DBTest
 			try
 			{
 				bool result = runner.DatabaseExists(executer, db);
-				Output("Database exists: " + result.ToString() + " / False");
+				Output("Database exists: " + result + " / False");
 
 				result = runner.CreateDatabase(executer, db);
 				Output("Create database: " + (result ? "Ok" : "Failed"));
@@ -314,7 +315,7 @@ namespace DBTest
 				if (result)
 				{
 					result = runner.DatabaseExists(executer, db);
-					Output("Database exists: " + result.ToString() + " / True");
+					Output("Database exists: " + result + " / True");
 				}
 			}
 			catch(Exception ex)
@@ -370,7 +371,7 @@ namespace DBTest
 					String name = table.TableName;
 
 					bool result = runner.TableExists(executer, conn, name);
-					Output("Table " + name + " exists: " + result.ToString() + " / False");
+					Output("Table " + name + " exists: " + result + " / False");
 					Output("");
 
 					Output("Create table " + name);
@@ -381,7 +382,7 @@ namespace DBTest
 					Output("");
 
 					result = runner.TableExists(executer, conn, name);
-					Output("Table " + name + " exists: " + result.ToString() + " / True");
+					Output("Table " + name + " exists: " + result + " / True");
 					Output("");
 
 					if (result)
@@ -394,7 +395,7 @@ namespace DBTest
 						Output("");
 
 						result = runner.TableExists(executer, conn, name);
-						Output("Table " + name + " exists: " + result.ToString() + " / False");
+						Output("Table " + name + " exists: " + result + " / False");
 					}
 				}
 				finally
@@ -405,6 +406,49 @@ namespace DBTest
 			catch(Exception ex)
 			{
 				Output("TestTable failed with an exception:");
+				Output(ex);
+			}
+			finally
+			{
+				Output("");
+				Output("");
+			}
+		}
+
+		private void TestTable2(DBRunner runner, ISQLExecuter executer, DBDatabase db, String tableName, IConnectionInfo connInfo)
+		{
+			Output("TestTable 2:");
+			Output("");
+
+			try
+			{
+				Output("Getting metadata for table " + tableName);
+
+				using (DBConnection conn = runner.OpenConnection(executer, db, connInfo))
+				{
+					DBTable table = runner.GetTableMetaData(executer, conn, db, tableName);
+					if (table == null)
+						Output("No metadata found");
+					else
+						Output("Found metadata for table: " + table.TableName + " - Columns: " + table.NumberOfColumns);
+				}
+
+				Output("");
+				Output("Getting metadata");
+				DBDatabase newDB = new DBDatabase(db.DatabaseName);
+				runner.GetMetaData(executer, newDB, connInfo);
+
+				if (newDB.NumberOfTables == 0)
+					Output("No tables found");
+				else
+				{
+					foreach (DBTable table in newDB.Tables)
+						Output("Table: " + table.TableName + " - Columns: " + table.NumberOfColumns);
+				}
+			}
+			catch(Exception ex)
+			{
+				Output("TestTable 2 failed with an exception:");
 				Output(ex);
 			}
 			finally
@@ -427,7 +471,7 @@ namespace DBTest
 				{
 					Output("Insert single row");
 					SQL_InsertStatement sqlInsert = new SQL_InsertStatement(table);
-					sqlInsert.AddColumns("Noegle", "Tal", "StortTal", "Dato", "Valg");
+					sqlInsert.AddColumns("uiNoegle", "iTal", "lStortTal", "dtDato", "bValg");
 					sqlInsert.AddValues(Guid.NewGuid(), 87, (long)2394287487, DateTime.Now, false);
 					Output(builder.ToSQL(sqlInsert));
 					runner.Insert(executer, conn, sqlInsert);
@@ -467,7 +511,7 @@ namespace DBTest
 					sqlSelect.AddAggregate(new Aggre_Count());
 					Output(builder.ToSQL(sqlSelect));
 					long result = runner.SelectWithSingleAggregate(executer, conn, sqlSelect);
-					Output("Count: " + result.ToString() + " / 1");
+					Output("Count: " + result + " / 1");
 				}
 				finally
 				{
@@ -507,7 +551,7 @@ namespace DBTest
 					sqlSelect.AddTable(table);
 					sqlSelect.AddAggregate(new Aggre_Count());
 					long result = runner.SelectWithSingleAggregate(executer, conn, sqlSelect);
-					Output("Count: " + result.ToString() + " / 0");
+					Output("Count: " + result + " / 0");
 				}
 				finally
 				{
@@ -549,7 +593,7 @@ namespace DBTest
 					{
 						Output("Insert row");
 						sqlInsert = new SQL_InsertStatement(table);
-						sqlInsert.AddColumns("Noegle", "Tal", "StortTal", "Dato", "Valg");
+						sqlInsert.AddColumns("uiNoegle", "iTal", "lStortTal", "dtDato", "bValg");
 						sqlInsert.AddValues(Guid.NewGuid(), 87, (long)2394287487, DateTime.Now, false);
 						runner.Insert(executer, conn, sqlInsert);
 
@@ -557,7 +601,7 @@ namespace DBTest
 						sqlSelect.AddTable(table);
 						sqlSelect.AddAggregate(new Aggre_Count());
 						result = runner.SelectWithSingleAggregate(executer, conn, sqlSelect);
-						Output("Count: " + result.ToString() + " / 1");
+						Output("Count: " + result + " / 1");
 
 						Output("Rollback");
 						trans.RollbackAll();
@@ -572,7 +616,7 @@ namespace DBTest
 					sqlSelect.AddTable(table);
 					sqlSelect.AddAggregate(new Aggre_Count());
 					result = runner.SelectWithSingleAggregate(executer, conn, sqlSelect);
-					Output("Count: " + result.ToString() + " / 0");
+					Output("Count: " + result + " / 0");
 					Output("");
 
 					Output("Begin new transaction");
@@ -583,7 +627,7 @@ namespace DBTest
 					{
 						Output("Insert row");
 						sqlInsert = new SQL_InsertStatement(table);
-						sqlInsert.AddColumns("Noegle", "Tal", "StortTal", "Dato", "Valg");
+						sqlInsert.AddColumns("uiNoegle", "iTal", "lStortTal", "dtDato", "bValg");
 						sqlInsert.AddValues(Guid.NewGuid(), 87, (long)2394287487, DateTime.Now, false);
 						runner.Insert(executer, conn, sqlInsert);
 
@@ -591,7 +635,7 @@ namespace DBTest
 						sqlSelect.AddTable(table);
 						sqlSelect.AddAggregate(new Aggre_Count());
 						result = runner.SelectWithSingleAggregate(executer, conn, sqlSelect);
-						Output("Count: " + result.ToString() + " / 1");
+						Output("Count: " + result + " / 1");
 
 						Output("Commit");
 						trans.CommitAll();
@@ -606,7 +650,7 @@ namespace DBTest
 					sqlSelect.AddTable(table);
 					sqlSelect.AddAggregate(new Aggre_Count());
 					result = runner.SelectWithSingleAggregate(executer, conn, sqlSelect);
-					Output("Count: " + result.ToString() + " / 1");
+					Output("Count: " + result + " / 1");
 				}
 				finally
 				{
@@ -684,9 +728,9 @@ namespace DBTest
 
 					Output("Update 1");
 					SQL_UpdateStatement sqlUpdate = new SQL_UpdateStatement(table);
-					sqlUpdate.AddColumns("Tekst", "Tal");
+					sqlUpdate.AddColumns("txTekst", "iTal");
 					sqlUpdate.AddValues("En ny tekst", 534);
-					sqlUpdate.AddCriteria(new Crit_MatchCriteria(table, "Tal", MatchType.Equal, 42));
+					sqlUpdate.AddCriteria(new Crit_MatchCriteria(table, "iTal", MatchType.Equal, 42));
 					Output(builder.ToSQL(sqlUpdate));
 					runner.Update(executer, conn, sqlUpdate);
 					Output("");
@@ -696,9 +740,9 @@ namespace DBTest
 
 					Output("Update 2");
 					sqlUpdate = new SQL_UpdateStatement(table);
-					sqlUpdate.AddColumn("StorTekst");
+					sqlUpdate.AddColumn("txStorTekst");
 					sqlUpdate.AddParameter("DETTE STÅR MED STORT!");
-					sqlUpdate.AddCriteria(new Crit_MatchCriteria(table, "StorTekst", MatchType.IsNull));
+					sqlUpdate.AddCriteria(new Crit_MatchCriteria(table, "txStorTekst", MatchType.IsNull));
 					Output(builder.ToSQL(sqlUpdate));
 					runner.Update(executer, conn, sqlUpdate);
 					Output("");
@@ -708,14 +752,14 @@ namespace DBTest
 
 					SQL_SelectStatement sqlSelect = new SQL_SelectStatement();
 					sqlSelect.AddTable(table);
-					sqlSelect.AddFunction(new Func_SubString(table, "Tekst", 3, 8));
+					sqlSelect.AddFunction(new Func_SubString(table, "txTekst", 3, 8));
 					Output(builder.ToSQL(sqlSelect));
 					ShowContents(sqlSelect, runner, executer, conn);
 					Output("");
 
 					Output("Delete");
 					SQL_DeleteStatement sqlDelete = new SQL_DeleteStatement(table);
-					sqlDelete.AddCriteria(new Crit_MatchCriteria(table, "Valg", MatchType.Equal, false));
+					sqlDelete.AddCriteria(new Crit_MatchCriteria(table, "bValg", MatchType.Equal, false));
 					Output(builder.ToSQL(sqlDelete));
 					runner.Delete(executer, conn, sqlDelete);
 					Output("");
@@ -752,7 +796,7 @@ namespace DBTest
 				{
 					Output("Insert single row");
 					SQL_InsertStatement sqlInsert = new SQL_InsertStatement(table);
-					sqlInsert.AddColumns("Noegle", "Tal", "StortTal", "Dato", "Valg");
+					sqlInsert.AddColumns("uiNoegle", "iTal", "lStortTal", "dtDato", "bValg");
 					sqlInsert.AddValues(Guid.NewGuid(), 87, (long)2394287487, DateTime.Now, false);
 					Output(builder.ToSQL(sqlInsert));
 					runner.Insert(executer, conn, sqlInsert);
@@ -764,7 +808,7 @@ namespace DBTest
 
 					SQL_SelectStatement sqlSelect = new SQL_SelectStatement();
 					sqlSelect.AddTable(table);
-					IFunction func = new Func_SubString(table, "Tekst", 3, 8);
+					IFunction func = new Func_SubString(table, "txTekst", 3, 8);
 					sqlSelect.AddFunction(new Func_SubString(func, 0, 2));
 					Output(builder.ToSQL(sqlSelect));
 					ShowContents(sqlSelect, runner, executer, conn);
@@ -799,7 +843,7 @@ namespace DBTest
 				{
 					Output("Insert more test rows");
 					SQL_InsertStatement sqlInsert = new SQL_InsertStatement(table1);
-					sqlInsert.AddColumns("Noegle", "Tekst", "Tal", "StortTal", "Dato", "Valg");
+					sqlInsert.AddColumns("uiNoegle", "txTekst", "iTal", "lStortTal", "dtDato", "bValg");
 					sqlInsert.AddValues(Guid.NewGuid(), "Giv mig en bog!", 123, (long)213142566, DateTime.Now, true);
 					Output(builder.ToSQL(sqlInsert));
 					runner.Insert(executer, conn, sqlInsert);
@@ -812,16 +856,16 @@ namespace DBTest
 					Output("");
 
 					SQL_SelectStatement sqlSelect1 = new SQL_SelectStatement();
-					sqlSelect1.AddColumns(table1, "Noegle", "Tekst", "Tal", "StortTal");
+					sqlSelect1.AddColumns(table1, "uiNoegle", "txTekst", "iTal", "lStortTal");
 
 					SQL_SelectStatement sqlSelect2 = new SQL_SelectStatement();
-					sqlSelect2.AddColumns(table2, "Noegle", "Tekst", "Tal", "StortTal");
+					sqlSelect2.AddColumns(table2, "uiNoegle", "txTekst", "iTal", "lStortTal");
 
 					SQL_SelectStatement sqlUnion = new SQL_SelectStatement();
-					sqlUnion.AddColumns(table1, "Noegle", "Tekst", "Tal", "StortTal");
+					sqlUnion.AddColumns(table1, "uiNoegle", "txTekst", "iTal", "lStortTal");
 					sqlUnion.AddUnion(sqlSelect1);
 					sqlUnion.AddUnion(sqlSelect2);
-					sqlUnion.AddSort(table1, "Tal", Order.Ascending);
+					sqlUnion.AddSort(table1, "iTal", Order.Ascending);
 					Output(builder.ToSQL(sqlUnion));
 					ShowContents(sqlUnion, runner, executer, conn);
 				}
@@ -850,9 +894,9 @@ namespace DBTest
 			try
 			{
 				Output("Criterias:");
-				ICriteria crit1 = new Crit_MatchCriteria(table, "StortTal", MatchType.Equal, 6576547634);
-				ICriteria crit2 = new Crit_MatchCriteria(table, "Tekst", MatchType.Different, "Bent");
-				ICriteria crit3 = new Crit_MatchCriteria(table, "LilleTal", MatchType.IsNull);
+				ICriteria crit1 = new Crit_MatchCriteria(table, "lStortTal", MatchType.Equal, 6576547634);
+				ICriteria crit2 = new Crit_MatchCriteria(table, "txTekst", MatchType.Different, "Bent");
+				ICriteria crit3 = new Crit_MatchCriteria(table, "sLilleTal", MatchType.IsNull);
 
 				SQL_SelectStatement sqlSelect = new SQL_SelectStatement();
 				sqlSelect.AddAllColumns(table);
@@ -882,26 +926,26 @@ namespace DBTest
 				sqlSelect.AddAllColumns(table);
 				sqlSelect.AddCriteria(crit1);
 				sqlSelect.AddCriteria(crit2);
-				sqlSelect.AddCriteria(new Crit_InCriteria(table, "Tal", true, 3, 5, 254, 31));
+				sqlSelect.AddCriteria(new Crit_InCriteria(table, "iTal", true, 3, 5, 254, 31));
 				Output(builder.ToSQL(sqlSelect));
 
 				SQL_SelectStatement sqlSelect1 = new SQL_SelectStatement();
-				sqlSelect1.AddColumn(table, "Tal");
+				sqlSelect1.AddColumn(table, "iTal");
 
 				sqlSelect = new SQL_SelectStatement();
 				sqlSelect.AddAllColumns(table);
-				sqlSelect.AddCriteria(new Crit_SubQueryCriteria(table, "Tal", sqlSelect1));
+				sqlSelect.AddCriteria(new Crit_SubQueryCriteria(table, "iTal", sqlSelect1));
 				Output(builder.ToSQL(sqlSelect));
 
 				sqlSelect = new SQL_SelectStatement();
 				sqlSelect.AddAllColumns(table);
-				sqlSelect.AddCriteria(new Crit_SubQueryCriteria(table, "Tal", true, sqlSelect1));
+				sqlSelect.AddCriteria(new Crit_SubQueryCriteria(table, "iTal", true, sqlSelect1));
 				Output(builder.ToSQL(sqlSelect));
 				Output("");
 
 				Output("Aggregates:");
 				sqlSelect = new SQL_SelectStatement();
-				sqlSelect.AddColumn(table, "Tal");
+				sqlSelect.AddColumn(table, "iTal");
 				sqlSelect.Distinct = true;
 				Output(builder.ToSQL(sqlSelect));
 
@@ -912,17 +956,17 @@ namespace DBTest
 
 				sqlSelect = new SQL_SelectStatement();
 				sqlSelect.AddTable(table);
-				sqlSelect.AddAggregate(new Aggre_Count(table, "Tal"));
+				sqlSelect.AddAggregate(new Aggre_Count(table, "iTal"));
 				Output(builder.ToSQL(sqlSelect));
 
 				sqlSelect = new SQL_SelectStatement();
 				sqlSelect.AddTable(table);
-				sqlSelect.AddAggregate(new Aggre_Max(table, "Tal"));
+				sqlSelect.AddAggregate(new Aggre_Max(table, "iTal"));
 				Output(builder.ToSQL(sqlSelect));
 
 				sqlSelect = new SQL_SelectStatement();
 				sqlSelect.AddTable(table);
-				sqlSelect.AddAggregate(new Aggre_Min(table, "Tal"));
+				sqlSelect.AddAggregate(new Aggre_Min(table, "iTal"));
 				Output(builder.ToSQL(sqlSelect));
 				Output("");
 
