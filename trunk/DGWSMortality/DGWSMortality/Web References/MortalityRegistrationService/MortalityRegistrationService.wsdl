@@ -1,0 +1,622 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:s7="http://rep.oio.dk/ebxml/xml/schemas/dkcc/2005/03/15/" xmlns:s2="http://rep.oio.dk/ebxml/xml/schemas/dkcc/2006/01/23/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s5="http://rep.oio.dk/ebxml/xml/schemas/dkcc/2003/02/13/" xmlns:s8="http://rep.oio.dk/ebxml/xml/schemas/dkcc/2005/05/13/" xmlns:s0="http://sst.dk/Mortality/xml.schema/2008.04.03" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s3="http://rep.oio.dk/cpr.dk/xml/schemas/2007/01/02/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:tns="http://rep.oio.dk/sst.dk/xml.wsdl/2008.10.10/" xmlns:s6="http://rep.oio.dk/xkom.dk/xml/schemas/2006/01/06/" xmlns:s9="http://www.w3.org/2000/09/xmldsig#" xmlns:s1="http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/03/18/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s4="http://rep.oio.dk/itst.dk/xml/schemas/2006/01/17/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://rep.oio.dk/sst.dk/xml.wsdl/2008.10.10/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://sst.dk/Mortality/xml.schema/2008.04.03">
+      <s:import namespace="http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/03/18/" />
+      <s:import namespace="http://rep.oio.dk/ebxml/xml/schemas/dkcc/2006/01/23/" />
+      <s:import namespace="http://rep.oio.dk/cpr.dk/xml/schemas/2007/01/02/" />
+      <s:import namespace="http://rep.oio.dk/itst.dk/xml/schemas/2006/01/17/" />
+      <s:import namespace="http://rep.oio.dk/xkom.dk/xml/schemas/2006/01/06/" />
+      <s:import namespace="http://www.w3.org/2000/09/xmldsig#" />
+      <s:element name="SignedMortalityReason" type="s0:SignedMortalityReasonType" />
+      <s:complexType name="SignedMortalityReasonType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="MortalityReason" type="s0:MortalityReasonType" />
+          <s:element minOccurs="1" maxOccurs="1" name="MortalityReportCompletness" type="s0:MortalityReportCompletnessType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Part1Signature">
+            <s:complexType>
+              <s:sequence>
+                <s:element minOccurs="0" maxOccurs="1" ref="s9:Signature" />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+          <s:element minOccurs="0" maxOccurs="1" name="Part2Signature">
+            <s:complexType>
+              <s:sequence>
+                <s:element minOccurs="0" maxOccurs="1" ref="s9:Signature" />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+          <s:element minOccurs="0" maxOccurs="1" name="AllSignature">
+            <s:complexType>
+              <s:sequence>
+                <s:element minOccurs="0" maxOccurs="1" ref="s9:Signature" />
+              </s:sequence>
+            </s:complexType>
+          </s:element>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MortalityReasonType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SchemaID" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PersonIdentifier" type="s0:PersonIdentifierType" />
+          <s:element minOccurs="0" maxOccurs="1" name="CertifyingDoctor" type="s0:CertifyingDoctorType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PersonIdentifierType">
+        <s:sequence>
+          <s:choice minOccurs="1" maxOccurs="1">
+            <s:element minOccurs="0" maxOccurs="1" ref="s1:PersonCivilRegistrationIdentifier" />
+            <s:element minOccurs="0" maxOccurs="1" name="NoPersonCivilRegistrationIdentifier" type="s0:NoPersonCivilRegistrationIdentifierType" />
+          </s:choice>
+        </s:sequence>
+        <s:attribute name="id" type="s:string" />
+      </s:complexType>
+      <s:complexType name="NoPersonCivilRegistrationIdentifierType">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" ref="s2:PersonGenderCode" />
+          <s:element minOccurs="0" maxOccurs="1" ref="s3:PersonCivilRegistrationReplacementIdentifier" />
+          <s:element minOccurs="0" maxOccurs="1" ref="s4:PersonNameStructure" />
+          <s:element minOccurs="0" maxOccurs="1" ref="s6:AddressPostal" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CertifyingDoctorType">
+        <s:sequence>
+          <s:choice minOccurs="1" maxOccurs="1">
+            <s:element minOccurs="0" maxOccurs="1" name="EmergencyDoctor" type="s0:EmergencyDoctorType" />
+            <s:element minOccurs="0" maxOccurs="1" name="HospitalDoctor" type="s0:HospitalDoctorType" />
+            <s:element minOccurs="0" maxOccurs="1" name="HospiceDoctor" type="s0:HospiceDoctorType" />
+            <s:element minOccurs="0" maxOccurs="1" name="PersonalDoctor" type="s0:PersonalDoctorType" />
+            <s:element minOccurs="0" maxOccurs="1" name="MedicalofficerDoctor" type="s0:MedicalofficerDoctorType" />
+          </s:choice>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="EmergencyDoctorType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Part1" type="s0:Part1Type" />
+          <s:element minOccurs="0" maxOccurs="1" name="Part2" type="s0:Part2Type" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Part1Type">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:date" />
+          <s:element minOccurs="0" maxOccurs="1" name="HealthInsuranceNumber" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="BornDead" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="BornDeadData" type="s0:BornDeadDataType" />
+          <s:choice minOccurs="1" maxOccurs="1">
+            <s:element minOccurs="0" maxOccurs="1" name="TimeOfDeath" type="s0:TimeOfDeathType" />
+            <s:element minOccurs="0" maxOccurs="1" name="FindingTime" type="s0:FindingTimeType" />
+          </s:choice>
+          <s:element minOccurs="1" maxOccurs="1" name="SignOfDeath" type="s0:SignOfDeathType" />
+          <s:element minOccurs="1" maxOccurs="1" name="DoctorFunction" type="s0:DoctorFunctionType" />
+          <s:element minOccurs="1" maxOccurs="1" name="InquestDate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="PoliceContact" type="s:boolean" />
+          <s:element minOccurs="1" maxOccurs="1" name="Implants" type="s0:ImplantsType" />
+          <s:element minOccurs="0" maxOccurs="1" name="AlternativeDoctor" type="s0:AlternativeDoctorType" />
+          <s:element minOccurs="0" maxOccurs="1" name="PoliceStationName" type="s:string" />
+        </s:sequence>
+        <s:attribute name="id" type="s:string" />
+      </s:complexType>
+      <s:complexType name="BornDeadDataType">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Birthdate" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" ref="s2:PersonGenderCode" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TimeOfDeathType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DateTimeOrDate" type="s0:DateTimeOrDateType" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeathSite" type="s0:DeathSiteType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DateTimeOrDateType">
+        <s:sequence>
+          <s:choice minOccurs="1" maxOccurs="1">
+            <s:element minOccurs="1" maxOccurs="1" name="Date" type="s:date" />
+            <s:element minOccurs="1" maxOccurs="1" name="DateTime" type="s:dateTime" />
+          </s:choice>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DeathSiteType">
+        <s:sequence>
+          <s:choice minOccurs="1" maxOccurs="1">
+            <s:element minOccurs="0" maxOccurs="1" name="KnownAddress" type="s6:AddressPostalType" />
+            <s:element minOccurs="0" maxOccurs="1" name="OtherPlaceOfDeath" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Residence" type="s0:ResidenceType" />
+            <s:element minOccurs="0" maxOccurs="1" name="HospitalIdentifier" type="s0:HospitalIdentifierType" />
+          </s:choice>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ResidenceType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Home" />
+          <s:enumeration value="NurseryHome" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="HospitalIdentifierType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="HospitalClasifikation" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="HospitalDepartment" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FindingTimeType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="DateTimeOrDate" type="s0:DateTimeOrDateType" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeathSite" type="s0:DeathSiteType" />
+          <s:element minOccurs="0" maxOccurs="1" name="FindingSite" type="s0:FindingSiteType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="FindingSiteType">
+        <s:sequence>
+          <s:choice minOccurs="1" maxOccurs="1">
+            <s:element minOccurs="0" maxOccurs="1" name="FindingKnownAddress" type="s6:AddressPostalType" />
+            <s:element minOccurs="0" maxOccurs="1" name="FindingOtherPlaceOfDeath" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="FindingResidence" type="s0:ResidenceType" />
+          </s:choice>
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="SignOfDeathType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Rigor" />
+          <s:enumeration value="Livores" />
+          <s:enumeration value="LivoresAndRigor" />
+          <s:enumeration value="Cadaverositas" />
+          <s:enumeration value="CadaverositasAndRigor" />
+          <s:enumeration value="CadaverositasAndLivores" />
+          <s:enumeration value="CadaverositasAndLivoresAndRigor" />
+          <s:enumeration value="Maceratio" />
+          <s:enumeration value="MaceratioAndRigor" />
+          <s:enumeration value="MaceratioAndLivores" />
+          <s:enumeration value="MaceratioAndLivoresAndRigor" />
+          <s:enumeration value="MaceratioAndCadaverositas" />
+          <s:enumeration value="MaceratioAndCadaverositasAndRigor" />
+          <s:enumeration value="MaceratioAndCadaverositasAndLivores" />
+          <s:enumeration value="MaceratioAndCadaverositasAndLivoresAndRigor" />
+          <s:enumeration value="Other" />
+          <s:enumeration value="OtherAndRigor" />
+          <s:enumeration value="OtherAndLivores" />
+          <s:enumeration value="OtherAndLivoresAndRigor" />
+          <s:enumeration value="OtherAndCadaverositas" />
+          <s:enumeration value="OtherAndCadaverositasAndRigor" />
+          <s:enumeration value="OtherAndCadaverositasAndLivores" />
+          <s:enumeration value="OtherAndCadaverositasAndLivoresAndRigor" />
+          <s:enumeration value="OtherAndMaceratio" />
+          <s:enumeration value="OtherAndMaceratioAndRigor" />
+          <s:enumeration value="OtherAndMaceratioAndLivores" />
+          <s:enumeration value="OtherAndMaceratioAndLivoresAndRigor" />
+          <s:enumeration value="OtherAndMaceratioAndCadaverositas" />
+          <s:enumeration value="OtherAndMaceratioAndCadaverositasAndRigor" />
+          <s:enumeration value="OtherAndMaceratioAndCadaverositasAndLivores" />
+          <s:enumeration value="OtherAndMaceratioAndCadaverositasAndLivoresAndRigor" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="DoctorFunctionType">
+        <s:restriction base="s:string">
+          <s:enumeration value="PersonalGP" />
+          <s:enumeration value="EmergencyGP" />
+          <s:enumeration value="HospitalDoctor" />
+          <s:enumeration value="Medicalofficer" />
+          <s:enumeration value="HospiceDoctor" />
+        </s:restriction>
+      </s:simpleType>
+      <s:simpleType name="ImplantsType">
+        <s:restriction base="s:string">
+          <s:enumeration value="YesAndRemoved" />
+          <s:enumeration value="YesAndNotRemoved" />
+          <s:enumeration value="No" />
+          <s:enumeration value="Unknown" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="AlternativeDoctorType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" ref="s4:PersonNameStructure" />
+          <s:element minOccurs="0" maxOccurs="1" name="DoctorAddress" type="s6:AddressPostalType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Part2Type">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Created" type="s:date" />
+          <s:element minOccurs="1" maxOccurs="1" name="DoctorFunction" type="s0:DoctorFunctionType" />
+          <s:element minOccurs="1" maxOccurs="1" name="WayOfDeath" type="s0:WayOfDeathType" />
+          <s:element minOccurs="0" maxOccurs="1" name="PrimaryCauseOfDeath" type="s0:ArrayOfCauseOfDeathType" />
+          <s:element minOccurs="0" maxOccurs="1" name="SecondaryCauseOfDeath" type="s0:ArrayOfCauseOfDeathType" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ProductnameATCCode" type="s:NMTOKEN" />
+          <s:element minOccurs="0" maxOccurs="1" name="DeathNonNatural" type="s0:DeathNonNaturalType" />
+          <s:element minOccurs="0" maxOccurs="1" name="Autopsy" type="s0:AutopsyType" />
+          <s:element minOccurs="0" maxOccurs="1" name="SupplementalText" type="s:string" />
+        </s:sequence>
+        <s:attribute name="id" type="s:string" />
+      </s:complexType>
+      <s:simpleType name="WayOfDeathType">
+        <s:restriction base="s:string">
+          <s:enumeration value="natural" />
+          <s:enumeration value="accident" />
+          <s:enumeration value="kill" />
+          <s:enumeration value="suicide" />
+          <s:enumeration value="unknown" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="ArrayOfCauseOfDeathType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CauseOfDeath" type="s0:CauseOfDeathType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CauseOfDeathType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CauseOfDeath" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="DurationBeforeDeath" type="s:duration" />
+          <s:element minOccurs="1" maxOccurs="1" name="Version" type="s:unsignedInt" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DeathNonNaturalType">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="PlaceOfEvent" type="s0:PlaceOfEventType" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="PlaceOfEventType">
+        <s:restriction base="s:string">
+          <s:enumeration value="tranportationarea" />
+          <s:enumeration value="livingarea" />
+          <s:enumeration value="productionarea" />
+          <s:enumeration value="shoppingarea" />
+          <s:enumeration value="educationarea" />
+          <s:enumeration value="sportsarea" />
+          <s:enumeration value="Amusementandparkarea" />
+          <s:enumeration value="OpenNature" />
+          <s:enumeration value="SeaOrLake" />
+          <s:enumeration value="Otherplace" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="AutopsyType">
+        <s:sequence>
+          <s:choice minOccurs="1" maxOccurs="1">
+            <s:element minOccurs="0" maxOccurs="1" name="HospitalAutopsy" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="JudicialAutopsy" type="s0:JudicialAutopsyType" />
+            <s:element minOccurs="1" maxOccurs="1" name="NoAutopsyTextReason" type="s0:NoAutopsyTextReasonType" />
+          </s:choice>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="JudicialAutopsyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="AutopsyFindings" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="InvestmentsConclusions" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="NoAutopsyTextReasonType">
+        <s:restriction base="s:string">
+          <s:enumeration value="ProhibitedAutopsy" />
+          <s:enumeration value="NoAutopsy" />
+        </s:restriction>
+      </s:simpleType>
+      <s:complexType name="HospitalDoctorType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Part1" type="s0:Part1Type" />
+          <s:element minOccurs="0" maxOccurs="1" name="Part2" type="s0:Part2Type" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="HospiceDoctorType">
+        <s:sequence>
+          <s:choice minOccurs="1" maxOccurs="1">
+            <s:element minOccurs="0" maxOccurs="1" name="Part1" type="s0:Part1Type" />
+            <s:element minOccurs="0" maxOccurs="1" name="Part1And2" type="s0:Part1And2Type" />
+            <s:element minOccurs="0" maxOccurs="1" name="Part2" type="s0:Part2Type" />
+          </s:choice>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="Part1And2Type">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Part1" type="s0:Part1Type" />
+          <s:element minOccurs="0" maxOccurs="1" name="Part2" type="s0:Part2Type" />
+        </s:sequence>
+        <s:attribute name="id" type="s:string" />
+      </s:complexType>
+      <s:complexType name="PersonalDoctorType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Part1" type="s0:Part1Type" />
+          <s:element minOccurs="0" maxOccurs="1" name="Part2" type="s0:Part2Type" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="MedicalofficerDoctorType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Part1" type="s0:Part1Type" />
+          <s:element minOccurs="0" maxOccurs="1" name="Part2" type="s0:Part2Type" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="MortalityReportCompletnessType">
+        <s:restriction base="s:string">
+          <s:enumeration value="Part1Missing" />
+          <s:enumeration value="Part2Missing" />
+          <s:enumeration value="Complete" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="MortalityAnswer" type="s:boolean" />
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/03/18/">
+      <s:element name="PersonCivilRegistrationIdentifier" type="s:string" />
+      <s:element name="StreetNameForAddressingName" type="s:string" />
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://rep.oio.dk/ebxml/xml/schemas/dkcc/2006/01/23/">
+      <s:element name="PersonGenderCode" type="s2:PersonGenderCodeType" />
+      <s:simpleType name="PersonGenderCodeType">
+        <s:restriction base="s:string">
+          <s:enumeration value="male" />
+          <s:enumeration value="female" />
+          <s:enumeration value="unspecified" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://rep.oio.dk/cpr.dk/xml/schemas/2007/01/02/">
+      <s:element name="PersonCivilRegistrationReplacementIdentifier" type="s:string" />
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://rep.oio.dk/itst.dk/xml/schemas/2006/01/17/">
+      <s:import namespace="http://rep.oio.dk/ebxml/xml/schemas/dkcc/2003/02/13/" />
+      <s:element name="PersonNameStructure" type="s4:PersonNameStructureType" />
+      <s:complexType name="PersonNameStructureType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" ref="s5:PersonGivenName" />
+          <s:element minOccurs="0" maxOccurs="1" ref="s5:PersonMiddleName" />
+          <s:element minOccurs="0" maxOccurs="1" ref="s5:PersonSurnameName" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://rep.oio.dk/ebxml/xml/schemas/dkcc/2003/02/13/">
+      <s:element name="PersonGivenName" type="s:string" />
+      <s:element name="PersonMiddleName" type="s:string" />
+      <s:element name="PersonSurnameName" type="s:string" />
+      <s:element name="MailDeliverySublocationIdentifier" type="s:string" />
+      <s:element name="StreetBuildingIdentifier" type="s:string" />
+      <s:element name="FloorIdentifier" type="s:string" />
+      <s:element name="SuiteIdentifier" type="s:string" />
+      <s:element name="CountryIdentificationCode" type="s5:CountryIdentificationCodeType" />
+      <s:complexType name="CountryIdentificationCodeType">
+        <s:simpleContent>
+          <s:extension base="s:string">
+            <s:attribute name="scheme" type="s5:_CountryIdentificationSchemeType" use="required" />
+          </s:extension>
+        </s:simpleContent>
+      </s:complexType>
+      <s:simpleType name="_CountryIdentificationSchemeType">
+        <s:restriction base="s:string">
+          <s:enumeration value="iso3166-alpha2" />
+          <s:enumeration value="iso3166-alpha3" />
+          <s:enumeration value="un-numeric3" />
+          <s:enumeration value="imk" />
+        </s:restriction>
+      </s:simpleType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://rep.oio.dk/xkom.dk/xml/schemas/2006/01/06/">
+      <s:import namespace="http://rep.oio.dk/ebxml/xml/schemas/dkcc/2003/02/13/" />
+      <s:import namespace="http://rep.oio.dk/ebxml/xml/schemas/dkcc/2005/03/15/" />
+      <s:import namespace="http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/03/18/" />
+      <s:import namespace="http://rep.oio.dk/ebxml/xml/schemas/dkcc/2005/05/13/" />
+      <s:element name="AddressPostal" type="s6:AddressPostalType" />
+      <s:complexType name="AddressPostalType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" ref="s5:MailDeliverySublocationIdentifier" />
+          <s:element minOccurs="0" maxOccurs="1" ref="s7:StreetName" />
+          <s:element minOccurs="0" maxOccurs="1" ref="s1:StreetNameForAddressingName" />
+          <s:element minOccurs="0" maxOccurs="1" ref="s5:StreetBuildingIdentifier" />
+          <s:element minOccurs="0" maxOccurs="1" ref="s5:FloorIdentifier" />
+          <s:element minOccurs="0" maxOccurs="1" ref="s5:SuiteIdentifier" />
+          <s:element minOccurs="0" maxOccurs="1" ref="s7:DistrictSubdivisionIdentifier" />
+          <s:element minOccurs="0" maxOccurs="1" ref="s8:PostOfficeBoxIdentifier" />
+          <s:element minOccurs="0" maxOccurs="1" ref="s7:PostCodeIdentifier" />
+          <s:element minOccurs="0" maxOccurs="1" ref="s7:DistrictName" />
+          <s:element minOccurs="0" maxOccurs="1" ref="s5:CountryIdentificationCode" />
+        </s:sequence>
+      </s:complexType>
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://rep.oio.dk/ebxml/xml/schemas/dkcc/2005/03/15/">
+      <s:element name="StreetName" type="s:string" />
+      <s:element name="DistrictSubdivisionIdentifier" type="s:string" />
+      <s:element name="PostCodeIdentifier" type="s:string" />
+      <s:element name="DistrictName" type="s:string" />
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://rep.oio.dk/ebxml/xml/schemas/dkcc/2005/05/13/">
+      <s:element name="PostOfficeBoxIdentifier" type="s:integer" />
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://www.w3.org/2000/09/xmldsig#">
+      <s:element name="Signature" type="s9:SignatureType" />
+      <s:complexType name="SignatureType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="SignedInfo" type="s9:SignedInfoType" />
+          <s:element minOccurs="0" maxOccurs="1" name="SignatureValue" type="s9:SignatureValueType" />
+          <s:element minOccurs="0" maxOccurs="1" name="KeyInfo" type="s9:KeyInfoType" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Object" type="s9:ObjectType" />
+        </s:sequence>
+        <s:attribute name="Id" type="s:ID" />
+      </s:complexType>
+      <s:complexType name="SignedInfoType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="CanonicalizationMethod" type="s9:CanonicalizationMethodType" />
+          <s:element minOccurs="0" maxOccurs="1" name="SignatureMethod" type="s9:SignatureMethodType" />
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Reference" type="s9:ReferenceType" />
+        </s:sequence>
+        <s:attribute name="Id" type="s:ID" />
+      </s:complexType>
+      <s:complexType name="CanonicalizationMethodType" mixed="true">
+        <s:sequence>
+          <s:any minOccurs="0" maxOccurs="unbounded" />
+        </s:sequence>
+        <s:attribute name="Algorithm" type="s:anyURI" />
+      </s:complexType>
+      <s:complexType name="SignatureMethodType" mixed="true">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="HMACOutputLength" type="s:integer" />
+          <s:any minOccurs="0" maxOccurs="unbounded" />
+        </s:sequence>
+        <s:attribute name="Algorithm" type="s:anyURI" />
+      </s:complexType>
+      <s:complexType name="ReferenceType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Transforms" type="s9:ArrayOfTransformType" />
+          <s:element minOccurs="0" maxOccurs="1" name="DigestMethod" type="s9:DigestMethodType" />
+          <s:element minOccurs="0" maxOccurs="1" name="DigestValue" type="s:base64Binary" />
+        </s:sequence>
+        <s:attribute name="Id" type="s:ID" />
+        <s:attribute name="URI" type="s:anyURI" />
+        <s:attribute name="Type" type="s:anyURI" />
+      </s:complexType>
+      <s:complexType name="ArrayOfTransformType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="Transform" type="s9:TransformType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="TransformType" mixed="true">
+        <s:sequence>
+          <s:choice minOccurs="0" maxOccurs="unbounded">
+            <s:element minOccurs="0" maxOccurs="1" name="XPath" type="s:string" />
+            <s:any minOccurs="0" maxOccurs="1" />
+          </s:choice>
+        </s:sequence>
+        <s:attribute name="Algorithm" type="s:anyURI" />
+      </s:complexType>
+      <s:complexType name="DigestMethodType" mixed="true">
+        <s:sequence>
+          <s:any minOccurs="0" maxOccurs="unbounded" />
+        </s:sequence>
+        <s:attribute name="Algorithm" type="s:anyURI" />
+      </s:complexType>
+      <s:complexType name="SignatureValueType">
+        <s:simpleContent>
+          <s:extension base="s:base64Binary">
+            <s:attribute name="Id" type="s:ID" />
+          </s:extension>
+        </s:simpleContent>
+      </s:complexType>
+      <s:complexType name="KeyInfoType" mixed="true">
+        <s:sequence>
+          <s:choice minOccurs="0" maxOccurs="unbounded">
+            <s:element minOccurs="0" maxOccurs="1" name="KeyName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="KeyValue" type="s9:KeyValueType" />
+            <s:element minOccurs="0" maxOccurs="1" name="MgmtData" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PGPData" type="s9:PGPDataType" />
+            <s:element minOccurs="0" maxOccurs="1" name="RetrievalMethod" type="s9:RetrievalMethodType" />
+            <s:element minOccurs="0" maxOccurs="1" name="SPKIData" type="s9:SPKIDataType" />
+            <s:element minOccurs="0" maxOccurs="1" name="X509Data" type="s9:X509DataType" />
+            <s:any minOccurs="0" maxOccurs="1" />
+          </s:choice>
+        </s:sequence>
+        <s:attribute name="Id" type="s:ID" />
+      </s:complexType>
+      <s:complexType name="KeyValueType" mixed="true">
+        <s:sequence>
+          <s:choice minOccurs="1" maxOccurs="1">
+            <s:element minOccurs="0" maxOccurs="1" name="RSAKeyValue" type="s9:RSAKeyValueType" />
+            <s:element minOccurs="0" maxOccurs="1" name="DSAKeyValue" type="s9:DSAKeyValueType" />
+            <s:any minOccurs="0" maxOccurs="1" />
+          </s:choice>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RSAKeyValueType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Modulus" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="Exponent" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="DSAKeyValueType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="P" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="Q" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="G" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="Y" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="J" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="Seed" type="s:base64Binary" />
+          <s:element minOccurs="0" maxOccurs="1" name="PgenCounter" type="s:base64Binary" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="PGPDataType">
+        <s:sequence>
+          <s:choice minOccurs="0" maxOccurs="unbounded">
+            <s:element minOccurs="0" maxOccurs="1" name="PGPKeyPacket" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="PGPKeyID" type="s:base64Binary" />
+            <s:any minOccurs="0" maxOccurs="1" />
+          </s:choice>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="RetrievalMethodType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="Transforms" type="s9:ArrayOfTransformType" />
+        </s:sequence>
+        <s:attribute name="URI" type="s:anyURI" />
+        <s:attribute name="Type" type="s:anyURI" />
+      </s:complexType>
+      <s:complexType name="SPKIDataType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="SPKISexp" type="s:base64Binary" />
+          <s:any minOccurs="0" maxOccurs="1" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="X509DataType">
+        <s:sequence>
+          <s:choice minOccurs="0" maxOccurs="unbounded">
+            <s:element minOccurs="0" maxOccurs="1" name="X509SubjectName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="X509CRL" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="X509Certificate" type="s:base64Binary" />
+            <s:element minOccurs="0" maxOccurs="1" name="X509IssuerSerial" type="s9:X509IssuerSerialType" />
+            <s:element minOccurs="0" maxOccurs="1" name="X509SKI" type="s:base64Binary" />
+            <s:any minOccurs="0" maxOccurs="1" />
+          </s:choice>
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="X509IssuerSerialType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="X509IssuerName" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="X509SerialNumber" type="s:integer" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ObjectType" mixed="true">
+        <s:sequence>
+          <s:any minOccurs="0" maxOccurs="unbounded" />
+        </s:sequence>
+        <s:attribute name="Id" type="s:ID" />
+        <s:attribute name="MimeType" type="s:string" />
+        <s:attribute name="Encoding" type="s:anyURI" />
+      </s:complexType>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ReportSoapIn">
+    <wsdl:part name="SignedMortalityReason" element="s0:SignedMortalityReason" />
+  </wsdl:message>
+  <wsdl:message name="ReportSoapOut">
+    <wsdl:part name="ReportResult" element="s0:MortalityAnswer" />
+  </wsdl:message>
+  <wsdl:portType name="MortalityRegistrationServiceBinding">
+    <wsdl:operation name="Report">
+      <wsdl:input message="tns:ReportSoapIn" />
+      <wsdl:output message="tns:ReportSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="MortalityRegistrationServiceBinding" type="tns:MortalityRegistrationServiceBinding">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Report">
+      <soap:operation soapAction="http://rep.oio.dk/sst.dk/xml.wsdl/2008.10.10/#Report" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="MortalityRegistrationServiceBinding1" type="tns:MortalityRegistrationServiceBinding">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Report">
+      <soap12:operation soapAction="http://rep.oio.dk/sst.dk/xml.wsdl/2008.10.10/#Report" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="MortalityRegistrationService">
+    <wsdl:port name="MortalityRegistrationServiceBinding" binding="tns:MortalityRegistrationServiceBinding">
+      <soap:address location="http://localhost:2245/MortalityRegistrationService.asmx" />
+    </wsdl:port>
+    <wsdl:port name="MortalityRegistrationServiceBinding1" binding="tns:MortalityRegistrationServiceBinding1">
+      <soap12:address location="http://localhost:2245/MortalityRegistrationService.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
