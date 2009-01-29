@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Drawing;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Web.Services.Protocols;

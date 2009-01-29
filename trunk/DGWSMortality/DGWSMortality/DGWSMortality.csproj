@@ -54,7 +54,6 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Services" />
     <Reference Include="System.Xml" />
@@ -77,10 +76,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:2245/MortalityRegistrationService.asmx">
+    <WebReferenceUrl Include="http://sei-frontend/DGWS/MortalityRegistrationService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\MortalityRegistrationService\</RelPath>
-      <UpdateFromURL>http://localhost:2245/MortalityRegistrationService.asmx</UpdateFromURL>
+      <UpdateFromURL>http://sei-frontend/DGWS/MortalityRegistrationService.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>

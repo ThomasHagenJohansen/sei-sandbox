@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="DGWSMortality_MortalityRegistrationService_MortalityRegistrationService" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://localhost:2245/MortalityRegistrationService.asmx</Value>
+      <Value Profile="(Default)">http://sei-frontend/DGWS/MortalityRegistrationService.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>
