@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/" elementFormDefault="qualified" targetNamespace="http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/" id="schema1" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/03/18/" />
+  <xs:import namespace="http://rep.oio.dk/uvm.dk/xml/schemas/2004/12/03/" />
+  <xs:import namespace="http://rep.oio.dk/medcom.dk/core/xml.schema/2008.04.07/" />
+  <xs:element name="CreateChildMeasurementReport" type="tns:CreateChildMeasurementReportType" />
+  <xs:complexType name="CreateChildMeasurementReportType">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="1" name="ChildMeasurement" type="tns:ChildMeasurementType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ChildMeasurementType">
+    <xs:sequence>
+      <xs:element xmlns:q1="http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/03/18/" minOccurs="0" maxOccurs="1" ref="q1:PersonCivilRegistrationIdentifier" />
+      <xs:element xmlns:q2="http://rep.oio.dk/uvm.dk/xml/schemas/2004/12/03/" minOccurs="0" maxOccurs="1" ref="q2:InstitutionIdentifier" />
+      <xs:element minOccurs="1" maxOccurs="1" name="MeasurementDate" type="xs:date" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonHeight" type="xs:decimal" />
+      <xs:element minOccurs="1" maxOccurs="1" name="PersonWeight" type="xs:decimal" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ModifyChildMeasurementReport" type="tns:ModifyChildMeasurementReportType" />
+  <xs:complexType name="ModifyChildMeasurementReportType">
+    <xs:sequence>
+      <xs:element xmlns:q3="http://rep.oio.dk/medcom.dk/core/xml.schema/2008.04.07/" minOccurs="0" maxOccurs="1" ref="q3:UniversallyUniqueIdentifier" />
+      <xs:element minOccurs="0" maxOccurs="1" name="ChildMeasurement" type="tns:ChildMeasurementType" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DeleteChildMeasurementReport" type="tns:DeleteChildMeasurementReportType" />
+  <xs:complexType name="DeleteChildMeasurementReportType">
+    <xs:sequence>
+      <xs:element xmlns:q4="http://rep.oio.dk/medcom.dk/core/xml.schema/2008.04.07/" minOccurs="0" maxOccurs="1" ref="q4:UniversallyUniqueIdentifier" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="BDBSuccessfullyDeleted" type="xs:boolean" />
+</xs:schema>

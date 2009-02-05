@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:i0="http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:import namespace="http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/" location="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx?wsdl=wsdl1" />
+  <wsdl:types>
+    <s:schema targetNamespace="http://tempuri.org/">
+      <s:import schemaLocation="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx?schema=schema1" namespace="http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/" />
+      <s:import schemaLocation="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx?schema=schema2" namespace="http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/03/18/" />
+      <s:import schemaLocation="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx?schema=schema3" namespace="http://rep.oio.dk/uvm.dk/xml/schemas/2004/12/03/" />
+      <s:import schemaLocation="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx?schema=schema4" namespace="http://rep.oio.dk/medcom.dk/core/xml.schema/2008.04.07/" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:service name="BDBChildMeasurementReport">
+    <wsdl:port name="BDBChildMeasurementReportBinding" binding="i0:BDBChildMeasurementReportBinding">
+      <soap:address location="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BDBChildMeasurementReportBinding1" binding="i0:BDBChildMeasurementReportBinding1">
+      <soap12:address location="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

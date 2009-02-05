@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx?wsdl" docRef="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx" xmlns:q1="http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/" binding="q1:BDBChildMeasurementReportBinding" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx" xmlns:q2="http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/" binding="q2:BDBChildMeasurementReportBinding1" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

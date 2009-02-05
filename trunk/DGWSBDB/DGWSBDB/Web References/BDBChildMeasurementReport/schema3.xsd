@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://rep.oio.dk/uvm.dk/xml/schemas/2004/12/03/" elementFormDefault="qualified" targetNamespace="http://rep.oio.dk/uvm.dk/xml/schemas/2004/12/03/" id="schema3" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="InstitutionIdentifier" type="xs:positiveInteger" />
+</xs:schema>
