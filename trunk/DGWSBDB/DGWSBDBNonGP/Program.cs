@@ -24,17 +24,32 @@ namespace DGWSBDB
 				String path = Path.Combine(Directory.GetCurrentDirectory(), "TestMOCES1.pfx");
 				X509Certificate2 moces = new X509Certificate2(path, "Test1234");
 
-				CreateChildMeasurementReportType report = new CreateChildMeasurementReportType();
-				report.ChildMeasurement = new ChildMeasurementType();
-				report.ChildMeasurement.MeasurementDate = DateTime.Now;
-				report.ChildMeasurement.PersonHeight = 76;
-				report.ChildMeasurement.PersonWeight = 23;
-				report.ChildMeasurement.PersonCivilRegistrationIdentifier = "0409733395";
-
 				BDBNonGPChildReport service = new BDBNonGPChildReport();
 				service.SetPolicy(new DGWSPolicy(moces));
-				String s = service.CreateChildMeasurementReport(report);
-				System.Diagnostics.Debug.WriteLine(s);
+
+				//CreateChildMeasurementReportType report = new CreateChildMeasurementReportType();
+				//report.ChildMeasurement = new ChildMeasurementType();
+				//report.ChildMeasurement.MeasurementDate = DateTime.Now;
+				//report.ChildMeasurement.PersonHeight = 76;
+				//report.ChildMeasurement.PersonWeight = 23;
+				//report.ChildMeasurement.PersonCivilRegistrationIdentifier = "0000000000";
+
+				//String s = service.CreateChildMeasurementReport(report);
+				//System.Diagnostics.Debug.WriteLine(s);
+
+
+				//ExclusivelyBreastFeedingPeriodEndReportType amningReport = new ExclusivelyBreastFeedingPeriodEndReportType();
+				//amningReport.ExclusivelyBreastFeedingPeriodEnd = DateTime.Now;
+				//amningReport.PersonCivilRegistrationIdentifier = "0000000000";
+				//bool b = service.SetExclusivelyBreastFeedingPeriodEndReport(amningReport);
+
+
+				ExposedToPassiveSmokingReportType passiveSmoking = new ExposedToPassiveSmokingReportType();
+				passiveSmoking.PersonCivilRegistrationIdentifier = "0000000000";
+				passiveSmoking.ExposedToPassiveSmoking = ExposedToPassiveSmokingType.Unknown;
+				bool b = service.SetExposedToPassiveSmokingReport(passiveSmoking);
+
+				
 			}
 			catch (SoapHeaderException ex)
 			{
