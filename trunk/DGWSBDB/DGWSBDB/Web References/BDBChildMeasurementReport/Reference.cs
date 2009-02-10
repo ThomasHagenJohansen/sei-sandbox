@@ -27,7 +27,7 @@ namespace DGWSBDB.BDBChildMeasurementReport {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="BDBChildMeasurementReportBinding", Namespace="http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/")]
-    public partial class BDBChildMeasurementReport : Microsoft.Web.Services3.WebServicesClientProtocol {
+    public partial class BDBChildMeasurementReport : System.Web.Services.Protocols.SoapHttpClientProtocol {
         
         private System.Threading.SendOrPostCallback CreateChildMeasurementReportOperationCompleted;
         
