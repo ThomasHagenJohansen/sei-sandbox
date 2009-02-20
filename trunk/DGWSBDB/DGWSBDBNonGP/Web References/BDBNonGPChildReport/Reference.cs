@@ -13,734 +13,622 @@
 // 
 #pragma warning disable 1591
 
-namespace DGWSBDBNonGP.BDBNonGPChildReport
-{
-	using System.Diagnostics;
-	using System.Web.Services;
-	using System.ComponentModel;
-	using System.Web.Services.Protocols;
-	using System;
-	using System.Xml.Serialization;
-
-
-	/// <remarks/>
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
-	[System.Diagnostics.DebuggerStepThroughAttribute()]
-	[System.ComponentModel.DesignerCategoryAttribute("code")]
-	[System.Web.Services.WebServiceBindingAttribute(Name = "BDBNonGPChildReportBinding", Namespace = "http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/")]
-	public partial class BDBNonGPChildReport : Microsoft.Web.Services3.WebServicesClientProtocol
-	{
-
-		private System.Threading.SendOrPostCallback CreateChildMeasurementReportOperationCompleted;
-
-		private System.Threading.SendOrPostCallback ModifyChildMeasurementReportOperationCompleted;
-
-		private System.Threading.SendOrPostCallback DeleteChildMeasurementReportOperationCompleted;
-
-		private System.Threading.SendOrPostCallback SetExclusivelyBreastFeedingPeriodEndReportOperationCompleted;
-
-		private System.Threading.SendOrPostCallback SetExposedToPassiveSmokingReportOperationCompleted;
-
-		private bool useDefaultCredentialsSetExplicitly;
-
-		/// <remarks/>
-		public BDBNonGPChildReport()
-		{
-			this.Url = global::DGWSBDBNonGP.Properties.Settings.Default.DGWSBDBNonGP_BDBNonGPChildReport_BDBNonGPChildReport;
-			if ((this.IsLocalFileSystemWebService(this.Url) == true))
-			{
-				this.UseDefaultCredentials = true;
-				this.useDefaultCredentialsSetExplicitly = false;
-			}
-			else
-			{
-				this.useDefaultCredentialsSetExplicitly = true;
-			}
-		}
-
-		public new string Url
-		{
-			get
-			{
-				return base.Url;
-			}
-			set
-			{
-				if ((((this.IsLocalFileSystemWebService(base.Url) == true)
-							&& (this.useDefaultCredentialsSetExplicitly == false))
-							&& (this.IsLocalFileSystemWebService(value) == false)))
-				{
-					base.UseDefaultCredentials = false;
-				}
-				base.Url = value;
-			}
-		}
-
-		public new bool UseDefaultCredentials
-		{
-			get
-			{
-				return base.UseDefaultCredentials;
-			}
-			set
-			{
-				base.UseDefaultCredentials = value;
-				this.useDefaultCredentialsSetExplicitly = true;
-			}
-		}
-
-		/// <remarks/>
-		public event CreateChildMeasurementReportCompletedEventHandler CreateChildMeasurementReportCompleted;
-
-		/// <remarks/>
-		public event ModifyChildMeasurementReportCompletedEventHandler ModifyChildMeasurementReportCompleted;
-
-		/// <remarks/>
-		public event DeleteChildMeasurementReportCompletedEventHandler DeleteChildMeasurementReportCompleted;
-
-		/// <remarks/>
-		public event SetExclusivelyBreastFeedingPeriodEndReportCompletedEventHandler SetExclusivelyBreastFeedingPeriodEndReportCompleted;
-
-		/// <remarks/>
-		public event SetExposedToPassiveSmokingReportCompletedEventHandler SetExposedToPassiveSmokingReportCompleted;
-
-		/// <remarks/>
-		[System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/#CreateChildMeasurementRe" +
-			"port", Use = System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle = System.Web.Services.Protocols.SoapParameterStyle.Bare)]
-		[return: System.Xml.Serialization.XmlElementAttribute("UniversallyUniqueIdentifier", Namespace = "http://rep.oio.dk/medcom.dk/core/xml.schema/2008.04.07/")]
-		public string CreateChildMeasurementReport([System.Xml.Serialization.XmlElementAttribute("CreateChildMeasurementReport", Namespace = "http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")] CreateChildMeasurementReportType CreateChildMeasurementReport1)
-		{
-			object[] results = this.Invoke("CreateChildMeasurementReport", new object[] {
+namespace DGWSBDBNonGP.BDBNonGPChildReport {
+    using System.Diagnostics;
+    using System.Web.Services;
+    using System.ComponentModel;
+    using System.Web.Services.Protocols;
+    using System;
+    using System.Xml.Serialization;
+    
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Web.Services.WebServiceBindingAttribute(Name="BDBNonGPChildReportBinding", Namespace="http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/")]
+    public partial class BDBNonGPChildReport : Microsoft.Web.Services3.WebServicesClientProtocol {
+        
+        private System.Threading.SendOrPostCallback CreateChildMeasurementReportOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ModifyChildMeasurementReportOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback DeleteChildMeasurementReportOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback SetExclusivelyBreastFeedingPeriodEndReportOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback SetExposedToPassiveSmokingReportOperationCompleted;
+        
+        private bool useDefaultCredentialsSetExplicitly;
+        
+        /// <remarks/>
+        public BDBNonGPChildReport() {
+            this.Url = global::DGWSBDBNonGP.Properties.Settings.Default.DGWSBDBNonGP_BDBNonGPChildReport_BDBNonGPChildReport;
+            if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
+                this.UseDefaultCredentials = true;
+                this.useDefaultCredentialsSetExplicitly = false;
+            }
+            else {
+                this.useDefaultCredentialsSetExplicitly = true;
+            }
+        }
+        
+        public new string Url {
+            get {
+                return base.Url;
+            }
+            set {
+                if ((((this.IsLocalFileSystemWebService(base.Url) == true) 
+                            && (this.useDefaultCredentialsSetExplicitly == false)) 
+                            && (this.IsLocalFileSystemWebService(value) == false))) {
+                    base.UseDefaultCredentials = false;
+                }
+                base.Url = value;
+            }
+        }
+        
+        public new bool UseDefaultCredentials {
+            get {
+                return base.UseDefaultCredentials;
+            }
+            set {
+                base.UseDefaultCredentials = value;
+                this.useDefaultCredentialsSetExplicitly = true;
+            }
+        }
+        
+        /// <remarks/>
+        public event CreateChildMeasurementReportCompletedEventHandler CreateChildMeasurementReportCompleted;
+        
+        /// <remarks/>
+        public event ModifyChildMeasurementReportCompletedEventHandler ModifyChildMeasurementReportCompleted;
+        
+        /// <remarks/>
+        public event DeleteChildMeasurementReportCompletedEventHandler DeleteChildMeasurementReportCompleted;
+        
+        /// <remarks/>
+        public event SetExclusivelyBreastFeedingPeriodEndReportCompletedEventHandler SetExclusivelyBreastFeedingPeriodEndReportCompleted;
+        
+        /// <remarks/>
+        public event SetExposedToPassiveSmokingReportCompletedEventHandler SetExposedToPassiveSmokingReportCompleted;
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/#CreateChildMeasurementRe" +
+            "port", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Bare)]
+        [return: System.Xml.Serialization.XmlElementAttribute("UniversallyUniqueIdentifier", Namespace="http://rep.oio.dk/medcom.dk/core/xml.schema/2008.04.07/")]
+        public string CreateChildMeasurementReport([System.Xml.Serialization.XmlElementAttribute("CreateChildMeasurementReport", Namespace="http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")] CreateChildMeasurementReportType CreateChildMeasurementReport1) {
+            object[] results = this.Invoke("CreateChildMeasurementReport", new object[] {
                         CreateChildMeasurementReport1});
-			return ((string)(results[0]));
-		}
-
-		/// <remarks/>
-		public void CreateChildMeasurementReportAsync(CreateChildMeasurementReportType CreateChildMeasurementReport1)
-		{
-			this.CreateChildMeasurementReportAsync(CreateChildMeasurementReport1, null);
-		}
-
-		/// <remarks/>
-		public void CreateChildMeasurementReportAsync(CreateChildMeasurementReportType CreateChildMeasurementReport1, object userState)
-		{
-			if ((this.CreateChildMeasurementReportOperationCompleted == null))
-			{
-				this.CreateChildMeasurementReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCreateChildMeasurementReportOperationCompleted);
-			}
-			this.InvokeAsync("CreateChildMeasurementReport", new object[] {
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void CreateChildMeasurementReportAsync(CreateChildMeasurementReportType CreateChildMeasurementReport1) {
+            this.CreateChildMeasurementReportAsync(CreateChildMeasurementReport1, null);
+        }
+        
+        /// <remarks/>
+        public void CreateChildMeasurementReportAsync(CreateChildMeasurementReportType CreateChildMeasurementReport1, object userState) {
+            if ((this.CreateChildMeasurementReportOperationCompleted == null)) {
+                this.CreateChildMeasurementReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCreateChildMeasurementReportOperationCompleted);
+            }
+            this.InvokeAsync("CreateChildMeasurementReport", new object[] {
                         CreateChildMeasurementReport1}, this.CreateChildMeasurementReportOperationCompleted, userState);
-		}
-
-		private void OnCreateChildMeasurementReportOperationCompleted(object arg)
-		{
-			if ((this.CreateChildMeasurementReportCompleted != null))
-			{
-				System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-				this.CreateChildMeasurementReportCompleted(this, new CreateChildMeasurementReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-			}
-		}
-
-		/// <remarks/>
-		[System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/#ModifyChildMeasurementRe" +
-			"port", Use = System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle = System.Web.Services.Protocols.SoapParameterStyle.Bare)]
-		[return: System.Xml.Serialization.XmlElementAttribute("UniversallyUniqueIdentifier", Namespace = "http://rep.oio.dk/medcom.dk/core/xml.schema/2008.04.07/")]
-		public string ModifyChildMeasurementReport([System.Xml.Serialization.XmlElementAttribute("ModifyChildMeasurementReport", Namespace = "http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")] ModifyChildMeasurementReportType ModifyChildMeasurementReport1)
-		{
-			object[] results = this.Invoke("ModifyChildMeasurementReport", new object[] {
+        }
+        
+        private void OnCreateChildMeasurementReportOperationCompleted(object arg) {
+            if ((this.CreateChildMeasurementReportCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.CreateChildMeasurementReportCompleted(this, new CreateChildMeasurementReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/#ModifyChildMeasurementRe" +
+            "port", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Bare)]
+        [return: System.Xml.Serialization.XmlElementAttribute("UniversallyUniqueIdentifier", Namespace="http://rep.oio.dk/medcom.dk/core/xml.schema/2008.04.07/")]
+        public string ModifyChildMeasurementReport([System.Xml.Serialization.XmlElementAttribute("ModifyChildMeasurementReport", Namespace="http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")] ModifyChildMeasurementReportType ModifyChildMeasurementReport1) {
+            object[] results = this.Invoke("ModifyChildMeasurementReport", new object[] {
                         ModifyChildMeasurementReport1});
-			return ((string)(results[0]));
-		}
-
-		/// <remarks/>
-		public void ModifyChildMeasurementReportAsync(ModifyChildMeasurementReportType ModifyChildMeasurementReport1)
-		{
-			this.ModifyChildMeasurementReportAsync(ModifyChildMeasurementReport1, null);
-		}
-
-		/// <remarks/>
-		public void ModifyChildMeasurementReportAsync(ModifyChildMeasurementReportType ModifyChildMeasurementReport1, object userState)
-		{
-			if ((this.ModifyChildMeasurementReportOperationCompleted == null))
-			{
-				this.ModifyChildMeasurementReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnModifyChildMeasurementReportOperationCompleted);
-			}
-			this.InvokeAsync("ModifyChildMeasurementReport", new object[] {
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ModifyChildMeasurementReportAsync(ModifyChildMeasurementReportType ModifyChildMeasurementReport1) {
+            this.ModifyChildMeasurementReportAsync(ModifyChildMeasurementReport1, null);
+        }
+        
+        /// <remarks/>
+        public void ModifyChildMeasurementReportAsync(ModifyChildMeasurementReportType ModifyChildMeasurementReport1, object userState) {
+            if ((this.ModifyChildMeasurementReportOperationCompleted == null)) {
+                this.ModifyChildMeasurementReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnModifyChildMeasurementReportOperationCompleted);
+            }
+            this.InvokeAsync("ModifyChildMeasurementReport", new object[] {
                         ModifyChildMeasurementReport1}, this.ModifyChildMeasurementReportOperationCompleted, userState);
-		}
-
-		private void OnModifyChildMeasurementReportOperationCompleted(object arg)
-		{
-			if ((this.ModifyChildMeasurementReportCompleted != null))
-			{
-				System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-				this.ModifyChildMeasurementReportCompleted(this, new ModifyChildMeasurementReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-			}
-		}
-
-		/// <remarks/>
-		[System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/#DeleteChildMeasurementRe" +
-			"port", Use = System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle = System.Web.Services.Protocols.SoapParameterStyle.Bare)]
-		[return: System.Xml.Serialization.XmlElementAttribute("BDBSuccessfullyDeleted", Namespace = "http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")]
-		public bool DeleteChildMeasurementReport([System.Xml.Serialization.XmlElementAttribute("DeleteChildMeasurementReport", Namespace = "http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")] DeleteChildMeasurementReportType DeleteChildMeasurementReport1)
-		{
-			object[] results = this.Invoke("DeleteChildMeasurementReport", new object[] {
+        }
+        
+        private void OnModifyChildMeasurementReportOperationCompleted(object arg) {
+            if ((this.ModifyChildMeasurementReportCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ModifyChildMeasurementReportCompleted(this, new ModifyChildMeasurementReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/#DeleteChildMeasurementRe" +
+            "port", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Bare)]
+        [return: System.Xml.Serialization.XmlElementAttribute("BDBSuccessfullyDeleted", Namespace="http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")]
+        public bool DeleteChildMeasurementReport([System.Xml.Serialization.XmlElementAttribute("DeleteChildMeasurementReport", Namespace="http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")] DeleteChildMeasurementReportType DeleteChildMeasurementReport1) {
+            object[] results = this.Invoke("DeleteChildMeasurementReport", new object[] {
                         DeleteChildMeasurementReport1});
-			return ((bool)(results[0]));
-		}
-
-		/// <remarks/>
-		public void DeleteChildMeasurementReportAsync(DeleteChildMeasurementReportType DeleteChildMeasurementReport1)
-		{
-			this.DeleteChildMeasurementReportAsync(DeleteChildMeasurementReport1, null);
-		}
-
-		/// <remarks/>
-		public void DeleteChildMeasurementReportAsync(DeleteChildMeasurementReportType DeleteChildMeasurementReport1, object userState)
-		{
-			if ((this.DeleteChildMeasurementReportOperationCompleted == null))
-			{
-				this.DeleteChildMeasurementReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteChildMeasurementReportOperationCompleted);
-			}
-			this.InvokeAsync("DeleteChildMeasurementReport", new object[] {
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void DeleteChildMeasurementReportAsync(DeleteChildMeasurementReportType DeleteChildMeasurementReport1) {
+            this.DeleteChildMeasurementReportAsync(DeleteChildMeasurementReport1, null);
+        }
+        
+        /// <remarks/>
+        public void DeleteChildMeasurementReportAsync(DeleteChildMeasurementReportType DeleteChildMeasurementReport1, object userState) {
+            if ((this.DeleteChildMeasurementReportOperationCompleted == null)) {
+                this.DeleteChildMeasurementReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnDeleteChildMeasurementReportOperationCompleted);
+            }
+            this.InvokeAsync("DeleteChildMeasurementReport", new object[] {
                         DeleteChildMeasurementReport1}, this.DeleteChildMeasurementReportOperationCompleted, userState);
-		}
-
-		private void OnDeleteChildMeasurementReportOperationCompleted(object arg)
-		{
-			if ((this.DeleteChildMeasurementReportCompleted != null))
-			{
-				System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-				this.DeleteChildMeasurementReportCompleted(this, new DeleteChildMeasurementReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-			}
-		}
-
-		/// <remarks/>
-		[System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/#SetExclusivelyBreastFeed" +
-			"ingPeriodEndReport", Use = System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle = System.Web.Services.Protocols.SoapParameterStyle.Bare)]
-		[return: System.Xml.Serialization.XmlElementAttribute("BDBSuccessfullySet", Namespace = "http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")]
-		public bool SetExclusivelyBreastFeedingPeriodEndReport([System.Xml.Serialization.XmlElementAttribute(Namespace = "http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")] ExclusivelyBreastFeedingPeriodEndReportType ExclusivelyBreastFeedingPeriodEndReport)
-		{
-			object[] results = this.Invoke("SetExclusivelyBreastFeedingPeriodEndReport", new object[] {
+        }
+        
+        private void OnDeleteChildMeasurementReportOperationCompleted(object arg) {
+            if ((this.DeleteChildMeasurementReportCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.DeleteChildMeasurementReportCompleted(this, new DeleteChildMeasurementReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/#SetExclusivelyBreastFeed" +
+            "ingPeriodEndReport", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Bare)]
+        [return: System.Xml.Serialization.XmlElementAttribute("BDBSuccessfullySet", Namespace="http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")]
+        public bool SetExclusivelyBreastFeedingPeriodEndReport([System.Xml.Serialization.XmlElementAttribute(Namespace="http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")] ExclusivelyBreastFeedingPeriodEndReportType ExclusivelyBreastFeedingPeriodEndReport) {
+            object[] results = this.Invoke("SetExclusivelyBreastFeedingPeriodEndReport", new object[] {
                         ExclusivelyBreastFeedingPeriodEndReport});
-			return ((bool)(results[0]));
-		}
-
-		/// <remarks/>
-		public void SetExclusivelyBreastFeedingPeriodEndReportAsync(ExclusivelyBreastFeedingPeriodEndReportType ExclusivelyBreastFeedingPeriodEndReport)
-		{
-			this.SetExclusivelyBreastFeedingPeriodEndReportAsync(ExclusivelyBreastFeedingPeriodEndReport, null);
-		}
-
-		/// <remarks/>
-		public void SetExclusivelyBreastFeedingPeriodEndReportAsync(ExclusivelyBreastFeedingPeriodEndReportType ExclusivelyBreastFeedingPeriodEndReport, object userState)
-		{
-			if ((this.SetExclusivelyBreastFeedingPeriodEndReportOperationCompleted == null))
-			{
-				this.SetExclusivelyBreastFeedingPeriodEndReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSetExclusivelyBreastFeedingPeriodEndReportOperationCompleted);
-			}
-			this.InvokeAsync("SetExclusivelyBreastFeedingPeriodEndReport", new object[] {
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SetExclusivelyBreastFeedingPeriodEndReportAsync(ExclusivelyBreastFeedingPeriodEndReportType ExclusivelyBreastFeedingPeriodEndReport) {
+            this.SetExclusivelyBreastFeedingPeriodEndReportAsync(ExclusivelyBreastFeedingPeriodEndReport, null);
+        }
+        
+        /// <remarks/>
+        public void SetExclusivelyBreastFeedingPeriodEndReportAsync(ExclusivelyBreastFeedingPeriodEndReportType ExclusivelyBreastFeedingPeriodEndReport, object userState) {
+            if ((this.SetExclusivelyBreastFeedingPeriodEndReportOperationCompleted == null)) {
+                this.SetExclusivelyBreastFeedingPeriodEndReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSetExclusivelyBreastFeedingPeriodEndReportOperationCompleted);
+            }
+            this.InvokeAsync("SetExclusivelyBreastFeedingPeriodEndReport", new object[] {
                         ExclusivelyBreastFeedingPeriodEndReport}, this.SetExclusivelyBreastFeedingPeriodEndReportOperationCompleted, userState);
-		}
-
-		private void OnSetExclusivelyBreastFeedingPeriodEndReportOperationCompleted(object arg)
-		{
-			if ((this.SetExclusivelyBreastFeedingPeriodEndReportCompleted != null))
-			{
-				System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-				this.SetExclusivelyBreastFeedingPeriodEndReportCompleted(this, new SetExclusivelyBreastFeedingPeriodEndReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-			}
-		}
-
-		/// <remarks/>
-		[System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/#SetExposedToPassiveSmoki" +
-			"ngReport", Use = System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle = System.Web.Services.Protocols.SoapParameterStyle.Bare)]
-		[return: System.Xml.Serialization.XmlElementAttribute("BDBSuccessfullySet", Namespace = "http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")]
-		public bool SetExposedToPassiveSmokingReport([System.Xml.Serialization.XmlElementAttribute(Namespace = "http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")] ExposedToPassiveSmokingReportType ExposedToPassiveSmokingReport)
-		{
-			object[] results = this.Invoke("SetExposedToPassiveSmokingReport", new object[] {
+        }
+        
+        private void OnSetExclusivelyBreastFeedingPeriodEndReportOperationCompleted(object arg) {
+            if ((this.SetExclusivelyBreastFeedingPeriodEndReportCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SetExclusivelyBreastFeedingPeriodEndReportCompleted(this, new SetExclusivelyBreastFeedingPeriodEndReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/#SetExposedToPassiveSmoki" +
+            "ngReport", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Bare)]
+        [return: System.Xml.Serialization.XmlElementAttribute("BDBSuccessfullySet", Namespace="http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")]
+        public bool SetExposedToPassiveSmokingReport([System.Xml.Serialization.XmlElementAttribute(Namespace="http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")] ExposedToPassiveSmokingReportType ExposedToPassiveSmokingReport) {
+            object[] results = this.Invoke("SetExposedToPassiveSmokingReport", new object[] {
                         ExposedToPassiveSmokingReport});
-			return ((bool)(results[0]));
-		}
-
-		/// <remarks/>
-		public void SetExposedToPassiveSmokingReportAsync(ExposedToPassiveSmokingReportType ExposedToPassiveSmokingReport)
-		{
-			this.SetExposedToPassiveSmokingReportAsync(ExposedToPassiveSmokingReport, null);
-		}
-
-		/// <remarks/>
-		public void SetExposedToPassiveSmokingReportAsync(ExposedToPassiveSmokingReportType ExposedToPassiveSmokingReport, object userState)
-		{
-			if ((this.SetExposedToPassiveSmokingReportOperationCompleted == null))
-			{
-				this.SetExposedToPassiveSmokingReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSetExposedToPassiveSmokingReportOperationCompleted);
-			}
-			this.InvokeAsync("SetExposedToPassiveSmokingReport", new object[] {
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void SetExposedToPassiveSmokingReportAsync(ExposedToPassiveSmokingReportType ExposedToPassiveSmokingReport) {
+            this.SetExposedToPassiveSmokingReportAsync(ExposedToPassiveSmokingReport, null);
+        }
+        
+        /// <remarks/>
+        public void SetExposedToPassiveSmokingReportAsync(ExposedToPassiveSmokingReportType ExposedToPassiveSmokingReport, object userState) {
+            if ((this.SetExposedToPassiveSmokingReportOperationCompleted == null)) {
+                this.SetExposedToPassiveSmokingReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnSetExposedToPassiveSmokingReportOperationCompleted);
+            }
+            this.InvokeAsync("SetExposedToPassiveSmokingReport", new object[] {
                         ExposedToPassiveSmokingReport}, this.SetExposedToPassiveSmokingReportOperationCompleted, userState);
-		}
-
-		private void OnSetExposedToPassiveSmokingReportOperationCompleted(object arg)
-		{
-			if ((this.SetExposedToPassiveSmokingReportCompleted != null))
-			{
-				System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
-				this.SetExposedToPassiveSmokingReportCompleted(this, new SetExposedToPassiveSmokingReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
-			}
-		}
-
-		/// <remarks/>
-		public new void CancelAsync(object userState)
-		{
-			base.CancelAsync(userState);
-		}
-
-		private bool IsLocalFileSystemWebService(string url)
-		{
-			if (((url == null)
-						|| (url == string.Empty)))
-			{
-				return false;
-			}
-			System.Uri wsUri = new System.Uri(url);
-			if (((wsUri.Port >= 1024)
-						&& (string.Compare(wsUri.Host, "localHost", System.StringComparison.OrdinalIgnoreCase) == 0)))
-			{
-				return true;
-			}
-			return false;
-		}
-	}
-
-	/// <remarks/>
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-	[System.SerializableAttribute()]
-	[System.Diagnostics.DebuggerStepThroughAttribute()]
-	[System.ComponentModel.DesignerCategoryAttribute("code")]
-	[System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")]
-	public partial class CreateChildMeasurementReportType
-	{
-
-		private ChildMeasurementType childMeasurementField;
-
-		/// <remarks/>
-		public ChildMeasurementType ChildMeasurement
-		{
-			get
-			{
-				return this.childMeasurementField;
-			}
-			set
-			{
-				this.childMeasurementField = value;
-			}
-		}
-	}
-
-	/// <remarks/>
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-	[System.SerializableAttribute()]
-	[System.Diagnostics.DebuggerStepThroughAttribute()]
-	[System.ComponentModel.DesignerCategoryAttribute("code")]
-	[System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")]
-	public partial class ChildMeasurementType
-	{
-
-		private string personCivilRegistrationIdentifierField;
-
-		private string institutionIdentifierField;
-
-		private System.DateTime measurementDateField;
-
-		private decimal personHeightField;
-
-		private decimal personWeightField;
-
-		/// <remarks/>
-		[System.Xml.Serialization.XmlElementAttribute(Namespace = "http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/03/18/")]
-		public string PersonCivilRegistrationIdentifier
-		{
-			get
-			{
-				return this.personCivilRegistrationIdentifierField;
-			}
-			set
-			{
-				this.personCivilRegistrationIdentifierField = value;
-			}
-		}
-
-		/// <remarks/>
-		[System.Xml.Serialization.XmlElementAttribute(Namespace = "http://rep.oio.dk/uvm.dk/xml/schemas/2004/12/03/", DataType = "positiveInteger")]
-		public string InstitutionIdentifier
-		{
-			get
-			{
-				return this.institutionIdentifierField;
-			}
-			set
-			{
-				this.institutionIdentifierField = value;
-			}
-		}
-
-		/// <remarks/>
-		[System.Xml.Serialization.XmlElementAttribute(DataType = "date")]
-		public System.DateTime MeasurementDate
-		{
-			get
-			{
-				return this.measurementDateField;
-			}
-			set
-			{
-				this.measurementDateField = value;
-			}
-		}
-
-		/// <remarks/>
-		public decimal PersonHeight
-		{
-			get
-			{
-				return this.personHeightField;
-			}
-			set
-			{
-				this.personHeightField = value;
-			}
-		}
-
-		/// <remarks/>
-		public decimal PersonWeight
-		{
-			get
-			{
-				return this.personWeightField;
-			}
-			set
-			{
-				this.personWeightField = value;
-			}
-		}
-	}
-
-	/// <remarks/>
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-	[System.SerializableAttribute()]
-	[System.Diagnostics.DebuggerStepThroughAttribute()]
-	[System.ComponentModel.DesignerCategoryAttribute("code")]
-	[System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")]
-	public partial class ExposedToPassiveSmokingReportType
-	{
-
-		private string personCivilRegistrationIdentifierField;
-
-		private ExposedToPassiveSmokingType exposedToPassiveSmokingField;
-
-		/// <remarks/>
-		[System.Xml.Serialization.XmlElementAttribute(Namespace = "http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/03/18/")]
-		public string PersonCivilRegistrationIdentifier
-		{
-			get
-			{
-				return this.personCivilRegistrationIdentifierField;
-			}
-			set
-			{
-				this.personCivilRegistrationIdentifierField = value;
-			}
-		}
-
-		/// <remarks/>
-		public ExposedToPassiveSmokingType ExposedToPassiveSmoking
-		{
-			get
-			{
-				return this.exposedToPassiveSmokingField;
-			}
-			set
-			{
-				this.exposedToPassiveSmokingField = value;
-			}
-		}
-	}
-
-	/// <remarks/>
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-	[System.SerializableAttribute()]
-	[System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")]
-	public enum ExposedToPassiveSmokingType
-	{
-
-		/// <remarks/>
-		Yes,
-
-		/// <remarks/>
-		No,
-
-		/// <remarks/>
-		Unknown,
-	}
-
-	/// <remarks/>
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-	[System.SerializableAttribute()]
-	[System.Diagnostics.DebuggerStepThroughAttribute()]
-	[System.ComponentModel.DesignerCategoryAttribute("code")]
-	[System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")]
-	public partial class ExclusivelyBreastFeedingPeriodEndReportType
-	{
-
-		private string personCivilRegistrationIdentifierField;
-
-		private System.DateTime exclusivelyBreastFeedingPeriodEndField;
-
-		/// <remarks/>
-		[System.Xml.Serialization.XmlElementAttribute(Namespace = "http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/03/18/")]
-		public string PersonCivilRegistrationIdentifier
-		{
-			get
-			{
-				return this.personCivilRegistrationIdentifierField;
-			}
-			set
-			{
-				this.personCivilRegistrationIdentifierField = value;
-			}
-		}
-
-		/// <remarks/>
-		[System.Xml.Serialization.XmlElementAttribute(DataType = "date")]
-		public System.DateTime ExclusivelyBreastFeedingPeriodEnd
-		{
-			get
-			{
-				return this.exclusivelyBreastFeedingPeriodEndField;
-			}
-			set
-			{
-				this.exclusivelyBreastFeedingPeriodEndField = value;
-			}
-		}
-	}
-
-	/// <remarks/>
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-	[System.SerializableAttribute()]
-	[System.Diagnostics.DebuggerStepThroughAttribute()]
-	[System.ComponentModel.DesignerCategoryAttribute("code")]
-	[System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")]
-	public partial class DeleteChildMeasurementReportType
-	{
-
-		private string universallyUniqueIdentifierField;
-
-		/// <remarks/>
-		[System.Xml.Serialization.XmlElementAttribute(Namespace = "http://rep.oio.dk/medcom.dk/core/xml.schema/2008.04.07/")]
-		public string UniversallyUniqueIdentifier
-		{
-			get
-			{
-				return this.universallyUniqueIdentifierField;
-			}
-			set
-			{
-				this.universallyUniqueIdentifierField = value;
-			}
-		}
-	}
-
-	/// <remarks/>
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-	[System.SerializableAttribute()]
-	[System.Diagnostics.DebuggerStepThroughAttribute()]
-	[System.ComponentModel.DesignerCategoryAttribute("code")]
-	[System.Xml.Serialization.XmlTypeAttribute(Namespace = "http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")]
-	public partial class ModifyChildMeasurementReportType
-	{
-
-		private string universallyUniqueIdentifierField;
-
-		private ChildMeasurementType childMeasurementField;
-
-		/// <remarks/>
-		[System.Xml.Serialization.XmlElementAttribute(Namespace = "http://rep.oio.dk/medcom.dk/core/xml.schema/2008.04.07/")]
-		public string UniversallyUniqueIdentifier
-		{
-			get
-			{
-				return this.universallyUniqueIdentifierField;
-			}
-			set
-			{
-				this.universallyUniqueIdentifierField = value;
-			}
-		}
-
-		/// <remarks/>
-		public ChildMeasurementType ChildMeasurement
-		{
-			get
-			{
-				return this.childMeasurementField;
-			}
-			set
-			{
-				this.childMeasurementField = value;
-			}
-		}
-	}
-
-	/// <remarks/>
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
-	public delegate void CreateChildMeasurementReportCompletedEventHandler(object sender, CreateChildMeasurementReportCompletedEventArgs e);
-
-	/// <remarks/>
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
-	[System.Diagnostics.DebuggerStepThroughAttribute()]
-	[System.ComponentModel.DesignerCategoryAttribute("code")]
-	public partial class CreateChildMeasurementReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
-	{
-
-		private object[] results;
-
-		internal CreateChildMeasurementReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) :
-			base(exception, cancelled, userState)
-		{
-			this.results = results;
-		}
-
-		/// <remarks/>
-		public string Result
-		{
-			get
-			{
-				this.RaiseExceptionIfNecessary();
-				return ((string)(this.results[0]));
-			}
-		}
-	}
-
-	/// <remarks/>
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
-	public delegate void ModifyChildMeasurementReportCompletedEventHandler(object sender, ModifyChildMeasurementReportCompletedEventArgs e);
-
-	/// <remarks/>
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
-	[System.Diagnostics.DebuggerStepThroughAttribute()]
-	[System.ComponentModel.DesignerCategoryAttribute("code")]
-	public partial class ModifyChildMeasurementReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
-	{
-
-		private object[] results;
-
-		internal ModifyChildMeasurementReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) :
-			base(exception, cancelled, userState)
-		{
-			this.results = results;
-		}
-
-		/// <remarks/>
-		public string Result
-		{
-			get
-			{
-				this.RaiseExceptionIfNecessary();
-				return ((string)(this.results[0]));
-			}
-		}
-	}
-
-	/// <remarks/>
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
-	public delegate void DeleteChildMeasurementReportCompletedEventHandler(object sender, DeleteChildMeasurementReportCompletedEventArgs e);
-
-	/// <remarks/>
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
-	[System.Diagnostics.DebuggerStepThroughAttribute()]
-	[System.ComponentModel.DesignerCategoryAttribute("code")]
-	public partial class DeleteChildMeasurementReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
-	{
-
-		private object[] results;
-
-		internal DeleteChildMeasurementReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) :
-			base(exception, cancelled, userState)
-		{
-			this.results = results;
-		}
-
-		/// <remarks/>
-		public bool Result
-		{
-			get
-			{
-				this.RaiseExceptionIfNecessary();
-				return ((bool)(this.results[0]));
-			}
-		}
-	}
-
-	/// <remarks/>
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
-	public delegate void SetExclusivelyBreastFeedingPeriodEndReportCompletedEventHandler(object sender, SetExclusivelyBreastFeedingPeriodEndReportCompletedEventArgs e);
-
-	/// <remarks/>
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
-	[System.Diagnostics.DebuggerStepThroughAttribute()]
-	[System.ComponentModel.DesignerCategoryAttribute("code")]
-	public partial class SetExclusivelyBreastFeedingPeriodEndReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
-	{
-
-		private object[] results;
-
-		internal SetExclusivelyBreastFeedingPeriodEndReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) :
-			base(exception, cancelled, userState)
-		{
-			this.results = results;
-		}
-
-		/// <remarks/>
-		public bool Result
-		{
-			get
-			{
-				this.RaiseExceptionIfNecessary();
-				return ((bool)(this.results[0]));
-			}
-		}
-	}
-
-	/// <remarks/>
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
-	public delegate void SetExposedToPassiveSmokingReportCompletedEventHandler(object sender, SetExposedToPassiveSmokingReportCompletedEventArgs e);
-
-	/// <remarks/>
-	[System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
-	[System.Diagnostics.DebuggerStepThroughAttribute()]
-	[System.ComponentModel.DesignerCategoryAttribute("code")]
-	public partial class SetExposedToPassiveSmokingReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs
-	{
-
-		private object[] results;
-
-		internal SetExposedToPassiveSmokingReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) :
-			base(exception, cancelled, userState)
-		{
-			this.results = results;
-		}
-
-		/// <remarks/>
-		public bool Result
-		{
-			get
-			{
-				this.RaiseExceptionIfNecessary();
-				return ((bool)(this.results[0]));
-			}
-		}
-	}
+        }
+        
+        private void OnSetExposedToPassiveSmokingReportOperationCompleted(object arg) {
+            if ((this.SetExposedToPassiveSmokingReportCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.SetExposedToPassiveSmokingReportCompleted(this, new SetExposedToPassiveSmokingReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        public new void CancelAsync(object userState) {
+            base.CancelAsync(userState);
+        }
+        
+        private bool IsLocalFileSystemWebService(string url) {
+            if (((url == null) 
+                        || (url == string.Empty))) {
+                return false;
+            }
+            System.Uri wsUri = new System.Uri(url);
+            if (((wsUri.Port >= 1024) 
+                        && (string.Compare(wsUri.Host, "localHost", System.StringComparison.OrdinalIgnoreCase) == 0))) {
+                return true;
+            }
+            return false;
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")]
+    public partial class CreateChildMeasurementReportType {
+        
+        private ChildMeasurementType childMeasurementField;
+        
+        /// <remarks/>
+        public ChildMeasurementType ChildMeasurement {
+            get {
+                return this.childMeasurementField;
+            }
+            set {
+                this.childMeasurementField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")]
+    public partial class ChildMeasurementType {
+        
+        private string personCivilRegistrationIdentifierField;
+        
+        private string institutionIdentifierField;
+        
+        private System.DateTime measurementDateField;
+        
+        private decimal personHeightField;
+        
+        private decimal personWeightField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/03/18/")]
+        public string PersonCivilRegistrationIdentifier {
+            get {
+                return this.personCivilRegistrationIdentifierField;
+            }
+            set {
+                this.personCivilRegistrationIdentifierField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://rep.oio.dk/uvm.dk/xml/schemas/2004/12/03/", DataType="positiveInteger")]
+        public string InstitutionIdentifier {
+            get {
+                return this.institutionIdentifierField;
+            }
+            set {
+                this.institutionIdentifierField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="date")]
+        public System.DateTime MeasurementDate {
+            get {
+                return this.measurementDateField;
+            }
+            set {
+                this.measurementDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal PersonHeight {
+            get {
+                return this.personHeightField;
+            }
+            set {
+                this.personHeightField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public decimal PersonWeight {
+            get {
+                return this.personWeightField;
+            }
+            set {
+                this.personWeightField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")]
+    public partial class ExposedToPassiveSmokingReportType {
+        
+        private string personCivilRegistrationIdentifierField;
+        
+        private ExposedToPassiveSmokingType exposedToPassiveSmokingField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/03/18/")]
+        public string PersonCivilRegistrationIdentifier {
+            get {
+                return this.personCivilRegistrationIdentifierField;
+            }
+            set {
+                this.personCivilRegistrationIdentifierField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public ExposedToPassiveSmokingType ExposedToPassiveSmoking {
+            get {
+                return this.exposedToPassiveSmokingField;
+            }
+            set {
+                this.exposedToPassiveSmokingField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")]
+    public enum ExposedToPassiveSmokingType {
+        
+        /// <remarks/>
+        Yes,
+        
+        /// <remarks/>
+        No,
+        
+        /// <remarks/>
+        Unknown,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")]
+    public partial class ExclusivelyBreastFeedingPeriodEndReportType {
+        
+        private string personCivilRegistrationIdentifierField;
+        
+        private System.DateTime exclusivelyBreastFeedingPeriodEndField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/03/18/")]
+        public string PersonCivilRegistrationIdentifier {
+            get {
+                return this.personCivilRegistrationIdentifierField;
+            }
+            set {
+                this.personCivilRegistrationIdentifierField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="date")]
+        public System.DateTime ExclusivelyBreastFeedingPeriodEnd {
+            get {
+                return this.exclusivelyBreastFeedingPeriodEndField;
+            }
+            set {
+                this.exclusivelyBreastFeedingPeriodEndField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")]
+    public partial class DeleteChildMeasurementReportType {
+        
+        private string universallyUniqueIdentifierField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://rep.oio.dk/medcom.dk/core/xml.schema/2008.04.07/")]
+        public string UniversallyUniqueIdentifier {
+            get {
+                return this.universallyUniqueIdentifierField;
+            }
+            set {
+                this.universallyUniqueIdentifierField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/")]
+    public partial class ModifyChildMeasurementReportType {
+        
+        private string universallyUniqueIdentifierField;
+        
+        private ChildMeasurementType childMeasurementField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://rep.oio.dk/medcom.dk/core/xml.schema/2008.04.07/")]
+        public string UniversallyUniqueIdentifier {
+            get {
+                return this.universallyUniqueIdentifierField;
+            }
+            set {
+                this.universallyUniqueIdentifierField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public ChildMeasurementType ChildMeasurement {
+            get {
+                return this.childMeasurementField;
+            }
+            set {
+                this.childMeasurementField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
+    public delegate void CreateChildMeasurementReportCompletedEventHandler(object sender, CreateChildMeasurementReportCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class CreateChildMeasurementReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal CreateChildMeasurementReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
+    public delegate void ModifyChildMeasurementReportCompletedEventHandler(object sender, ModifyChildMeasurementReportCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ModifyChildMeasurementReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ModifyChildMeasurementReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
+    public delegate void DeleteChildMeasurementReportCompletedEventHandler(object sender, DeleteChildMeasurementReportCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class DeleteChildMeasurementReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal DeleteChildMeasurementReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
+    public delegate void SetExclusivelyBreastFeedingPeriodEndReportCompletedEventHandler(object sender, SetExclusivelyBreastFeedingPeriodEndReportCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SetExclusivelyBreastFeedingPeriodEndReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SetExclusivelyBreastFeedingPeriodEndReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
+    public delegate void SetExposedToPassiveSmokingReportCompletedEventHandler(object sender, SetExposedToPassiveSmokingReportCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class SetExposedToPassiveSmokingReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal SetExposedToPassiveSmokingReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public bool Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((bool)(this.results[0]));
+            }
+        }
+    }
 }
 
 #pragma warning restore 1591

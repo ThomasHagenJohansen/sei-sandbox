@@ -95,6 +95,7 @@
   </Target>
   -->
   <PropertyGroup>
-    <PostBuildEvent>copy $(ProjectDir)\TestMOCES1.pfx $(TargetDir)</PostBuildEvent>
+    <PostBuildEvent>copy $(ProjectDir)\TestMOCES1.pfx $(TargetDir)
+copy $(ProjectDir)\TestVOCES1.pfx $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
 </Project>
