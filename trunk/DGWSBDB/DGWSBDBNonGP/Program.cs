@@ -30,42 +30,52 @@ namespace DGWSBDB
 				BDBNonGPChildReport service = new BDBNonGPChildReport();
 				service.SetPolicy(new DGWSPolicy(moces, voces));
 
-				CreateChildMeasurementReportType report = new CreateChildMeasurementReportType();
-				report.ChildMeasurement = new ChildMeasurementType();
+
+				/*CREATE TEST*/
+				//CreateChildMeasurementReportType report = new CreateChildMeasurementReportType();
+				//report.ChildMeasurement = new ChildMeasurementType();
 				//report.ChildMeasurement.MeasurementDate = DateTime.Parse("2005-12-27");
 				//report.ChildMeasurement.PersonHeight = 0.46M;
 				//report.ChildMeasurement.PersonWeight = 8.23M;
 				//report.ChildMeasurement.PersonCivilRegistrationIdentifier = "131281-4435";
 				//report.ChildMeasurement.InstitutionIdentifier = "031011";
-
-				String s = service.CreateChildMeasurementReport(report);
-				System.Diagnostics.Debug.WriteLine(s);
-
-
-				//ModifyChildMeasurementReportType report = new ModifyChildMeasurementReportType();
-				//report.ChildMeasurement = new ChildMeasurementType();
-				//report.ChildMeasurement.MeasurementDate = DateTime.Parse("2005-12-27");
-				//report.ChildMeasurement.PersonHeight = 1.46M;
-				//report.ChildMeasurement.PersonWeight = 7.23M;
-				//report.ChildMeasurement.PersonCivilRegistrationIdentifier = "131281-4435";
-				//report.ChildMeasurement.InstitutionIdentifier = "031011";
-
-				//report.UniversallyUniqueIdentifier = "aaa25bc3-c933-4de1-aa44-5d5c14cf5dbe";//"b3325bc3-c933-4de1-aa44-5d5c14cf5dbe";
-
-				//String s = service.ModifyChildMeasurementReport(report);
+				//String s = service.CreateChildMeasurementReport(report);
 				//System.Diagnostics.Debug.WriteLine(s);
 
 
+				/*MODIFY TEST*/
+				ModifyChildMeasurementReportType report = new ModifyChildMeasurementReportType();
+				report.ChildMeasurement = new ChildMeasurementType();
+				report.ChildMeasurement.MeasurementDate = DateTime.Parse("2005-12-30");
+				report.ChildMeasurement.PersonHeight = 1.46M;
+				report.ChildMeasurement.PersonWeight = 7.23M;
+				report.ChildMeasurement.PersonCivilRegistrationIdentifier = "131281-4435";
+				report.ChildMeasurement.InstitutionIdentifier = "031011";
+				report.UniversallyUniqueIdentifier = "b3325bc3-c933-4de1-aa44-5d5c14cf5dbe";//"aaa25bc3-c933-4de1-aa44-5d5c14cf5dbe";//
+				String s = service.ModifyChildMeasurementReport(report);
+				System.Diagnostics.Debug.WriteLine(s);
+
+
+				/*DELETE TEST*/
+				//DeleteChildMeasurementReportType report = new DeleteChildMeasurementReportType();
+				//report.UniversallyUniqueIdentifier = "b3325bc3-c933-4de1-aa44-5d5c14cf5dbe";
+				//bool b = service.DeleteChildMeasurementReport(report);
+
+
+				/*BREASTFEEDING TEST*/
 				//ExclusivelyBreastFeedingPeriodEndReportType amningReport = new ExclusivelyBreastFeedingPeriodEndReportType();
 				//amningReport.ExclusivelyBreastFeedingPeriodEnd = DateTime.Parse("2001-06-20");
 				//amningReport.PersonCivilRegistrationIdentifier = "1312814435";
 				//bool b = service.SetExclusivelyBreastFeedingPeriodEndReport(amningReport);
 
 
+				/*PASSIVESMOKING TEST*/
 				//ExposedToPassiveSmokingReportType passiveSmoking = new ExposedToPassiveSmokingReportType();
 				//passiveSmoking.PersonCivilRegistrationIdentifier = "1312814435";
 				//passiveSmoking.ExposedToPassiveSmoking = ExposedToPassiveSmokingType.Unknown;
 				//bool b = service.SetExposedToPassiveSmokingReport(passiveSmoking);
+
+
 
 				
 			}
