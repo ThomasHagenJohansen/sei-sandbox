@@ -13,7 +13,7 @@
 // 
 #pragma warning disable 1591
 
-namespace ConsoleApplication5.sei_frontend {
+namespace DGWSSignedMortalityClient.sei_frontend {
     using System.Diagnostics;
     using System.Web.Services;
     using System.ComponentModel;
@@ -27,8 +27,7 @@ namespace ConsoleApplication5.sei_frontend {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="MortalityRegistrationServiceBinding", Namespace="http://rep.oio.dk/sst.dk/xml.wsdl/2008.10.10/")]
-	public partial class MortalityRegistrationService : Microsoft.Web.Services3.WebServicesClientProtocol
-	{
+    public partial class MortalityRegistrationService : Microsoft.Web.Services3.WebServicesClientProtocol {
         
         private System.Threading.SendOrPostCallback ReportOperationCompleted;
         
@@ -38,7 +37,7 @@ namespace ConsoleApplication5.sei_frontend {
         
         /// <remarks/>
         public MortalityRegistrationService() {
-            this.Url = global::ConsoleApplication5.Properties.Settings.Default.ConsoleApplication5_sei_frontend_MortalityRegistrationService;
+            this.Url = global::DGWSSignedMortalityClient.Properties.Settings.Default.DGWSSignedMortalityClient_sei_frontend_MortalityRegistrationService;
             if ((this.IsLocalFileSystemWebService(this.Url) == true)) {
                 this.UseDefaultCredentials = true;
                 this.useDefaultCredentialsSetExplicitly = false;

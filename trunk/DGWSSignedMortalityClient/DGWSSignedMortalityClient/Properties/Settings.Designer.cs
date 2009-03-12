@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ConsoleApplication5.Properties {
+namespace DGWSSignedMortalityClient.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -27,9 +27,9 @@ namespace ConsoleApplication5.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
         [global::System.Configuration.DefaultSettingValueAttribute("http://sei-frontend/DGWS/MortalityRegistrationService.asmx")]
-        public string ConsoleApplication5_sei_frontend_MortalityRegistrationService {
+        public string DGWSSignedMortalityClient_sei_frontend_MortalityRegistrationService {
             get {
-                return ((string)(this["ConsoleApplication5_sei_frontend_MortalityRegistrationService"]));
+                return ((string)(this["DGWSSignedMortalityClient_sei_frontend_MortalityRegistrationService"]));
             }
         }
     }

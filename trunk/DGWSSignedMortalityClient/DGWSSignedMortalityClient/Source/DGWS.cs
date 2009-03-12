@@ -7,11 +7,13 @@ using MessageSignAssertion = Medcom.DgwsWse.MessageSignAssertion;
 
 public class DGWSPolicy : Policy
 {
-	private readonly X509Certificate2 moces;
+	private readonly X509Certificate2 cardOCES;
+	private readonly X509Certificate2 msgOCES;
 
-	public DGWSPolicy(X509Certificate2 moces)
+	public DGWSPolicy(X509Certificate2 cardOCES, X509Certificate2 msgOCES)
 	{
-		this.moces = moces;
+		this.cardOCES = cardOCES;
+		this.msgOCES  = msgOCES;
 
 		Assertions.Add(new RequireActionHeaderAssertion());		// WSE policy
 
@@ -22,7 +24,7 @@ public class DGWSPolicy : Policy
 		Assertions.Add(new AddressingConverterAssertion());
 
 		MessageSignAssertion msgAss = new MessageSignAssertion();
-		msgAss.certificate = moces;
+		msgAss.certificate = msgOCES;
 		//			msgAss.acceptedcartificates = new[] { "CVR:25767535-UID:1100080130597 + CN=TDC TOTALLØSNINGER A/S - TDC Test" };
 		msgAss.acceptedcartificates = new[] { "*" };
 		Assertions.Add(msgAss);
@@ -74,7 +76,6 @@ public class DGWSPolicy : Policy
 
 	private X509Certificate2 GetCertificate()
 	{
-		return moces;
+		return cardOCES;
 	}
-
 }

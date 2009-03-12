@@ -8,9 +8,9 @@
     <ProjectGuid>{C53E2806-9135-4806-9E65-E8B1C3F4680D}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ConsoleApplication5</RootNamespace>
-    <AssemblyName>ConsoleApplication5</AssemblyName>
-    <TargetFrameworkVersion>v3.0</TargetFrameworkVersion>
+    <RootNamespace>DGWSSignedMortalityClient</RootNamespace>
+    <AssemblyName>DGWSSignedMortalityClient</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkSubset>
     </TargetFrameworkSubset>
@@ -43,14 +43,8 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.EnterpriseServices" />
-    <Reference Include="System.Runtime.Serialization">
-      <RequiredTargetFramework>3.0</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.Security" />
     <Reference Include="System.Web.Services" />
-    <Reference Include="System.Data.DataSetExtensions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
@@ -80,10 +74,17 @@
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Web References\sei-frontend\MortalityRegistrationService.wsdl" />
+    <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferences Include="Web References\" />
+    <None Include="Certificates\SKSMedarbejder.p12" />
+    <None Include="Certificates\SKSVirksomhed.p12" />
+    <None Include="Certificates\TestMOCES1.p12" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web References\sei-frontend\MortalityRegistrationService.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <WebReferenceUrl Include="http://sei-frontend/DGWS/MortalityRegistrationService.asmx">
@@ -95,19 +96,18 @@
       <CachedDynamicPropName>
       </CachedDynamicPropName>
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
-      <CachedSettingsPropName>ConsoleApplication5_sei_frontend_MortalityRegistrationService</CachedSettingsPropName>
+      <CachedSettingsPropName>DGWSSignedMortalityClient_sei_frontend_MortalityRegistrationService</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
     <None Include="Web References\sei-frontend\MortalityRegistrationService.disco" />
     <None Include="Web References\sei-frontend\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
@@ -117,4 +117,10 @@
   <Target Name="AfterBuild">
   </Target>
   -->
+  <PropertyGroup>
+    <PostBuildEvent>copy $(ProjectDir)\Certificates\TestMOCES1.p12 $(TargetDir)
+copy $(ProjectDir)\Certificates\SKSMedarbejder.p12 $(TargetDir)
+copy $(ProjectDir)\Certificates\SKSVirksomhed.p12 $(TargetDir)
+</PostBuildEvent>
+  </PropertyGroup>
 </Project>

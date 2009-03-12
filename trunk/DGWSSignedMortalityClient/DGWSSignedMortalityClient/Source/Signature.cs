@@ -3,7 +3,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography.Xml;
 using System.Security.Cryptography;
 using System.Xml;
-using ConsoleApplication5.sei_frontend;
+using DGWSSignedMortalityClient.sei_frontend;
 
 namespace DGWSSignedMortalityClient
 {
