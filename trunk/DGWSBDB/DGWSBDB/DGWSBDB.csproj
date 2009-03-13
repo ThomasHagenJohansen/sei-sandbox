@@ -56,12 +56,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\SST_2.0.0.x\Components\ThirdParty\SealAPI1.1\SealAPI1.1.csproj">
-      <Project>{2E0EEC92-80A8-4C48-B496-3F867270F5B9}</Project>
-      <Name>SealAPI1.1</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +90,12 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
     <None Include="Web References\BDBChildMeasurementReport\schema1.xsd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\SST_2.0.0.x\Components\ThirdParty\SealAPI1.1\SealAPI1.1.csproj">
+      <Project>{2E0EEC92-80A8-4C48-B496-3F867270F5B9}</Project>
+      <Name>SealAPI1.1</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

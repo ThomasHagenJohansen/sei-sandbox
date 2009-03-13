@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Xml;
 using DGWSSignedMortalityClient.sei_frontend;
+using DGWSSignedMortalityClient.STS;
 
 namespace DGWSSignedMortalityClient
 {
@@ -15,10 +16,12 @@ namespace DGWSSignedMortalityClient
 
 		public void Run()
 		{
-			int type = 3;
+			int type = 2;
 			XmlDocument doc = null;
 			SignedMortalityReasonType smrt = null;
-			if(type==0)
+			bool useSTS = true;		// url: http://pan.certifikat.dk/sts/
+
+/*			if(type==0)
 			{
 				smrt = CreateInstancePart1();
 				doc = SignParts(smrt, true, false, GetMOCESCertificate());
@@ -46,12 +49,21 @@ namespace DGWSSignedMortalityClient
 			//bool bOK = VerifyDetachedSignature(OutFileName);
 
 			smrt = (SignedMortalityReasonType)Deserialize(doc.OuterXml, smrt.GetType());
-
+*/
 			try
 			{
+				if (useSTS)
+				{
+					AxisStsFacadeService sts = new AxisStsFacadeService();
+					sts.SetPolicy(new DGWSPolicy(GetSKSMOCESCertificate(), GetSKSVOCESCertificate(), true));
+					Object o = sts.issueIdCard(null);
+					int g = 5;
+				}
+
 				MortalityRegistrationService service = new MortalityRegistrationService();
-				service.SetPolicy(new DGWSPolicy(GetMOCESCertificate(), GetSKSVOCESCertificate()));
+				service.SetPolicy(new DGWSPolicy(GetMOCESCertificate(), GetSKSVOCESCertificate(), false));
 				bool b = service.Report(smrt);
+//				bool b = service.RemoveReport("{B460D543-4627-4FEE-A310-367151256F32}");
 				System.Diagnostics.Debug.WriteLine(b);
 			}
 			catch (Exception e)

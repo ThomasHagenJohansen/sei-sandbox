@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns1="http://server.sts.sosi.dk" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:intf="http://pan.certifikat.dk/sts/services/SecurityTokenService" xmlns:impl="http://pan.certifikat.dk/sts/services/SecurityTokenService" targetNamespace="http://pan.certifikat.dk/sts/services/SecurityTokenService" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://server.sts.sosi.dk">
+      <xsd:element name="issueIdCard" type="xsd:anyType" />
+    </xsd:schema>
+    <xsd:schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://pan.certifikat.dk/sts/services/SecurityTokenService">
+      <xsd:element name="issueIdCardReturn" type="xsd:anyType" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="issueIdCardResponse">
+    <wsdl:part name="issueIdCardReturn" element="impl:issueIdCardReturn" />
+  </wsdl:message>
+  <wsdl:message name="issueIdCardRequest">
+    <wsdl:part name="part" element="tns1:issueIdCard" />
+  </wsdl:message>
+  <wsdl:portType name="AxisStsFacade">
+    <wsdl:operation name="issueIdCard">
+      <wsdl:input name="issueIdCardRequest" message="impl:issueIdCardRequest" />
+      <wsdl:output name="issueIdCardResponse" message="impl:issueIdCardResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SecurityTokenServiceSoapBinding" type="impl:AxisStsFacade">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="issueIdCard">
+      <wsdlsoap:operation soapAction="" />
+      <wsdl:input name="issueIdCardRequest">
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="issueIdCardResponse">
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AxisStsFacadeService">
+    <wsdl:port name="SecurityTokenService" binding="impl:SecurityTokenServiceSoapBinding">
+      <wsdlsoap:address location="http://pan.certifikat.dk/sts/services/SecurityTokenService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

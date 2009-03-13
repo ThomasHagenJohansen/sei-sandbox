@@ -22,7 +22,7 @@ namespace DGWSBDB
 			try
 			{
 				String path = Path.Combine(Directory.GetCurrentDirectory(), "TestMOCES1.pfx");
-				X509Certificate2 moces = new X509Certificate2(path, "Test1234");
+				X509Certificate2 moces = new X509Certificate2(path, "Underskriv3");
 
 				path = Path.Combine(Directory.GetCurrentDirectory(), "TestVOCES1.pfx");
 				X509Certificate2 voces = new X509Certificate2(path, "Test1234");
@@ -32,19 +32,19 @@ namespace DGWSBDB
 
 
 				/*CREATE TEST*/
-				//CreateChildMeasurementReportType report = new CreateChildMeasurementReportType();
-				//report.ChildMeasurement = new ChildMeasurementType();
-				//report.ChildMeasurement.MeasurementDate = DateTime.Parse("2005-12-27");
-				//report.ChildMeasurement.PersonHeight = 0.46M;
-				//report.ChildMeasurement.PersonWeight = 8.23M;
-				//report.ChildMeasurement.PersonCivilRegistrationIdentifier = "131281-4435";
-				//report.ChildMeasurement.InstitutionIdentifier = "031011";
-				//String s = service.CreateChildMeasurementReport(report);
-				//System.Diagnostics.Debug.WriteLine(s);
+				CreateChildMeasurementReportType report = new CreateChildMeasurementReportType();
+				report.ChildMeasurement = new ChildMeasurementType();
+				report.ChildMeasurement.MeasurementDate = DateTime.Parse("2007-12-27");
+				report.ChildMeasurement.PersonHeight = 0.46M;
+				report.ChildMeasurement.PersonWeight = 8.23M;
+				report.ChildMeasurement.PersonCivilRegistrationIdentifier = "1901075766";
+				report.ChildMeasurement.InstitutionIdentifier = "031011";
+				String s = service.CreateChildMeasurementReport(report);
+				System.Diagnostics.Debug.WriteLine(s);
 
 
 				/*MODIFY TEST*/
-				ModifyChildMeasurementReportType report = new ModifyChildMeasurementReportType();
+/*				ModifyChildMeasurementReportType report = new ModifyChildMeasurementReportType();
 				report.ChildMeasurement = new ChildMeasurementType();
 				report.ChildMeasurement.MeasurementDate = DateTime.Parse("2005-12-30");
 				report.ChildMeasurement.PersonHeight = 1.46M;
@@ -54,7 +54,7 @@ namespace DGWSBDB
 				report.UniversallyUniqueIdentifier = "b3325bc3-c933-4de1-aa44-5d5c14cf5dbe";//"aaa25bc3-c933-4de1-aa44-5d5c14cf5dbe";//
 				String s = service.ModifyChildMeasurementReport(report);
 				System.Diagnostics.Debug.WriteLine(s);
-
+*/
 
 				/*DELETE TEST*/
 				//DeleteChildMeasurementReportType report = new DeleteChildMeasurementReportType();

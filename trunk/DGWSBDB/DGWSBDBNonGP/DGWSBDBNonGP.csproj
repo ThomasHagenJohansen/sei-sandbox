@@ -31,7 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Web.Services3, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Web.Services3, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\SST_2.0.0.x\Components\ThirdParty\WSE3.0\Microsoft.Web.Services3.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.EnterpriseServices" />
@@ -68,12 +71,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\2.0.0.x\Components\ThirdParty\SealAPI1.1\SealAPI1.1.csproj">
-      <Project>{2E0EEC92-80A8-4C48-B496-3F867270F5B9}</Project>
-      <Name>SealAPI1.1</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <WebReferenceUrl Include="http://localhost:2245/BDBNonGPChildReport.asmx%3fWSDL">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\BDBNonGPChildReport\</RelPath>
@@ -85,6 +82,12 @@
       <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
       <CachedSettingsPropName>DGWSBDBNonGP_BDBNonGPChildReport_BDBNonGPChildReport</CachedSettingsPropName>
     </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\SST_2.0.0.x\Components\ThirdParty\SealAPI1.1\SealAPI1.1.csproj">
+      <Project>{2E0EEC92-80A8-4C48-B496-3F867270F5B9}</Project>
+      <Name>SealAPI1.1</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

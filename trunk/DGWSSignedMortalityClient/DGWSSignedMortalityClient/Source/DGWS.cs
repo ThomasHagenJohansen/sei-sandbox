@@ -10,7 +10,7 @@ public class DGWSPolicy : Policy
 	private readonly X509Certificate2 cardOCES;
 	private readonly X509Certificate2 msgOCES;
 
-	public DGWSPolicy(X509Certificate2 cardOCES, X509Certificate2 msgOCES)
+	public DGWSPolicy(X509Certificate2 cardOCES, X509Certificate2 msgOCES, bool sts)
 	{
 		this.cardOCES = cardOCES;
 		this.msgOCES  = msgOCES;
@@ -18,7 +18,7 @@ public class DGWSPolicy : Policy
 		Assertions.Add(new RequireActionHeaderAssertion());		// WSE policy
 
 		DGWSAssertion dgwsAss = new DGWSAssertion();
-		dgwsAss.Card = GetIDCard();
+		dgwsAss.Card = GetIDCard(sts);
 		Assertions.Add(dgwsAss);
 
 		Assertions.Add(new AddressingConverterAssertion());
@@ -30,7 +30,7 @@ public class DGWSPolicy : Policy
 		Assertions.Add(msgAss);
 	}
 
-	private IDCardType GetIDCard()
+	private IDCardType GetIDCard(bool sts)
 	{
 		IDCardType card = new IDCardType();
 		AuthenticityType auth = new AuthenticityType();
@@ -46,7 +46,8 @@ public class DGWSPolicy : Policy
 		card.Issuer = "SEI Client";
 
 		// Subject
-		auth.NameID = "1111111118";
+//		auth.NameID = "1111111118";
+		auth.NameID = "2207712801";
 		//			card.NameIDFormat            = FormatIds.cprnumber;
 		auth.MakeCertificate = new CertificateMaker(GetCertificate);
 
@@ -54,11 +55,19 @@ public class DGWSPolicy : Policy
 		//			card.CardLifeTime            = CardLifeTimeType.Hours8;
 
 		// Authentication (STS)
+		if (sts)
+		{
+			card.STS = new STSType();
+			card.STS.IssuerAddress = "SOSI-STS";
+			card.STS.Endpoint = "http://pan.certifikat.dk/sts/services/SecurityTokenService";
+			card.STS.CertificatePointer = "?";
+		}
 
 		// Attributes
 		data.IDCardType = "user";
 		data.AuthenticationLevel = 3;
-		data.UserCivilRegistrationNumber = "1111111118";
+//		data.UserCivilRegistrationNumber = "1111111118";
+		data.UserCivilRegistrationNumber = "2207712801";
 		data.UserGivenName = "Bent";
 		data.UserSurName = "Hansen";
 		data.UserEmailAddress = "bent@hansen.dk";

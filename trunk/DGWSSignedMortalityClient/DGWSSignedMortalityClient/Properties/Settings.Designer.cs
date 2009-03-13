@@ -32,5 +32,15 @@ namespace DGWSSignedMortalityClient.Properties {
                 return ((string)(this["DGWSSignedMortalityClient_sei_frontend_MortalityRegistrationService"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://pan.certifikat.dk/sts/services/SecurityTokenService")]
+        public string DGWSSignedMortalityClient_STS_AxisStsFacadeService {
+            get {
+                return ((string)(this["DGWSSignedMortalityClient_STS_AxisStsFacadeService"]));
+            }
+        }
     }
 }
