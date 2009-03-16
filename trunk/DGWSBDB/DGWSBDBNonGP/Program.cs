@@ -28,7 +28,8 @@ namespace DGWSBDB
 				X509Certificate2 voces = new X509Certificate2(path, "Test1234");
 
 				BDBNonGPChildReport service = new BDBNonGPChildReport();
-				service.SetPolicy(new DGWSPolicy(moces, voces));
+//				service.SetPolicy(new DGWSPolicy(moces, voces));
+				service.SetPolicy(new DGWSPolicy(moces, moces));
 
 
 				/*CREATE TEST*/
@@ -36,7 +37,7 @@ namespace DGWSBDB
 				report.ChildMeasurement = new ChildMeasurementType();
 				report.ChildMeasurement.MeasurementDate = DateTime.Parse("2007-12-27");
 				report.ChildMeasurement.PersonHeight = 0.46M;
-				report.ChildMeasurement.PersonWeight = 8.23M;
+				report.ChildMeasurement.PersonWeight = 8.2M;
 				report.ChildMeasurement.PersonCivilRegistrationIdentifier = "1901075766";
 				report.ChildMeasurement.InstitutionIdentifier = "031011";
 				String s = service.CreateChildMeasurementReport(report);
@@ -147,7 +148,8 @@ namespace DGWSBDB
 			// Attributes
 			data.IDCardType = "user";
 			data.AuthenticationLevel = 3;
-			data.UserCivilRegistrationNumber = "1111111118";
+			data.UserCivilRegistrationNumber = "2207712801";
+//			data.UserCivilRegistrationNumber = "1111111118";
 			data.UserGivenName = "Bent";
 			data.UserSurName = "Hansen";
 			data.UserEmailAddress = "bent@hansen.dk";
