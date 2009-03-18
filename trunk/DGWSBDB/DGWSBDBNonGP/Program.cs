@@ -4,8 +4,11 @@ using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Web.Services.Protocols;
+using System.Xml;
 using DgwsWse.HeaderTypes;
 using Medcom.DgwsWse;
+using Microsoft.Web.Services3;
+using Microsoft.Web.Services3.Addressing;
 using Microsoft.Web.Services3.Design;
 using DGWSAssertion = Medcom.DgwsWse.DGWSAssertion;
 using MessageSignAssertion = Medcom.DgwsWse.MessageSignAssertion;
@@ -107,6 +110,8 @@ namespace DGWSBDB
 
 			Assertions.Add(new RequireActionHeaderAssertion());		// WSE policy
 
+			Assertions.Add(new MessageIDChanger());
+
 			DGWSAssertion dgwsAss = new DGWSAssertion();
 			dgwsAss.Card = GetIDCard();
 			Assertions.Add(dgwsAss);
@@ -128,6 +133,7 @@ namespace DGWSBDB
 
 			card.Authenticity = auth;
 			card.IDCardData = data;
+//			card.leveTid = new TimeSpan(24, 0, 0);
 
 			data.IDCardType = "IdCardSignature";
 			data.IDCardVersion = "1.1";
@@ -162,12 +168,58 @@ namespace DGWSBDB
 			data.CareProviderIDFormat = "medcom:cvrnumber";
 			data.CareProviderName = "SST";
 
+			//card.IDCardData.IDCardID = "urn:uuid:4C63D7C9-96BA-4022-BA43-ED862E10E2E3";
+
 			return card;
 		}
 
 		private X509Certificate2 GetCertificate()
 		{
 			return voces;
+		}
+	}
+
+	public class MessageIDChanger : PolicyAssertion
+	{
+		public override SoapFilter CreateClientInputFilter(FilterCreationContext context)
+		{
+			return new MessageIDChangerInFilter();
+		}
+
+		public override SoapFilter CreateClientOutputFilter(FilterCreationContext context)
+		{
+			return new MessageIDChangerOutFilter();
+		}
+
+		public override SoapFilter CreateServiceInputFilter(FilterCreationContext context)
+		{
+			return null;
+		}
+
+		public override SoapFilter CreateServiceOutputFilter(FilterCreationContext context)
+		{
+			return null;
+		}
+	}
+
+	public class MessageIDChangerInFilter : SoapFilter
+	{
+		public override SoapFilterResult ProcessMessage(SoapEnvelope envelope)
+		{
+			return SoapFilterResult.Continue;
+		}
+	}
+
+	public class MessageIDChangerOutFilter : SoapFilter
+	{
+		public override SoapFilterResult ProcessMessage(SoapEnvelope envelope)
+		{
+/*			XmlNodeList n = envelope.Header.GetElementsByTagName("MessageID", "http://schemas.xmlsoap.org/ws/2004/08/addressing");
+            n[0].InnerText = "urn:uuid:bb7961f8-019a-4c6e-aa84-bb7f46ba6bbd";
+
+			envelope.Context.Addressing = new AddressingHeaders(envelope);
+*/
+			return SoapFilterResult.Continue;
 		}
 	}
 }
