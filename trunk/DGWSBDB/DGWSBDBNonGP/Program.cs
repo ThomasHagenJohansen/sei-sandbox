@@ -67,22 +67,18 @@ namespace DGWSBDB
 */
 
 				/*BREASTFEEDING TEST*/
-				//ExclusivelyBreastFeedingPeriodEndReportType amningReport = new ExclusivelyBreastFeedingPeriodEndReportType();
-				//amningReport.ExclusivelyBreastFeedingPeriodEnd = DateTime.Parse("2001-06-20");
-				//amningReport.PersonCivilRegistrationIdentifier = "1312814435";
-				//bool b = service.SetExclusivelyBreastFeedingPeriodEndReport(amningReport);
-
+/*				ExclusivelyBreastFeedingPeriodEndReportType amningReport = new ExclusivelyBreastFeedingPeriodEndReportType();
+				amningReport.ExclusivelyBreastFeedingPeriodEnd = DateTime.Parse("2001-06-20");
+				amningReport.PersonCivilRegistrationIdentifier = "1312814435";
+				bool b = service.SetExclusivelyBreastFeedingPeriodEndReport(amningReport);
+*/
 
 				/*PASSIVESMOKING TEST*/
-				//ExposedToPassiveSmokingReportType passiveSmoking = new ExposedToPassiveSmokingReportType();
-				//passiveSmoking.PersonCivilRegistrationIdentifier = "1312814435";
-				//passiveSmoking.ExposedToPassiveSmoking = ExposedToPassiveSmokingType.Unknown;
-				//bool b = service.SetExposedToPassiveSmokingReport(passiveSmoking);
-
-
-
-				
-			}
+/*				ExposedToPassiveSmokingReportType passiveSmoking = new ExposedToPassiveSmokingReportType();
+				passiveSmoking.PersonCivilRegistrationIdentifier = "1312814435";
+				passiveSmoking.ExposedToPassiveSmoking = ExposedToPassiveSmokingType.Unknown;
+				bool b = service.SetExposedToPassiveSmokingReport(passiveSmoking);
+*/			}
 			catch (SoapHeaderException ex)
 			{
 				System.Diagnostics.Debug.WriteLine(ex.ToString());
