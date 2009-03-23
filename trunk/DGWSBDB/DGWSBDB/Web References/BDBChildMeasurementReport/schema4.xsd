@@ -1,4 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://rep.oio.dk/medcom.dk/core/xml.schema/2008.04.07/" elementFormDefault="qualified" targetNamespace="http://rep.oio.dk/medcom.dk/core/xml.schema/2008.04.07/" id="schema4" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:element name="UniversallyUniqueIdentifier" type="xs:string" />
-</xs:schema>

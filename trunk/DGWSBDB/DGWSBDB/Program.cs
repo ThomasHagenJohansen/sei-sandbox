@@ -24,7 +24,11 @@ namespace DGWSBDB
 
 				CreateChildMeasurementReportType report = new CreateChildMeasurementReportType();
 				report.ChildMeasurement = new ChildMeasurementType();
-				report.ChildMeasurement.MeasurementDate = DateTime.Now;
+				report.ChildMeasurement.MeasurementDate = DateTime.Parse("2009-03-18");
+				report.ChildMeasurement.PersonHeight = 1.11M;
+				report.ChildMeasurement.PersonWeight = 22.2M;
+				report.ChildMeasurement.PersonCivilRegistrationIdentifier = "1901075766";
+				report.ChildMeasurement.InstitutionIdentifier = "031011";
 
 				BDBChildMeasurementReport.BDBChildMeasurementReport service = new BDBChildMeasurementReport.BDBChildMeasurementReport();
 				service.SetPolicy(new DGWSPolicy(moces));
@@ -64,7 +68,8 @@ namespace DGWSBDB
 
 			MessageSignAssertion msgAss = new MessageSignAssertion();
 			msgAss.certificate = moces;
-			msgAss.acceptedcartificates = new[] { "CVR:25767535-UID:1100080130597 + CN=TDC TOTALLØSNINGER A/S - TDC Test" };
+			msgAss.acceptedcartificates = new[] { "*" };
+//			msgAss.acceptedcartificates = new[] { "CVR:25767535-UID:1100080130597 + CN=TDC TOTALLØSNINGER A/S - TDC Test" };
 			Assertions.Add(msgAss);
 		}
 

@@ -217,10 +217,10 @@
   </wsdl:binding>
   <wsdl:service name="BDBNonGPChildReport">
     <wsdl:port name="BDBNonGPChildReportBinding" binding="tns:BDBNonGPChildReportBinding">
-      <soap:address location="http://localhost:2245/BDBNonGPChildReport.asmx" />
+      <soap:address location="http://sei-frontend/DGWS/BDBNonGPChildReport.asmx" />
     </wsdl:port>
     <wsdl:port name="BDBNonGPChildReportBinding1" binding="tns:BDBNonGPChildReportBinding1">
-      <soap12:address location="http://localhost:2245/BDBNonGPChildReport.asmx" />
+      <soap12:address location="http://sei-frontend/DGWS/BDBNonGPChildReport.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

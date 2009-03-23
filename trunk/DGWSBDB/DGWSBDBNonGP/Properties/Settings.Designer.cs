@@ -26,7 +26,7 @@ namespace DGWSBDBNonGP.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:2245/BDBNonGPChildReport.asmx")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://sei-frontend/DGWS/BDBNonGPChildReport.asmx")]
         public string DGWSBDBNonGP_BDBNonGPChildReport_BDBNonGPChildReport {
             get {
                 return ((string)(this["DGWSBDBNonGP_BDBNonGPChildReport_BDBNonGPChildReport"]));

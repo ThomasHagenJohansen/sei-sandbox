@@ -71,10 +71,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://localhost:2245/BDBNonGPChildReport.asmx%3fWSDL">
+    <WebReferenceUrl Include="http://sei-frontend/DGWS/BDBNonGPChildReport.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\BDBNonGPChildReport\</RelPath>
-      <UpdateFromURL>http://localhost:2245/BDBNonGPChildReport.asmx%3fWSDL</UpdateFromURL>
+      <UpdateFromURL>http://sei-frontend/DGWS/BDBNonGPChildReport.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -88,6 +88,9 @@
       <Project>{2E0EEC92-80A8-4C48-B496-3F867270F5B9}</Project>
       <Name>SealAPI1.1</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web References\BDBNonGPChildReport\BDBNonGPChildReport.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

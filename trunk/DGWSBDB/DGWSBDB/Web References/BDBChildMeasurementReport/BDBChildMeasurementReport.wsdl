@@ -1,19 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:i0="http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
-  <wsdl:import namespace="http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/" location="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx?wsdl=wsdl1" />
+<wsdl:definitions xmlns:s0="http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s3="http://rep.oio.dk/medcom.dk/core/xml.schema/2008.04.07/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/" xmlns:s1="http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/03/18/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:s2="http://rep.oio.dk/uvm.dk/xml/schemas/2004/12/03/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" targetNamespace="http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
-    <s:schema targetNamespace="http://tempuri.org/">
-      <s:import schemaLocation="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx?schema=schema1" namespace="http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/" />
-      <s:import schemaLocation="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx?schema=schema2" namespace="http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/03/18/" />
-      <s:import schemaLocation="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx?schema=schema3" namespace="http://rep.oio.dk/uvm.dk/xml/schemas/2004/12/03/" />
-      <s:import schemaLocation="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx?schema=schema4" namespace="http://rep.oio.dk/medcom.dk/core/xml.schema/2008.04.07/" />
+    <s:schema elementFormDefault="qualified" targetNamespace="http://rep.oio.dk/medcom.sundcom.dk/xml/schemas/2007/07/01/">
+      <s:import namespace="http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/03/18/" />
+      <s:import namespace="http://rep.oio.dk/uvm.dk/xml/schemas/2004/12/03/" />
+      <s:import namespace="http://rep.oio.dk/medcom.dk/core/xml.schema/2008.04.07/" />
+      <s:element name="CreateChildMeasurementReport" type="s0:CreateChildMeasurementReportType" />
+      <s:complexType name="CreateChildMeasurementReportType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="ChildMeasurement" type="s0:ChildMeasurementType" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ChildMeasurementType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" ref="s1:PersonCivilRegistrationIdentifier" />
+          <s:element minOccurs="0" maxOccurs="1" ref="s2:InstitutionIdentifier" />
+          <s:element minOccurs="1" maxOccurs="1" name="MeasurementDate" type="s:date" />
+          <s:element minOccurs="1" maxOccurs="1" name="PersonHeight" type="s:decimal" />
+          <s:element minOccurs="1" maxOccurs="1" name="PersonWeight" type="s:decimal" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ModifyChildMeasurementReport" type="s0:ModifyChildMeasurementReportType" />
+      <s:complexType name="ModifyChildMeasurementReportType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" ref="s3:UniversallyUniqueIdentifier" />
+          <s:element minOccurs="0" maxOccurs="1" name="ChildMeasurement" type="s0:ChildMeasurementType" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="DeleteChildMeasurementReport" type="s0:DeleteChildMeasurementReportType" />
+      <s:complexType name="DeleteChildMeasurementReportType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" ref="s3:UniversallyUniqueIdentifier" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="BDBSuccessfullyDeleted" type="s:boolean" />
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://rep.oio.dk/cpr.dk/xml/schemas/core/2005/03/18/">
+      <s:element name="PersonCivilRegistrationIdentifier" type="s:string" />
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://rep.oio.dk/uvm.dk/xml/schemas/2004/12/03/">
+      <s:element name="InstitutionIdentifier" type="s:positiveInteger" />
+    </s:schema>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://rep.oio.dk/medcom.dk/core/xml.schema/2008.04.07/">
+      <s:element name="UniversallyUniqueIdentifier" type="s:string" />
     </s:schema>
   </wsdl:types>
+  <wsdl:message name="CreateChildMeasurementReportSoapIn">
+    <wsdl:part name="CreateChildMeasurementReport1" element="s0:CreateChildMeasurementReport" />
+  </wsdl:message>
+  <wsdl:message name="CreateChildMeasurementReportSoapOut">
+    <wsdl:part name="CreateChildMeasurementReportResult" element="s3:UniversallyUniqueIdentifier" />
+  </wsdl:message>
+  <wsdl:message name="ModifyChildMeasurementReportSoapIn">
+    <wsdl:part name="ModifyChildMeasurementReport1" element="s0:ModifyChildMeasurementReport" />
+  </wsdl:message>
+  <wsdl:message name="ModifyChildMeasurementReportSoapOut">
+    <wsdl:part name="ModifyChildMeasurementReportResult" element="s3:UniversallyUniqueIdentifier" />
+  </wsdl:message>
+  <wsdl:message name="DeleteChildMeasurementReportSoapIn">
+    <wsdl:part name="DeleteChildMeasurementReport1" element="s0:DeleteChildMeasurementReport" />
+  </wsdl:message>
+  <wsdl:message name="DeleteChildMeasurementReportSoapOut">
+    <wsdl:part name="DeleteChildMeasurementReportResult" element="s0:BDBSuccessfullyDeleted" />
+  </wsdl:message>
+  <wsdl:portType name="BDBChildMeasurementReportBinding">
+    <wsdl:operation name="CreateChildMeasurementReport">
+      <wsdl:input message="tns:CreateChildMeasurementReportSoapIn" />
+      <wsdl:output message="tns:CreateChildMeasurementReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ModifyChildMeasurementReport">
+      <wsdl:input message="tns:ModifyChildMeasurementReportSoapIn" />
+      <wsdl:output message="tns:ModifyChildMeasurementReportSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteChildMeasurementReport">
+      <wsdl:input message="tns:DeleteChildMeasurementReportSoapIn" />
+      <wsdl:output message="tns:DeleteChildMeasurementReportSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BDBChildMeasurementReportBinding" type="tns:BDBChildMeasurementReportBinding">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateChildMeasurementReport">
+      <soap:operation soapAction="http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/#CreateChildMeasurementReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyChildMeasurementReport">
+      <soap:operation soapAction="http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/#ModifyChildMeasurementReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteChildMeasurementReport">
+      <soap:operation soapAction="http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/#DeleteChildMeasurementReport" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BDBChildMeasurementReportBinding1" type="tns:BDBChildMeasurementReportBinding">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateChildMeasurementReport">
+      <soap12:operation soapAction="http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/#CreateChildMeasurementReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ModifyChildMeasurementReport">
+      <soap12:operation soapAction="http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/#ModifyChildMeasurementReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteChildMeasurementReport">
+      <soap12:operation soapAction="http://rep.oio.dk/sundcom.medcom.dk/xml.wsdl/2008.01.30/#DeleteChildMeasurementReport" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
   <wsdl:service name="BDBChildMeasurementReport">
-    <wsdl:port name="BDBChildMeasurementReportBinding" binding="i0:BDBChildMeasurementReportBinding">
+    <wsdl:port name="BDBChildMeasurementReportBinding" binding="tns:BDBChildMeasurementReportBinding">
       <soap:address location="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx" />
     </wsdl:port>
-    <wsdl:port name="BDBChildMeasurementReportBinding1" binding="i0:BDBChildMeasurementReportBinding1">
+    <wsdl:port name="BDBChildMeasurementReportBinding1" binding="tns:BDBChildMeasurementReportBinding1">
       <soap12:address location="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx" />
     </wsdl:port>
   </wsdl:service>

@@ -65,9 +65,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <None Include="Web References\BDBChildMeasurementReport\BDBChildMeasurementReport.wsdl" />
-    <None Include="Web References\BDBChildMeasurementReport\schema2.xsd" />
-    <None Include="Web References\BDBChildMeasurementReport\schema3.xsd" />
-    <None Include="Web References\BDBChildMeasurementReport\schema4.xsd" />
   </ItemGroup>
   <ItemGroup>
     <WebReferenceUrl Include="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx">
@@ -84,12 +81,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Web References\BDBChildMeasurementReport\BDBChildMeasurementReport.disco" />
-    <None Include="Web References\BDBChildMeasurementReport\BDBChildMeasurementReport0.wsdl" />
     <None Include="Web References\BDBChildMeasurementReport\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Web References\BDBChildMeasurementReport\schema1.xsd" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\SST_2.0.0.x\Components\ThirdParty\SealAPI1.1\SealAPI1.1.csproj">

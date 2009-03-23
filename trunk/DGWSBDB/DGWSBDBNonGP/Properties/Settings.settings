@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="DGWSBDBNonGP_BDBNonGPChildReport_BDBNonGPChildReport" Type="(Web Service URL)" Scope="Application">
-      <Value Profile="(Default)">http://localhost:2245/BDBNonGPChildReport.asmx</Value>
+      <Value Profile="(Default)">http://sei-frontend/DGWS/BDBNonGPChildReport.asmx</Value>
     </Setting>
   </Settings>
 </SettingsFile>

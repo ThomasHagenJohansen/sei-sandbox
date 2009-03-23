@@ -2,11 +2,6 @@
 <DiscoveryClientResultsFile xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Results>
     <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx?wsdl" filename="BDBChildMeasurementReport.wsdl" />
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx?schema=schema3" filename="schema3.xsd" />
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx?schema=schema4" filename="schema4.xsd" />
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx?schema=schema2" filename="schema2.xsd" />
     <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx?disco" filename="BDBChildMeasurementReport.disco" />
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.SchemaReference" url="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx?schema=schema1" filename="schema1.xsd" />
-    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://sei-frontend/DGWS/BDBChildMeasurementReport.asmx?wsdl=wsdl1" filename="BDBChildMeasurementReport0.wsdl" />
   </Results>
 </DiscoveryClientResultsFile>
