@@ -38,9 +38,9 @@ namespace DGWSBDB
 				/*CREATE TEST*/
 				CreateChildMeasurementReportType report = new CreateChildMeasurementReportType();
 				report.ChildMeasurement = new ChildMeasurementType();
-				report.ChildMeasurement.MeasurementDate = DateTime.Parse("2007-12-27");
-				report.ChildMeasurement.PersonHeight = 0.46M;
-				report.ChildMeasurement.PersonWeight = 8.2M;
+				report.ChildMeasurement.MeasurementDate = DateTime.Parse("2009-03-18");
+				report.ChildMeasurement.PersonHeight = 1.11M;
+				report.ChildMeasurement.PersonWeight = 22.2M;
 				report.ChildMeasurement.PersonCivilRegistrationIdentifier = "1901075766";
 				report.ChildMeasurement.InstitutionIdentifier = "031011";
 				String s = service.CreateChildMeasurementReport(report);
@@ -50,21 +50,21 @@ namespace DGWSBDB
 				/*MODIFY TEST*/
 /*				ModifyChildMeasurementReportType report = new ModifyChildMeasurementReportType();
 				report.ChildMeasurement = new ChildMeasurementType();
-				report.ChildMeasurement.MeasurementDate = DateTime.Parse("2005-12-30");
+				report.ChildMeasurement.MeasurementDate = DateTime.Parse("2007-12-30");
 				report.ChildMeasurement.PersonHeight = 1.46M;
-				report.ChildMeasurement.PersonWeight = 7.23M;
-				report.ChildMeasurement.PersonCivilRegistrationIdentifier = "131281-4435";
+				report.ChildMeasurement.PersonWeight = 7.3M;
+				report.ChildMeasurement.PersonCivilRegistrationIdentifier = "1901075766";
 				report.ChildMeasurement.InstitutionIdentifier = "031011";
-				report.UniversallyUniqueIdentifier = "b3325bc3-c933-4de1-aa44-5d5c14cf5dbe";//"aaa25bc3-c933-4de1-aa44-5d5c14cf5dbe";//
+				report.UniversallyUniqueIdentifier = "bd174000-4aa8-4dd6-8816-09b39cd368cf";
 				String s = service.ModifyChildMeasurementReport(report);
 				System.Diagnostics.Debug.WriteLine(s);
 */
 
 				/*DELETE TEST*/
-				//DeleteChildMeasurementReportType report = new DeleteChildMeasurementReportType();
-				//report.UniversallyUniqueIdentifier = "b3325bc3-c933-4de1-aa44-5d5c14cf5dbe";
-				//bool b = service.DeleteChildMeasurementReport(report);
-
+/*				DeleteChildMeasurementReportType report = new DeleteChildMeasurementReportType();
+				report.UniversallyUniqueIdentifier = "bd174000-4aa8-4dd6-8816-09b39cd368cf";
+				bool b = service.DeleteChildMeasurementReport(report);
+*/
 
 				/*BREASTFEEDING TEST*/
 				//ExclusivelyBreastFeedingPeriodEndReportType amningReport = new ExclusivelyBreastFeedingPeriodEndReportType();
@@ -219,6 +219,7 @@ namespace DGWSBDB
 
 			envelope.Context.Addressing = new AddressingHeaders(envelope);
 */
+//			envelope.Body.InnerXml = envelope.Body.InnerXml.Replace("0.46", "0,46");
 			return SoapFilterResult.Continue;
 		}
 	}
