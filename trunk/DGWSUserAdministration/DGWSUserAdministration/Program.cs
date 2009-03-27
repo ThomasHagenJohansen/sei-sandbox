@@ -25,9 +25,9 @@ namespace DGWSUserAdministration
 
 				UserAuthorisationType userAuthorisation = new UserAuthorisationType();
 				userAuthorisation.SEIUser = new UserAuthorisationTypeSEIUser();
-				userAuthorisation.SEIUser.Name = "Bent Hansen";
+				userAuthorisation.SEIUser.FullName = "Bent Hansen";
 				userAuthorisation.SEIUser.X509Certificate = moces.RawData;
-				userAuthorisation.SEIUser.PersonCivilRegistrationIdentifier = "00000000";
+				userAuthorisation.SEIUser.PersonCivilRegistrationIdentifier = "0000000000";
 				userAuthorisation.SEIUser.Item = "bent@hansen.dk";
 				userAuthorisation.SEIUser.ItemElementName = ItemChoiceType.Email;
 

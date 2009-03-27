@@ -167,7 +167,7 @@ namespace DGWSUserAdministration.UserAdministration {
         
         private string personCivilRegistrationIdentifierField;
         
-        private string nameField;
+        private string fullNameField;
         
         private string itemField;
         
@@ -197,12 +197,12 @@ namespace DGWSUserAdministration.UserAdministration {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Form=System.Xml.Schema.XmlSchemaForm.Unqualified)]
-        public string Name {
+        public string FullName {
             get {
-                return this.nameField;
+                return this.fullNameField;
             }
             set {
-                this.nameField = value;
+                this.fullNameField = value;
             }
         }
         
