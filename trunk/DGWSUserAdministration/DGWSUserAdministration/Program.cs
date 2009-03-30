@@ -31,6 +31,12 @@ namespace DGWSUserAdministration
 				userAuthorisation.SEIUser.Item = "bent@hansen.dk";
 				userAuthorisation.SEIUser.ItemElementName = ItemChoiceType.Email;
 
+				userAuthorisation.SEIPlugIn = new UserAuthorisationTypeSEIPlugIn[2];
+				userAuthorisation.SEIPlugIn[0] = new UserAuthorisationTypeSEIPlugIn();
+				userAuthorisation.SEIPlugIn[0].Plugin = "pluginTest1";
+				userAuthorisation.SEIPlugIn[1] = new UserAuthorisationTypeSEIPlugIn();
+				userAuthorisation.SEIPlugIn[1].Plugin = "pluginTest2";
+
 				serialize(userAuthorisation);
 
 				UserAdministration.UserAdministration service = new UserAdministration.UserAdministration();
