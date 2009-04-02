@@ -800,7 +800,13 @@ namespace DBTest
 					sqlInsert.AddValues(Guid.NewGuid(), 87, (long)2394287487, DateTime.Now, false);
 					Output(builder.ToSQL(sqlInsert));
 					runner.Insert(executer, conn, sqlInsert);
-					Output("Row inserted");
+
+					sqlInsert = new SQL_InsertStatement(table);
+					sqlInsert.AddColumns("uiNoegle", "txTekst", "iTal", "lStortTal", "dtDato", "bValg");
+					sqlInsert.AddValues(Guid.NewGuid(), "Blåbærgrød", 87, (long)2394287487, DateTime.Now, false);
+					Output(builder.ToSQL(sqlInsert));
+					runner.Insert(executer, conn, sqlInsert);
+					Output("Rows inserted");
 					Output("");
 
 					ShowContents(runner, executer, conn, table);
@@ -810,6 +816,20 @@ namespace DBTest
 					sqlSelect.AddTable(table);
 					IFunction func = new Func_SubString(table, "txTekst", 3, 8);
 					sqlSelect.AddFunction(new Func_SubString(func, 0, 2));
+					Output(builder.ToSQL(sqlSelect));
+					ShowContents(sqlSelect, runner, executer, conn);
+					Output("");
+
+					sqlSelect = new SQL_SelectStatement();
+					sqlSelect.AddTable(table);
+					sqlSelect.AddFunction(new Func_ToLower(table, "txTekst"));
+					Output(builder.ToSQL(sqlSelect));
+					ShowContents(sqlSelect, runner, executer, conn);
+					Output("");
+
+					sqlSelect = new SQL_SelectStatement();
+					sqlSelect.AddTable(table);
+					sqlSelect.AddFunction(new Func_ToUpper(table, "txTekst"));
 					Output(builder.ToSQL(sqlSelect));
 					ShowContents(sqlSelect, runner, executer, conn);
 				}
