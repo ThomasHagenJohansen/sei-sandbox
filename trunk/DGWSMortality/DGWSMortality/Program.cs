@@ -22,34 +22,17 @@ namespace DGWSMortality
 				String path = Path.Combine(Directory.GetCurrentDirectory(), "TestMOCES1.pfx");
 				X509Certificate2 moces = new X509Certificate2(path, "Test1234");
 
-				SignedMortalityReasonType reason = new SignedMortalityReasonType();				
-
-				reason.MortalityReason = new MortalityReasonType();
-				reason.MortalityReason.SchemaID = Guid.NewGuid().ToString();
-				reason.MortalityReason.PersonIdentifier = new PersonIdentifierType();
-				reason.MortalityReason.PersonIdentifier.Item = "1312814435";				
-
-				HospiceDoctorType doc = new HospiceDoctorType();
-				Part1And2Type part12 = new Part1And2Type();
-				part12.id = "TEST12";
-				part12.Part1 = new Part1Type();
-				part12.Part2 = new Part2Type();
-				doc.Item = part12;
-
-				reason.AllSignature = new SignedMortalityReasonTypeAllSignature();
-				reason.AllSignature.Signature = new SignatureType();
-				reason.AllSignature.Signature.Id = "AllSigTestID";
-
-
-				reason.MortalityReason.CertifyingDoctor = new CertifyingDoctorType();
-				reason.MortalityReason.CertifyingDoctor.Item = doc;
-
-				//serializeMort(reason);
-
 				MortalityRegistrationService.MortalityRegistrationService service = new MortalityRegistrationService.MortalityRegistrationService();
 				service.SetPolicy(new DGWSPolicy(moces));
-				bool b = service.Report(reason);
-				System.Diagnostics.Debug.WriteLine(b);
+
+				//MortalityReasonType reason = Helper.CreateTestDocument_Part2();
+				MortalityReasonType reason = Helper.CreateTestDocument_Part1And2();
+				String ser = serializeMort(reason);
+				string str = service.Report(reason);
+				System.Diagnostics.Debug.WriteLine(str);
+
+				service.RemoveReport("3b9a2d1e-7c2e-42d8-a596-f159ee3af4f8");
+
 			}
 			catch(SoapHeaderException ex)
 			{
@@ -65,9 +48,9 @@ namespace DGWSMortality
 			}
 		}
 
-		private static void serializeMort(SignedMortalityReasonType type)
+		private static String serializeMort(MortalityReasonType type)
 		{
-			XmlSerializer serializer = new XmlSerializer(typeof(SignedMortalityReasonType));
+			XmlSerializer serializer = new XmlSerializer(typeof(MortalityReasonType));
 			
 			StringBuilder sb = new StringBuilder(); 
 
@@ -76,6 +59,7 @@ namespace DGWSMortality
 				serializer.Serialize(writer, type);
 			}
 			String str = sb.ToString();
+			return str;
 		}
 	}
 
@@ -98,7 +82,8 @@ namespace DGWSMortality
 
 			MessageSignAssertion msgAss = new MessageSignAssertion();
 			msgAss.certificate = moces;
-			msgAss.acceptedcartificates = new[] { "CVR:25767535-UID:1100080130597 + CN=TDC TOTALLØSNINGER A/S - TDC Test" };
+			//msgAss.acceptedcartificates = new[] { "CVR:25767535-UID:1100080130597 + CN=TDC TOTALLØSNINGER A/S - TDC Test" };
+			msgAss.acceptedcartificates = new[] { "*" };
 			Assertions.Add(msgAss);
 		}
 

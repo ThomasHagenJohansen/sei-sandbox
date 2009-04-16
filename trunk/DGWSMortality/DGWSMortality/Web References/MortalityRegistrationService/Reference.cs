@@ -31,6 +31,8 @@ namespace DGWSMortality.MortalityRegistrationService {
         
         private System.Threading.SendOrPostCallback ReportOperationCompleted;
         
+        private System.Threading.SendOrPostCallback RemoveReportOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -73,32 +75,65 @@ namespace DGWSMortality.MortalityRegistrationService {
         public event ReportCompletedEventHandler ReportCompleted;
         
         /// <remarks/>
+        public event RemoveReportCompletedEventHandler RemoveReportCompleted;
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rep.oio.dk/sst.dk/xml.wsdl/2008.10.10/#Report", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Bare)]
         [return: System.Xml.Serialization.XmlElementAttribute("MortalityAnswer", Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-        public bool Report([System.Xml.Serialization.XmlElementAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")] SignedMortalityReasonType SignedMortalityReason) {
+        public string Report([System.Xml.Serialization.XmlElementAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")] MortalityReasonType MortalityReason) {
             object[] results = this.Invoke("Report", new object[] {
-                        SignedMortalityReason});
-            return ((bool)(results[0]));
+                        MortalityReason});
+            return ((string)(results[0]));
         }
         
         /// <remarks/>
-        public void ReportAsync(SignedMortalityReasonType SignedMortalityReason) {
-            this.ReportAsync(SignedMortalityReason, null);
+        public void ReportAsync(MortalityReasonType MortalityReason) {
+            this.ReportAsync(MortalityReason, null);
         }
         
         /// <remarks/>
-        public void ReportAsync(SignedMortalityReasonType SignedMortalityReason, object userState) {
+        public void ReportAsync(MortalityReasonType MortalityReason, object userState) {
             if ((this.ReportOperationCompleted == null)) {
                 this.ReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnReportOperationCompleted);
             }
             this.InvokeAsync("Report", new object[] {
-                        SignedMortalityReason}, this.ReportOperationCompleted, userState);
+                        MortalityReason}, this.ReportOperationCompleted, userState);
         }
         
         private void OnReportOperationCompleted(object arg) {
             if ((this.ReportCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.ReportCompleted(this, new ReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://rep.oio.dk/sst.dk/xml.wsdl/2008.10.10/#RemoveReport", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Bare)]
+        [return: System.Xml.Serialization.XmlElementAttribute("DeleteResult", Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
+        public bool RemoveReport([System.Xml.Serialization.XmlElementAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")] string SchemaID) {
+            object[] results = this.Invoke("RemoveReport", new object[] {
+                        SchemaID});
+            return ((bool)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void RemoveReportAsync(string SchemaID) {
+            this.RemoveReportAsync(SchemaID, null);
+        }
+        
+        /// <remarks/>
+        public void RemoveReportAsync(string SchemaID, object userState) {
+            if ((this.RemoveReportOperationCompleted == null)) {
+                this.RemoveReportOperationCompleted = new System.Threading.SendOrPostCallback(this.OnRemoveReportOperationCompleted);
+            }
+            this.InvokeAsync("RemoveReport", new object[] {
+                        SchemaID}, this.RemoveReportOperationCompleted, userState);
+        }
+        
+        private void OnRemoveReportOperationCompleted(object arg) {
+            if ((this.RemoveReportCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.RemoveReportCompleted(this, new RemoveReportCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -127,82 +162,13 @@ namespace DGWSMortality.MortalityRegistrationService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public partial class SignedMortalityReasonType {
-        
-        private MortalityReasonType mortalityReasonField;
-        
-        private MortalityReportCompletnessType mortalityReportCompletnessField;
-        
-        private SignedMortalityReasonTypePart1Signature part1SignatureField;
-        
-        private SignedMortalityReasonTypePart2Signature part2SignatureField;
-        
-        private SignedMortalityReasonTypeAllSignature allSignatureField;
-        
-        /// <remarks/>
-        public MortalityReasonType MortalityReason {
-            get {
-                return this.mortalityReasonField;
-            }
-            set {
-                this.mortalityReasonField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public MortalityReportCompletnessType MortalityReportCompletness {
-            get {
-                return this.mortalityReportCompletnessField;
-            }
-            set {
-                this.mortalityReportCompletnessField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public SignedMortalityReasonTypePart1Signature Part1Signature {
-            get {
-                return this.part1SignatureField;
-            }
-            set {
-                this.part1SignatureField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public SignedMortalityReasonTypePart2Signature Part2Signature {
-            get {
-                return this.part2SignatureField;
-            }
-            set {
-                this.part2SignatureField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public SignedMortalityReasonTypeAllSignature AllSignature {
-            get {
-                return this.allSignatureField;
-            }
-            set {
-                this.allSignatureField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
     public partial class MortalityReasonType {
         
         private string schemaIDField;
         
         private PersonIdentifierType personIdentifierField;
         
-        private CertifyingDoctorType certifyingDoctorField;
+        private Part1And2Type part1And2Field;
         
         /// <remarks/>
         public string SchemaID {
@@ -225,12 +191,12 @@ namespace DGWSMortality.MortalityRegistrationService {
         }
         
         /// <remarks/>
-        public CertifyingDoctorType CertifyingDoctor {
+        public Part1And2Type Part1And2 {
             get {
-                return this.certifyingDoctorField;
+                return this.part1And2Field;
             }
             set {
-                this.certifyingDoctorField = value;
+                this.part1And2Field = value;
             }
         }
     }
@@ -287,6 +253,8 @@ namespace DGWSMortality.MortalityRegistrationService {
         
         private AddressPostalType addressPostalField;
         
+        private System.DateTime birthDateField;
+        
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Namespace="http://rep.oio.dk/ebxml/xml/schemas/dkcc/2006/01/23/")]
         public PersonGenderCodeType PersonGenderCode {
@@ -328,6 +296,17 @@ namespace DGWSMortality.MortalityRegistrationService {
             }
             set {
                 this.addressPostalField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://rep.oio.dk/ebxml/xml/schemas/dkcc/2005/03/15/", DataType="date")]
+        public System.DateTime BirthDate {
+            get {
+                return this.birthDateField;
+            }
+            set {
+                this.birthDateField = value;
             }
         }
     }
@@ -401,1384 +380,31 @@ namespace DGWSMortality.MortalityRegistrationService {
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
-    public partial class ObjectType {
-        
-        private System.Xml.XmlNode[] anyField;
-        
-        private string idField;
-        
-        private string mimeTypeField;
-        
-        private string encodingField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
-        [System.Xml.Serialization.XmlAnyElementAttribute()]
-        public System.Xml.XmlNode[] Any {
-            get {
-                return this.anyField;
-            }
-            set {
-                this.anyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string Id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string MimeType {
-            get {
-                return this.mimeTypeField;
-            }
-            set {
-                this.mimeTypeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string Encoding {
-            get {
-                return this.encodingField;
-            }
-            set {
-                this.encodingField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
-    public partial class SPKIDataType {
-        
-        private byte[][] sPKISexpField;
-        
-        private System.Xml.XmlElement anyField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("SPKISexp", DataType="base64Binary")]
-        public byte[][] SPKISexp {
-            get {
-                return this.sPKISexpField;
-            }
-            set {
-                this.sPKISexpField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute()]
-        public System.Xml.XmlElement Any {
-            get {
-                return this.anyField;
-            }
-            set {
-                this.anyField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
-    public partial class RetrievalMethodType {
-        
-        private TransformType[] transformsField;
-        
-        private string uRIField;
-        
-        private string typeField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("Transform", IsNullable=false)]
-        public TransformType[] Transforms {
-            get {
-                return this.transformsField;
-            }
-            set {
-                this.transformsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string URI {
-            get {
-                return this.uRIField;
-            }
-            set {
-                this.uRIField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string Type {
-            get {
-                return this.typeField;
-            }
-            set {
-                this.typeField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
-    public partial class TransformType {
-        
-        private object[] itemsField;
-        
-        private string[] textField;
-        
-        private string algorithmField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute()]
-        [System.Xml.Serialization.XmlElementAttribute("XPath", typeof(string))]
-        public object[] Items {
-            get {
-                return this.itemsField;
-            }
-            set {
-                this.itemsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
-        public string[] Text {
-            get {
-                return this.textField;
-            }
-            set {
-                this.textField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string Algorithm {
-            get {
-                return this.algorithmField;
-            }
-            set {
-                this.algorithmField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
-    public partial class X509IssuerSerialType {
-        
-        private string x509IssuerNameField;
-        
-        private string x509SerialNumberField;
-        
-        /// <remarks/>
-        public string X509IssuerName {
-            get {
-                return this.x509IssuerNameField;
-            }
-            set {
-                this.x509IssuerNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
-        public string X509SerialNumber {
-            get {
-                return this.x509SerialNumberField;
-            }
-            set {
-                this.x509SerialNumberField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
-    public partial class X509DataType {
-        
-        private object[] itemsField;
-        
-        private ItemsChoiceType1[] itemsElementNameField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute()]
-        [System.Xml.Serialization.XmlElementAttribute("X509CRL", typeof(byte[]), DataType="base64Binary")]
-        [System.Xml.Serialization.XmlElementAttribute("X509Certificate", typeof(byte[]), DataType="base64Binary")]
-        [System.Xml.Serialization.XmlElementAttribute("X509IssuerSerial", typeof(X509IssuerSerialType))]
-        [System.Xml.Serialization.XmlElementAttribute("X509SKI", typeof(byte[]), DataType="base64Binary")]
-        [System.Xml.Serialization.XmlElementAttribute("X509SubjectName", typeof(string))]
-        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
-        public object[] Items {
-            get {
-                return this.itemsField;
-            }
-            set {
-                this.itemsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ItemsElementName")]
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public ItemsChoiceType1[] ItemsElementName {
-            get {
-                return this.itemsElementNameField;
-            }
-            set {
-                this.itemsElementNameField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#", IncludeInSchema=false)]
-    public enum ItemsChoiceType1 {
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute("##any:")]
-        Item,
-        
-        /// <remarks/>
-        X509CRL,
-        
-        /// <remarks/>
-        X509Certificate,
-        
-        /// <remarks/>
-        X509IssuerSerial,
-        
-        /// <remarks/>
-        X509SKI,
-        
-        /// <remarks/>
-        X509SubjectName,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
-    public partial class PGPDataType {
-        
-        private object[] itemsField;
-        
-        private ItemsChoiceType[] itemsElementNameField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute()]
-        [System.Xml.Serialization.XmlElementAttribute("PGPKeyID", typeof(byte[]), DataType="base64Binary")]
-        [System.Xml.Serialization.XmlElementAttribute("PGPKeyPacket", typeof(byte[]), DataType="base64Binary")]
-        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
-        public object[] Items {
-            get {
-                return this.itemsField;
-            }
-            set {
-                this.itemsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ItemsElementName")]
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public ItemsChoiceType[] ItemsElementName {
-            get {
-                return this.itemsElementNameField;
-            }
-            set {
-                this.itemsElementNameField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#", IncludeInSchema=false)]
-    public enum ItemsChoiceType {
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute("##any:")]
-        Item,
-        
-        /// <remarks/>
-        PGPKeyID,
-        
-        /// <remarks/>
-        PGPKeyPacket,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
-    public partial class DSAKeyValueType {
-        
-        private byte[] pField;
-        
-        private byte[] qField;
-        
-        private byte[] gField;
-        
-        private byte[] yField;
-        
-        private byte[] jField;
-        
-        private byte[] seedField;
-        
-        private byte[] pgenCounterField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
-        public byte[] P {
-            get {
-                return this.pField;
-            }
-            set {
-                this.pField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
-        public byte[] Q {
-            get {
-                return this.qField;
-            }
-            set {
-                this.qField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
-        public byte[] G {
-            get {
-                return this.gField;
-            }
-            set {
-                this.gField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
-        public byte[] Y {
-            get {
-                return this.yField;
-            }
-            set {
-                this.yField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
-        public byte[] J {
-            get {
-                return this.jField;
-            }
-            set {
-                this.jField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
-        public byte[] Seed {
-            get {
-                return this.seedField;
-            }
-            set {
-                this.seedField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
-        public byte[] PgenCounter {
-            get {
-                return this.pgenCounterField;
-            }
-            set {
-                this.pgenCounterField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
-    public partial class RSAKeyValueType {
-        
-        private byte[] modulusField;
-        
-        private byte[] exponentField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
-        public byte[] Modulus {
-            get {
-                return this.modulusField;
-            }
-            set {
-                this.modulusField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
-        public byte[] Exponent {
-            get {
-                return this.exponentField;
-            }
-            set {
-                this.exponentField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
-    public partial class KeyValueType {
-        
-        private object itemField;
-        
-        private string[] textField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute()]
-        [System.Xml.Serialization.XmlElementAttribute("DSAKeyValue", typeof(DSAKeyValueType))]
-        [System.Xml.Serialization.XmlElementAttribute("RSAKeyValue", typeof(RSAKeyValueType))]
-        public object Item {
-            get {
-                return this.itemField;
-            }
-            set {
-                this.itemField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
-        public string[] Text {
-            get {
-                return this.textField;
-            }
-            set {
-                this.textField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
-    public partial class KeyInfoType {
-        
-        private object[] itemsField;
-        
-        private ItemsChoiceType2[] itemsElementNameField;
-        
-        private string[] textField;
-        
-        private string idField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAnyElementAttribute()]
-        [System.Xml.Serialization.XmlElementAttribute("KeyName", typeof(string))]
-        [System.Xml.Serialization.XmlElementAttribute("KeyValue", typeof(KeyValueType))]
-        [System.Xml.Serialization.XmlElementAttribute("MgmtData", typeof(string))]
-        [System.Xml.Serialization.XmlElementAttribute("PGPData", typeof(PGPDataType))]
-        [System.Xml.Serialization.XmlElementAttribute("RetrievalMethod", typeof(RetrievalMethodType))]
-        [System.Xml.Serialization.XmlElementAttribute("SPKIData", typeof(SPKIDataType))]
-        [System.Xml.Serialization.XmlElementAttribute("X509Data", typeof(X509DataType))]
-        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemsElementName")]
-        public object[] Items {
-            get {
-                return this.itemsField;
-            }
-            set {
-                this.itemsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ItemsElementName")]
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public ItemsChoiceType2[] ItemsElementName {
-            get {
-                return this.itemsElementNameField;
-            }
-            set {
-                this.itemsElementNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
-        public string[] Text {
-            get {
-                return this.textField;
-            }
-            set {
-                this.textField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string Id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#", IncludeInSchema=false)]
-    public enum ItemsChoiceType2 {
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlEnumAttribute("##any:")]
-        Item,
-        
-        /// <remarks/>
-        KeyName,
-        
-        /// <remarks/>
-        KeyValue,
-        
-        /// <remarks/>
-        MgmtData,
-        
-        /// <remarks/>
-        PGPData,
-        
-        /// <remarks/>
-        RetrievalMethod,
-        
-        /// <remarks/>
-        SPKIData,
-        
-        /// <remarks/>
-        X509Data,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
-    public partial class SignatureValueType {
-        
-        private string idField;
-        
-        private byte[] valueField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string Id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute(DataType="base64Binary")]
-        public byte[] Value {
-            get {
-                return this.valueField;
-            }
-            set {
-                this.valueField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
-    public partial class DigestMethodType {
-        
-        private System.Xml.XmlNode[] anyField;
-        
-        private string algorithmField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
-        [System.Xml.Serialization.XmlAnyElementAttribute()]
-        public System.Xml.XmlNode[] Any {
-            get {
-                return this.anyField;
-            }
-            set {
-                this.anyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string Algorithm {
-            get {
-                return this.algorithmField;
-            }
-            set {
-                this.algorithmField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
-    public partial class ReferenceType {
-        
-        private TransformType[] transformsField;
-        
-        private DigestMethodType digestMethodField;
-        
-        private byte[] digestValueField;
-        
-        private string idField;
-        
-        private string uRIField;
-        
-        private string typeField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("Transform", IsNullable=false)]
-        public TransformType[] Transforms {
-            get {
-                return this.transformsField;
-            }
-            set {
-                this.transformsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public DigestMethodType DigestMethod {
-            get {
-                return this.digestMethodField;
-            }
-            set {
-                this.digestMethodField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary")]
-        public byte[] DigestValue {
-            get {
-                return this.digestValueField;
-            }
-            set {
-                this.digestValueField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string Id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string URI {
-            get {
-                return this.uRIField;
-            }
-            set {
-                this.uRIField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string Type {
-            get {
-                return this.typeField;
-            }
-            set {
-                this.typeField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
-    public partial class SignatureMethodType {
-        
-        private string hMACOutputLengthField;
-        
-        private System.Xml.XmlNode[] anyField;
-        
-        private string algorithmField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="integer")]
-        public string HMACOutputLength {
-            get {
-                return this.hMACOutputLengthField;
-            }
-            set {
-                this.hMACOutputLengthField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
-        [System.Xml.Serialization.XmlAnyElementAttribute()]
-        public System.Xml.XmlNode[] Any {
-            get {
-                return this.anyField;
-            }
-            set {
-                this.anyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string Algorithm {
-            get {
-                return this.algorithmField;
-            }
-            set {
-                this.algorithmField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
-    public partial class CanonicalizationMethodType {
-        
-        private System.Xml.XmlNode[] anyField;
-        
-        private string algorithmField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlTextAttribute()]
-        [System.Xml.Serialization.XmlAnyElementAttribute()]
-        public System.Xml.XmlNode[] Any {
-            get {
-                return this.anyField;
-            }
-            set {
-                this.anyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="anyURI")]
-        public string Algorithm {
-            get {
-                return this.algorithmField;
-            }
-            set {
-                this.algorithmField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
-    public partial class SignedInfoType {
-        
-        private CanonicalizationMethodType canonicalizationMethodField;
-        
-        private SignatureMethodType signatureMethodField;
-        
-        private ReferenceType[] referenceField;
-        
-        private string idField;
-        
-        /// <remarks/>
-        public CanonicalizationMethodType CanonicalizationMethod {
-            get {
-                return this.canonicalizationMethodField;
-            }
-            set {
-                this.canonicalizationMethodField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public SignatureMethodType SignatureMethod {
-            get {
-                return this.signatureMethodField;
-            }
-            set {
-                this.signatureMethodField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Reference")]
-        public ReferenceType[] Reference {
-            get {
-                return this.referenceField;
-            }
-            set {
-                this.referenceField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string Id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
-    public partial class SignatureType {
-        
-        private SignedInfoType signedInfoField;
-        
-        private SignatureValueType signatureValueField;
-        
-        private KeyInfoType keyInfoField;
-        
-        private ObjectType[] objectField;
-        
-        private string idField;
-        
-        /// <remarks/>
-        public SignedInfoType SignedInfo {
-            get {
-                return this.signedInfoField;
-            }
-            set {
-                this.signedInfoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public SignatureValueType SignatureValue {
-            get {
-                return this.signatureValueField;
-            }
-            set {
-                this.signatureValueField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public KeyInfoType KeyInfo {
-            get {
-                return this.keyInfoField;
-            }
-            set {
-                this.keyInfoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Object")]
-        public ObjectType[] Object {
-            get {
-                return this.objectField;
-            }
-            set {
-                this.objectField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute(DataType="ID")]
-        public string Id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public partial class HospitalDoctorType {
+    public partial class AlternativeDoctorType {
         
-        private Part1Type part1Field;
+        private PersonNameStructureType personNameStructureField;
         
-        private Part2Type part2Field;
+        private AddressPostalType doctorAddressField;
         
         /// <remarks/>
-        public Part1Type Part1 {
+        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://rep.oio.dk/itst.dk/xml/schemas/2006/01/17/")]
+        public PersonNameStructureType PersonNameStructure {
             get {
-                return this.part1Field;
+                return this.personNameStructureField;
             }
             set {
-                this.part1Field = value;
+                this.personNameStructureField = value;
             }
         }
         
         /// <remarks/>
-        public Part2Type Part2 {
+        public AddressPostalType DoctorAddress {
             get {
-                return this.part2Field;
+                return this.doctorAddressField;
             }
             set {
-                this.part2Field = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public partial class Part1Type {
-        
-        private System.DateTime createdField;
-        
-        private string healthInsuranceNumberField;
-        
-        private bool bornDeadField;
-        
-        private BornDeadDataType bornDeadDataField;
-        
-        private object itemField;
-        
-        private SignOfDeathType signOfDeathField;
-        
-        private DoctorFunctionType doctorFunctionField;
-        
-        private System.DateTime inquestDateField;
-        
-        private bool policeContactField;
-        
-        private ImplantsType implantsField;
-        
-        private AlternativeDoctorType alternativeDoctorField;
-        
-        private string policeStationNameField;
-        
-        private string idField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="date")]
-        public System.DateTime Created {
-            get {
-                return this.createdField;
-            }
-            set {
-                this.createdField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string HealthInsuranceNumber {
-            get {
-                return this.healthInsuranceNumberField;
-            }
-            set {
-                this.healthInsuranceNumberField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool BornDead {
-            get {
-                return this.bornDeadField;
-            }
-            set {
-                this.bornDeadField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public BornDeadDataType BornDeadData {
-            get {
-                return this.bornDeadDataField;
-            }
-            set {
-                this.bornDeadDataField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("FindingTime", typeof(FindingTimeType))]
-        [System.Xml.Serialization.XmlElementAttribute("TimeOfDeath", typeof(TimeOfDeathType))]
-        public object Item {
-            get {
-                return this.itemField;
-            }
-            set {
-                this.itemField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public SignOfDeathType SignOfDeath {
-            get {
-                return this.signOfDeathField;
-            }
-            set {
-                this.signOfDeathField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public DoctorFunctionType DoctorFunction {
-            get {
-                return this.doctorFunctionField;
-            }
-            set {
-                this.doctorFunctionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public System.DateTime InquestDate {
-            get {
-                return this.inquestDateField;
-            }
-            set {
-                this.inquestDateField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public bool PoliceContact {
-            get {
-                return this.policeContactField;
-            }
-            set {
-                this.policeContactField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public ImplantsType Implants {
-            get {
-                return this.implantsField;
-            }
-            set {
-                this.implantsField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public AlternativeDoctorType AlternativeDoctor {
-            get {
-                return this.alternativeDoctorField;
-            }
-            set {
-                this.alternativeDoctorField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string PoliceStationName {
-            get {
-                return this.policeStationNameField;
-            }
-            set {
-                this.policeStationNameField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public partial class BornDeadDataType {
-        
-        private System.DateTime birthdateField;
-        
-        private PersonGenderCodeType personGenderCodeField;
-        
-        /// <remarks/>
-        public System.DateTime Birthdate {
-            get {
-                return this.birthdateField;
-            }
-            set {
-                this.birthdateField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://rep.oio.dk/ebxml/xml/schemas/dkcc/2006/01/23/")]
-        public PersonGenderCodeType PersonGenderCode {
-            get {
-                return this.personGenderCodeField;
-            }
-            set {
-                this.personGenderCodeField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public partial class FindingTimeType {
-        
-        private DateTimeOrDateType dateTimeOrDateField;
-        
-        private DeathSiteType deathSiteField;
-        
-        private FindingSiteType findingSiteField;
-        
-        /// <remarks/>
-        public DateTimeOrDateType DateTimeOrDate {
-            get {
-                return this.dateTimeOrDateField;
-            }
-            set {
-                this.dateTimeOrDateField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public DeathSiteType DeathSite {
-            get {
-                return this.deathSiteField;
-            }
-            set {
-                this.deathSiteField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public FindingSiteType FindingSite {
-            get {
-                return this.findingSiteField;
-            }
-            set {
-                this.findingSiteField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public partial class DateTimeOrDateType {
-        
-        private System.DateTime itemField;
-        
-        private ItemChoiceType itemElementNameField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("Date", typeof(System.DateTime), DataType="date")]
-        [System.Xml.Serialization.XmlElementAttribute("DateTime", typeof(System.DateTime))]
-        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemElementName")]
-        public System.DateTime Item {
-            get {
-                return this.itemField;
-            }
-            set {
-                this.itemField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlIgnoreAttribute()]
-        public ItemChoiceType ItemElementName {
-            get {
-                return this.itemElementNameField;
-            }
-            set {
-                this.itemElementNameField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03", IncludeInSchema=false)]
-    public enum ItemChoiceType {
-        
-        /// <remarks/>
-        Date,
-        
-        /// <remarks/>
-        DateTime,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public partial class DeathSiteType {
-        
-        private object itemField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("HospitalIdentifier", typeof(HospitalIdentifierType))]
-        [System.Xml.Serialization.XmlElementAttribute("KnownAddress", typeof(AddressPostalType))]
-        [System.Xml.Serialization.XmlElementAttribute("OtherPlaceOfDeath", typeof(string))]
-        [System.Xml.Serialization.XmlElementAttribute("Residence", typeof(ResidenceType))]
-        public object Item {
-            get {
-                return this.itemField;
-            }
-            set {
-                this.itemField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public partial class HospitalIdentifierType {
-        
-        private string hospitalClasifikationField;
-        
-        private string hospitalDepartmentField;
-        
-        /// <remarks/>
-        public string HospitalClasifikation {
-            get {
-                return this.hospitalClasifikationField;
-            }
-            set {
-                this.hospitalClasifikationField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string HospitalDepartment {
-            get {
-                return this.hospitalDepartmentField;
-            }
-            set {
-                this.hospitalDepartmentField = value;
+                this.doctorAddressField = value;
             }
         }
     }
@@ -1995,6 +621,147 @@ namespace DGWSMortality.MortalityRegistrationService {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
     [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
+    public partial class TimeOfDeathType {
+        
+        private DateTimeOrDateType dateTimeOrDateField;
+        
+        private DeathSiteType deathSiteField;
+        
+        /// <remarks/>
+        public DateTimeOrDateType DateTimeOrDate {
+            get {
+                return this.dateTimeOrDateField;
+            }
+            set {
+                this.dateTimeOrDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public DeathSiteType DeathSite {
+            get {
+                return this.deathSiteField;
+            }
+            set {
+                this.deathSiteField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
+    public partial class DateTimeOrDateType {
+        
+        private System.DateTime itemField;
+        
+        private ItemChoiceType itemElementNameField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("Date", typeof(System.DateTime), DataType="date")]
+        [System.Xml.Serialization.XmlElementAttribute("DateTime", typeof(System.DateTime))]
+        [System.Xml.Serialization.XmlChoiceIdentifierAttribute("ItemElementName")]
+        public System.DateTime Item {
+            get {
+                return this.itemField;
+            }
+            set {
+                this.itemField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlIgnoreAttribute()]
+        public ItemChoiceType ItemElementName {
+            get {
+                return this.itemElementNameField;
+            }
+            set {
+                this.itemElementNameField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03", IncludeInSchema=false)]
+    public enum ItemChoiceType {
+        
+        /// <remarks/>
+        Date,
+        
+        /// <remarks/>
+        DateTime,
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
+    public partial class DeathSiteType {
+        
+        private object itemField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("HospitalIdentifier", typeof(HospitalIdentifierType))]
+        [System.Xml.Serialization.XmlElementAttribute("KnownAddress", typeof(AddressPostalType))]
+        [System.Xml.Serialization.XmlElementAttribute("OtherPlaceOfDeath", typeof(string))]
+        [System.Xml.Serialization.XmlElementAttribute("Residence", typeof(ResidenceType))]
+        public object Item {
+            get {
+                return this.itemField;
+            }
+            set {
+                this.itemField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
+    public partial class HospitalIdentifierType {
+        
+        private string hospitalClasifikationField;
+        
+        private string hospitalDepartmentField;
+        
+        /// <remarks/>
+        public string HospitalClasifikation {
+            get {
+                return this.hospitalClasifikationField;
+            }
+            set {
+                this.hospitalClasifikationField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string HospitalDepartment {
+            get {
+                return this.hospitalDepartmentField;
+            }
+            set {
+                this.hospitalDepartmentField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
     public enum ResidenceType {
         
@@ -2035,11 +802,13 @@ namespace DGWSMortality.MortalityRegistrationService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public partial class TimeOfDeathType {
+    public partial class FindingTimeType {
         
         private DateTimeOrDateType dateTimeOrDateField;
         
         private DeathSiteType deathSiteField;
+        
+        private FindingSiteType findingSiteField;
         
         /// <remarks/>
         public DateTimeOrDateType DateTimeOrDate {
@@ -2058,6 +827,206 @@ namespace DGWSMortality.MortalityRegistrationService {
             }
             set {
                 this.deathSiteField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public FindingSiteType FindingSite {
+            get {
+                return this.findingSiteField;
+            }
+            set {
+                this.findingSiteField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
+    public partial class BornDeadDataType {
+        
+        private System.DateTime birthdateField;
+        
+        private PersonGenderCodeType personGenderCodeField;
+        
+        /// <remarks/>
+        public System.DateTime Birthdate {
+            get {
+                return this.birthdateField;
+            }
+            set {
+                this.birthdateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://rep.oio.dk/ebxml/xml/schemas/dkcc/2006/01/23/")]
+        public PersonGenderCodeType PersonGenderCode {
+            get {
+                return this.personGenderCodeField;
+            }
+            set {
+                this.personGenderCodeField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
+    public partial class Part1Type {
+        
+        private System.DateTime createdField;
+        
+        private string healthInsuranceNumberField;
+        
+        private bool bornDeadField;
+        
+        private BornDeadDataType bornDeadDataField;
+        
+        private object itemField;
+        
+        private SignOfDeathType signOfDeathField;
+        
+        private System.DateTime inquestDateField;
+        
+        private bool policeContactField;
+        
+        private ImplantsType implantsField;
+        
+        private AlternativeDoctorType alternativeDoctorField;
+        
+        private string policeStationNameField;
+        
+        private bool page2WillFollowField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="date")]
+        public System.DateTime Created {
+            get {
+                return this.createdField;
+            }
+            set {
+                this.createdField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string HealthInsuranceNumber {
+            get {
+                return this.healthInsuranceNumberField;
+            }
+            set {
+                this.healthInsuranceNumberField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool BornDead {
+            get {
+                return this.bornDeadField;
+            }
+            set {
+                this.bornDeadField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public BornDeadDataType BornDeadData {
+            get {
+                return this.bornDeadDataField;
+            }
+            set {
+                this.bornDeadDataField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("FindingTime", typeof(FindingTimeType))]
+        [System.Xml.Serialization.XmlElementAttribute("TimeOfDeath", typeof(TimeOfDeathType))]
+        public object Item {
+            get {
+                return this.itemField;
+            }
+            set {
+                this.itemField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public SignOfDeathType SignOfDeath {
+            get {
+                return this.signOfDeathField;
+            }
+            set {
+                this.signOfDeathField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime InquestDate {
+            get {
+                return this.inquestDateField;
+            }
+            set {
+                this.inquestDateField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool PoliceContact {
+            get {
+                return this.policeContactField;
+            }
+            set {
+                this.policeContactField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public ImplantsType Implants {
+            get {
+                return this.implantsField;
+            }
+            set {
+                this.implantsField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public AlternativeDoctorType AlternativeDoctor {
+            get {
+                return this.alternativeDoctorField;
+            }
+            set {
+                this.alternativeDoctorField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PoliceStationName {
+            get {
+                return this.policeStationNameField;
+            }
+            set {
+                this.policeStationNameField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool Page2WillFollow {
+            get {
+                return this.page2WillFollowField;
+            }
+            set {
+                this.page2WillFollowField = value;
             }
         }
     }
@@ -2166,28 +1135,6 @@ namespace DGWSMortality.MortalityRegistrationService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public enum DoctorFunctionType {
-        
-        /// <remarks/>
-        PersonalGP,
-        
-        /// <remarks/>
-        EmergencyGP,
-        
-        /// <remarks/>
-        HospitalDoctor,
-        
-        /// <remarks/>
-        Medicalofficer,
-        
-        /// <remarks/>
-        HospiceDoctor,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
     public enum ImplantsType {
         
         /// <remarks/>
@@ -2209,30 +1156,29 @@ namespace DGWSMortality.MortalityRegistrationService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public partial class AlternativeDoctorType {
+    public partial class AcmeType {
         
-        private PersonNameStructureType personNameStructureField;
+        private string iCD10CodeField;
         
-        private AddressPostalType doctorAddressField;
+        private bool lookupField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://rep.oio.dk/itst.dk/xml/schemas/2006/01/17/")]
-        public PersonNameStructureType PersonNameStructure {
+        public string ICD10Code {
             get {
-                return this.personNameStructureField;
+                return this.iCD10CodeField;
             }
             set {
-                this.personNameStructureField = value;
+                this.iCD10CodeField = value;
             }
         }
         
         /// <remarks/>
-        public AddressPostalType DoctorAddress {
+        public bool lookup {
             get {
-                return this.doctorAddressField;
+                return this.lookupField;
             }
             set {
-                this.doctorAddressField = value;
+                this.lookupField = value;
             }
         }
     }
@@ -2243,154 +1189,31 @@ namespace DGWSMortality.MortalityRegistrationService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public partial class Part2Type {
+    public partial class JudicialAutopsyType {
         
-        private System.DateTime createdField;
+        private string autopsyFindingsField;
         
-        private DoctorFunctionType doctorFunctionField;
-        
-        private WayOfDeathType wayOfDeathField;
-        
-        private CauseOfDeathType[] primaryCauseOfDeathField;
-        
-        private CauseOfDeathType[] secondaryCauseOfDeathField;
-        
-        private string[] productnameATCCodeField;
-        
-        private DeathNonNaturalType deathNonNaturalField;
-        
-        private AutopsyType autopsyField;
-        
-        private string supplementalTextField;
-        
-        private string idField;
+        private string investmentsConclusionsField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="date")]
-        public System.DateTime Created {
+        public string AutopsyFindings {
             get {
-                return this.createdField;
+                return this.autopsyFindingsField;
             }
             set {
-                this.createdField = value;
+                this.autopsyFindingsField = value;
             }
         }
         
         /// <remarks/>
-        public DoctorFunctionType DoctorFunction {
+        public string InvestmentsConclusions {
             get {
-                return this.doctorFunctionField;
+                return this.investmentsConclusionsField;
             }
             set {
-                this.doctorFunctionField = value;
+                this.investmentsConclusionsField = value;
             }
         }
-        
-        /// <remarks/>
-        public WayOfDeathType WayOfDeath {
-            get {
-                return this.wayOfDeathField;
-            }
-            set {
-                this.wayOfDeathField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("CauseOfDeath", IsNullable=false)]
-        public CauseOfDeathType[] PrimaryCauseOfDeath {
-            get {
-                return this.primaryCauseOfDeathField;
-            }
-            set {
-                this.primaryCauseOfDeathField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlArrayItemAttribute("CauseOfDeath", IsNullable=false)]
-        public CauseOfDeathType[] SecondaryCauseOfDeath {
-            get {
-                return this.secondaryCauseOfDeathField;
-            }
-            set {
-                this.secondaryCauseOfDeathField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("ProductnameATCCode", DataType="NMTOKEN")]
-        public string[] ProductnameATCCode {
-            get {
-                return this.productnameATCCodeField;
-            }
-            set {
-                this.productnameATCCodeField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public DeathNonNaturalType DeathNonNatural {
-            get {
-                return this.deathNonNaturalField;
-            }
-            set {
-                this.deathNonNaturalField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public AutopsyType Autopsy {
-            get {
-                return this.autopsyField;
-            }
-            set {
-                this.autopsyField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string SupplementalText {
-            get {
-                return this.supplementalTextField;
-            }
-            set {
-                this.supplementalTextField = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public enum WayOfDeathType {
-        
-        /// <remarks/>
-        natural,
-        
-        /// <remarks/>
-        accident,
-        
-        /// <remarks/>
-        kill,
-        
-        /// <remarks/>
-        suicide,
-        
-        /// <remarks/>
-        unknown,
     }
     
     /// <remarks/>
@@ -2399,44 +1222,35 @@ namespace DGWSMortality.MortalityRegistrationService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public partial class CauseOfDeathType {
+    public partial class AutopsyType {
         
-        private string causeOfDeathField;
-        
-        private string durationBeforeDeathField;
-        
-        private uint versionField;
+        private object itemField;
         
         /// <remarks/>
-        public string CauseOfDeath {
+        [System.Xml.Serialization.XmlElementAttribute("HospitalAutopsy", typeof(string))]
+        [System.Xml.Serialization.XmlElementAttribute("JudicialAutopsy", typeof(JudicialAutopsyType))]
+        [System.Xml.Serialization.XmlElementAttribute("NoAutopsyTextReason", typeof(NoAutopsyTextReasonType))]
+        public object Item {
             get {
-                return this.causeOfDeathField;
+                return this.itemField;
             }
             set {
-                this.causeOfDeathField = value;
+                this.itemField = value;
             }
         }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
+    [System.SerializableAttribute()]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
+    public enum NoAutopsyTextReasonType {
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(DataType="duration")]
-        public string DurationBeforeDeath {
-            get {
-                return this.durationBeforeDeathField;
-            }
-            set {
-                this.durationBeforeDeathField = value;
-            }
-        }
+        ProhibitedAutopsy,
         
         /// <remarks/>
-        public uint Version {
-            get {
-                return this.versionField;
-            }
-            set {
-                this.versionField = value;
-            }
-        }
+        NoAutopsy,
     }
     
     /// <remarks/>
@@ -2503,20 +1317,30 @@ namespace DGWSMortality.MortalityRegistrationService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public partial class AutopsyType {
+    public partial class ATCElementType {
         
-        private object itemField;
+        private string aTCTextField;
+        
+        private string aTCCodeField;
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("HospitalAutopsy", typeof(string))]
-        [System.Xml.Serialization.XmlElementAttribute("JudicialAutopsy", typeof(JudicialAutopsyType))]
-        [System.Xml.Serialization.XmlElementAttribute("NoAutopsyTextReason", typeof(NoAutopsyTextReasonType))]
-        public object Item {
+        public string ATCText {
             get {
-                return this.itemField;
+                return this.aTCTextField;
             }
             set {
-                this.itemField = value;
+                this.aTCTextField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="NMTOKEN")]
+        public string ATCCode {
+            get {
+                return this.aTCCodeField;
+            }
+            set {
+                this.aTCCodeField = value;
             }
         }
     }
@@ -2527,75 +1351,42 @@ namespace DGWSMortality.MortalityRegistrationService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public partial class JudicialAutopsyType {
+    public partial class CauseOfDeathType {
         
-        private string autopsyFindingsField;
+        private string causeOfDeathField;
         
-        private string investmentsConclusionsField;
+        private string durationBeforeDeathField;
+        
+        private uint versionField;
         
         /// <remarks/>
-        public string AutopsyFindings {
+        public string CauseOfDeath {
             get {
-                return this.autopsyFindingsField;
+                return this.causeOfDeathField;
             }
             set {
-                this.autopsyFindingsField = value;
+                this.causeOfDeathField = value;
             }
         }
         
         /// <remarks/>
-        public string InvestmentsConclusions {
+        [System.Xml.Serialization.XmlElementAttribute(DataType="duration")]
+        public string DurationBeforeDeath {
             get {
-                return this.investmentsConclusionsField;
+                return this.durationBeforeDeathField;
             }
             set {
-                this.investmentsConclusionsField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public enum NoAutopsyTextReasonType {
-        
-        /// <remarks/>
-        ProhibitedAutopsy,
-        
-        /// <remarks/>
-        NoAutopsy,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public partial class EmergencyDoctorType {
-        
-        private Part1Type part1Field;
-        
-        private Part2Type part2Field;
-        
-        /// <remarks/>
-        public Part1Type Part1 {
-            get {
-                return this.part1Field;
-            }
-            set {
-                this.part1Field = value;
+                this.durationBeforeDeathField = value;
             }
         }
         
         /// <remarks/>
-        public Part2Type Part2 {
+        public uint Version {
             get {
-                return this.part2Field;
+                return this.versionField;
             }
             set {
-                this.part2Field = value;
+                this.versionField = value;
             }
         }
     }
@@ -2606,29 +1397,117 @@ namespace DGWSMortality.MortalityRegistrationService {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public partial class PersonalDoctorType {
+    public partial class Part2Type {
         
-        private Part1Type part1Field;
+        private System.DateTime createdField;
         
-        private Part2Type part2Field;
+        private WayOfDeathType wayOfDeathField;
+        
+        private CauseOfDeathType[] primaryCauseOfDeathField;
+        
+        private CauseOfDeathType[] secondaryCauseOfDeathField;
+        
+        private ATCElementType[] productnameATCCodeField;
+        
+        private DeathNonNaturalType deathNonNaturalField;
+        
+        private AutopsyType autopsyField;
+        
+        private string supplementalTextField;
+        
+        private AcmeType acmeField;
         
         /// <remarks/>
-        public Part1Type Part1 {
+        [System.Xml.Serialization.XmlElementAttribute(DataType="date")]
+        public System.DateTime Created {
             get {
-                return this.part1Field;
+                return this.createdField;
             }
             set {
-                this.part1Field = value;
+                this.createdField = value;
             }
         }
         
         /// <remarks/>
-        public Part2Type Part2 {
+        public WayOfDeathType WayOfDeath {
             get {
-                return this.part2Field;
+                return this.wayOfDeathField;
             }
             set {
-                this.part2Field = value;
+                this.wayOfDeathField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayItemAttribute("CauseOfDeath", IsNullable=false)]
+        public CauseOfDeathType[] PrimaryCauseOfDeath {
+            get {
+                return this.primaryCauseOfDeathField;
+            }
+            set {
+                this.primaryCauseOfDeathField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlArrayItemAttribute("CauseOfDeath", IsNullable=false)]
+        public CauseOfDeathType[] SecondaryCauseOfDeath {
+            get {
+                return this.secondaryCauseOfDeathField;
+            }
+            set {
+                this.secondaryCauseOfDeathField = value;
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute("ProductnameATCCode")]
+        public ATCElementType[] ProductnameATCCode {
+            get {
+                return this.productnameATCCodeField;
+            }
+            set {
+                this.productnameATCCodeField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public DeathNonNaturalType DeathNonNatural {
+            get {
+                return this.deathNonNaturalField;
+            }
+            set {
+                this.deathNonNaturalField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public AutopsyType Autopsy {
+            get {
+                return this.autopsyField;
+            }
+            set {
+                this.autopsyField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string SupplementalText {
+            get {
+                return this.supplementalTextField;
+            }
+            set {
+                this.supplementalTextField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public AcmeType Acme {
+            get {
+                return this.acmeField;
+            }
+            set {
+                this.acmeField = value;
             }
         }
     }
@@ -2636,34 +1515,23 @@ namespace DGWSMortality.MortalityRegistrationService {
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
     [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public partial class MedicalofficerDoctorType {
-        
-        private Part1Type part1Field;
-        
-        private Part2Type part2Field;
+    public enum WayOfDeathType {
         
         /// <remarks/>
-        public Part1Type Part1 {
-            get {
-                return this.part1Field;
-            }
-            set {
-                this.part1Field = value;
-            }
-        }
+        natural,
         
         /// <remarks/>
-        public Part2Type Part2 {
-            get {
-                return this.part2Field;
-            }
-            set {
-                this.part2Field = value;
-            }
-        }
+        accident,
+        
+        /// <remarks/>
+        kill,
+        
+        /// <remarks/>
+        suicide,
+        
+        /// <remarks/>
+        unknown,
     }
     
     /// <remarks/>
@@ -2674,90 +1542,29 @@ namespace DGWSMortality.MortalityRegistrationService {
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
     public partial class Part1And2Type {
         
-        private Part1Type part1Field;
+        private DoctorFunctionType doctorFunctionField;
         
-        private Part2Type part2Field;
-        
-        private string idField;
+        private object[] itemsField;
         
         /// <remarks/>
-        public Part1Type Part1 {
+        public DoctorFunctionType DoctorFunction {
             get {
-                return this.part1Field;
+                return this.doctorFunctionField;
             }
             set {
-                this.part1Field = value;
+                this.doctorFunctionField = value;
             }
         }
-        
-        /// <remarks/>
-        public Part2Type Part2 {
-            get {
-                return this.part2Field;
-            }
-            set {
-                this.part2Field = value;
-            }
-        }
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlAttributeAttribute()]
-        public string id {
-            get {
-                return this.idField;
-            }
-            set {
-                this.idField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public partial class HospiceDoctorType {
-        
-        private object itemField;
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute("Part1", typeof(Part1Type))]
-        [System.Xml.Serialization.XmlElementAttribute("Part1And2", typeof(Part1And2Type))]
         [System.Xml.Serialization.XmlElementAttribute("Part2", typeof(Part2Type))]
-        public object Item {
+        public object[] Items {
             get {
-                return this.itemField;
+                return this.itemsField;
             }
             set {
-                this.itemField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public partial class CertifyingDoctorType {
-        
-        private object itemField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute("EmergencyDoctor", typeof(EmergencyDoctorType))]
-        [System.Xml.Serialization.XmlElementAttribute("HospiceDoctor", typeof(HospiceDoctorType))]
-        [System.Xml.Serialization.XmlElementAttribute("HospitalDoctor", typeof(HospitalDoctorType))]
-        [System.Xml.Serialization.XmlElementAttribute("MedicalofficerDoctor", typeof(MedicalofficerDoctorType))]
-        [System.Xml.Serialization.XmlElementAttribute("PersonalDoctor", typeof(PersonalDoctorType))]
-        public object Item {
-            get {
-                return this.itemField;
-            }
-            set {
-                this.itemField = value;
+                this.itemsField = value;
             }
         }
     }
@@ -2766,82 +1573,22 @@ namespace DGWSMortality.MortalityRegistrationService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
     [System.SerializableAttribute()]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public enum MortalityReportCompletnessType {
+    public enum DoctorFunctionType {
         
         /// <remarks/>
-        Part1Missing,
+        PersonalGP,
         
         /// <remarks/>
-        Part2Missing,
+        EmergencyGP,
         
         /// <remarks/>
-        Complete,
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public partial class SignedMortalityReasonTypePart1Signature {
-        
-        private SignatureType signatureField;
+        HospitalDoctor,
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
-        public SignatureType Signature {
-            get {
-                return this.signatureField;
-            }
-            set {
-                this.signatureField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public partial class SignedMortalityReasonTypePart2Signature {
-        
-        private SignatureType signatureField;
+        Medicalofficer,
         
         /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
-        public SignatureType Signature {
-            get {
-                return this.signatureField;
-            }
-            set {
-                this.signatureField = value;
-            }
-        }
-    }
-    
-    /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "2.0.50727.3082")]
-    [System.SerializableAttribute()]
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.ComponentModel.DesignerCategoryAttribute("code")]
-    [System.Xml.Serialization.XmlTypeAttribute(AnonymousType=true, Namespace="http://sst.dk/Mortality/xml.schema/2008.04.03")]
-    public partial class SignedMortalityReasonTypeAllSignature {
-        
-        private SignatureType signatureField;
-        
-        /// <remarks/>
-        [System.Xml.Serialization.XmlElementAttribute(Namespace="http://www.w3.org/2000/09/xmldsig#")]
-        public SignatureType Signature {
-            get {
-                return this.signatureField;
-            }
-            set {
-                this.signatureField = value;
-            }
-        }
+        HospiceDoctor,
     }
     
     /// <remarks/>
@@ -2857,6 +1604,32 @@ namespace DGWSMortality.MortalityRegistrationService {
         private object[] results;
         
         internal ReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
+    public delegate void RemoveReportCompletedEventHandler(object sender, RemoveReportCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "2.0.50727.3053")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class RemoveReportCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal RemoveReportCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }
