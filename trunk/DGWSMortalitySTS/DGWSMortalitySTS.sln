@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DGWSMortalitySTS", "DGWSMortalitySTS.csproj", "{CFC7A082-865B-4944-BC6B-74C9B88DFFAF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SealApi2.0", "..\..\..\SST_2.0.0.x\Components\ThirdParty\SealAPI2.0\SealApi2.0.csproj", "{EF0573D9-329B-45F9-9388-9EF7406C2115}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CFC7A082-865B-4944-BC6B-74C9B88DFFAF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CFC7A082-865B-4944-BC6B-74C9B88DFFAF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CFC7A082-865B-4944-BC6B-74C9B88DFFAF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CFC7A082-865B-4944-BC6B-74C9B88DFFAF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF0573D9-329B-45F9-9388-9EF7406C2115}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF0573D9-329B-45F9-9388-9EF7406C2115}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF0573D9-329B-45F9-9388-9EF7406C2115}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF0573D9-329B-45F9-9388-9EF7406C2115}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
