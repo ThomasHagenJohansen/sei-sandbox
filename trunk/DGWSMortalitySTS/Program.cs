@@ -18,7 +18,7 @@ namespace DGWSMortalitySTS
 		{
 			try
 			{
-				bool useSTS = false;
+				bool useSTS = true;
 
 				X509Certificate2 sksMOCESCert = GetSKSMOCESCertificate();
 				X509Certificate2 sksVOCESCert = GetSKSVOCESCertificate();
