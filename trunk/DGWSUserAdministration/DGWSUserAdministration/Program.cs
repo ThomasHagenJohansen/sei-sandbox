@@ -27,15 +27,15 @@ namespace DGWSUserAdministration
 				userAuthorisation.SEIUser = new UserAuthorisationTypeSEIUser();
 				userAuthorisation.SEIUser.FullName = "Bent Hansen";
 				userAuthorisation.SEIUser.X509Certificate = moces.RawData;
-				userAuthorisation.SEIUser.PersonCivilRegistrationIdentifier = "0000000000";
-				userAuthorisation.SEIUser.Item = "bent@hansen.dk";
+				userAuthorisation.SEIUser.PersonCivilRegistrationIdentifier = "2207712801";
+				userAuthorisation.SEIUser.Item = "thomas.neumann@tietoenator.com";
 				userAuthorisation.SEIUser.ItemElementName = ItemChoiceType.Email;
 
 				userAuthorisation.SEIPlugIn = new UserAuthorisationTypeSEIPlugIn[2];
 				userAuthorisation.SEIPlugIn[0] = new UserAuthorisationTypeSEIPlugIn();
-				userAuthorisation.SEIPlugIn[0].Plugin = "pluginTest1";
+				userAuthorisation.SEIPlugIn[0].Plugin = "dk.hob.ei.hbs.Plugin";
 				userAuthorisation.SEIPlugIn[1] = new UserAuthorisationTypeSEIPlugIn();
-				userAuthorisation.SEIPlugIn[1].Plugin = "pluginTest2";
+				userAuthorisation.SEIPlugIn[1].Plugin = "dk.hob.ei.ivf.Plugin";
 
 				serialize(userAuthorisation);
 
