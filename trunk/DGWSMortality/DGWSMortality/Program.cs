@@ -31,7 +31,7 @@ namespace DGWSMortality
 				string str = service.Report(reason);
 				System.Diagnostics.Debug.WriteLine(str);
 
-				service.RemoveReport("3b9a2d1e-7c2e-42d8-a596-f159ee3af4f8");
+//				service.RemoveReport("3b9a2d1e-7c2e-42d8-a596-f159ee3af4f8");
 
 			}
 			catch(SoapHeaderException ex)

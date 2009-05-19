@@ -132,7 +132,7 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\2.0.0.x\Components\ThirdParty\SealAPI1.1\SealAPI1.1.csproj">
+    <ProjectReference Include="..\..\..\..\SST_2.0.1.x\Components\ThirdParty\SealAPI1.1\SealAPI1.1.csproj">
       <Project>{2E0EEC92-80A8-4C48-B496-3F867270F5B9}</Project>
       <Name>SealAPI1.1</Name>
     </ProjectReference>

@@ -64,12 +64,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\SST_2.0.0.x\Components\ThirdParty\SealAPI2.0\SealApi2.0.csproj">
-      <Project>{EF0573D9-329B-45F9-9388-9EF7406C2115}</Project>
-      <Name>SealApi2.0</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.config" />
     <None Include="Certificates\SKSMedarbejder.p12">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -106,6 +100,12 @@
       <Generator>MSDiscoCodeGenerator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\SST_2.0.1.x\Components\ThirdParty\SealAPI2.0\SealApi2.0.csproj">
+      <Project>{EF0573D9-329B-45F9-9388-9EF7406C2115}</Project>
+      <Name>SealApi2.0</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

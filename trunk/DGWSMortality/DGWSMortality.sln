@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DGWSMortality", "DGWSMortality\DGWSMortality.csproj", "{0FE5718C-65AD-4CEC-8FEC-74D47636B29C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SealAPI1.1", "..\..\..\2.0.0.x\Components\ThirdParty\SealAPI1.1\SealAPI1.1.csproj", "{2E0EEC92-80A8-4C48-B496-3F867270F5B9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SealAPI1.1", "..\..\..\SST_2.0.1.x\Components\ThirdParty\SealAPI1.1\SealAPI1.1.csproj", "{2E0EEC92-80A8-4C48-B496-3F867270F5B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

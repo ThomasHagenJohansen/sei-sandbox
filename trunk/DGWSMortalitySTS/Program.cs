@@ -84,7 +84,8 @@ namespace DGWSMortalitySTS
 			card.EmailAddress = "thomas.neumann@tieto.com";
 			card.Role = "SEI User";
 			card.Occupation = "?";
-			card.AuthorizationCode = 19901;
+//			card.AuthorizationCode = "03M5P";	// Sygeplejske
+			card.AuthorizationCode = "06CLX";	// Læge
 
 			card.ITSystemName = "SEI Client";
 			card.OrganisationID = "12070918";
@@ -115,7 +116,7 @@ namespace DGWSMortalitySTS
 			card.EmailAddress = "thomas.neumann@tieto.com";
 			card.Role = "SEI User";
 			card.Occupation = "?";
-			card.AuthorizationCode = 19901;
+			card.AuthorizationCode = "19901";
 
 			card.ITSystemName = "SEI Client";
 			card.OrganisationID = "12070918";
