@@ -67,14 +67,14 @@
 	      color:gray;
 	    }
 	    .failed {
-	      font-size:80%;
+	      font-size:60%;
 	      background-color: red;
 	      color:#FFFFFF;
 	      font-weight: bold
 	    }
 	    .complete {
-	      font-size:80%;
-	      background-color: #525D76;
+	      font-size:60%;
+	      background-color: darkblue;
 	      color:#FFFFFF;
 	      font-weight: bold
 	    }
@@ -101,7 +101,7 @@
 	      color: white;
 	      text-decoration: none;
 	      padding: 5px;
-	      margin-right: 2px;
+	      margin-right: 2%;
 	      margin-left: 2px;
 	      margin-bottom: 0;
 	    }			
@@ -109,7 +109,7 @@
   </head>
   <body>
     <!-- jakarta logo -->
-    <table border="0" cellpadding="0" cellspacing="0" width="100%">
+<!--     <table border="0" cellpadding="0" cellspacing="0" width="100%">
     <tr>
       <td valign="top" class="bannercell">
         <a href="http://jakarta.apache.org/">
@@ -121,15 +121,15 @@
       </td>
     </tr>
     </table>
-      
-    <table border="0" width="100%">
+  -->     
+<!--     <table border="0" width="100%">
     <tr><td><hr noshade="yes" size="1"/></td></tr>
     </table>
-
+ -->
     <xsl:apply-templates select="cruisecontrol/build/build"/>
 
     <!-- FOOTER -->
-    <table width="100%">
+<!--     <table width="100%">
       <tr><td><hr noshade="yes" size="1"/></td></tr>
       <tr><td>
       <div align="center"><font color="#525D76" size="-1"><em>
@@ -137,23 +137,23 @@
       </em></font></div>
       </td></tr>
     </table>
-  </body>
+ -->  </body>
 </html>
 </xsl:template>
 
 <xsl:template match="build">
   <!-- build status -->
-  <table width="100%">
+  <table class="section-table" width="98%">
     <xsl:attribute name="class">
       <xsl:if test="@error">failed</xsl:if>
       <xsl:if test="not(@error)">complete</xsl:if>
     </xsl:attribute>
     <tr>
       <xsl:if test="@error">
-        <td nowrap="yes">Build Failed</td> 
+        <td nowrap="yes">Ant - Build Failed</td> 
       </xsl:if>
       <xsl:if test="not(@error)">
-        <td nowrap="yes">Build Complete</td>
+        <td nowrap="yes">Ant - Build Complete</td>
       </xsl:if>
         <td style="text-align:right" nowrap="yes">Total Time: <xsl:value-of select="@time"/></td>
     </tr>
@@ -167,18 +167,18 @@
     </tr>
   </table>
 	
-	<table border="1" cellspacing="2" cellpadding="3" width="100%" style="font-size:80%">
+<!-- 	<table border="1" cellspacing="2" cellpadding="3" width="100%" style="font-size:80%">
 		<tr class="a"><td width="1">ant.file</td><td><xsl:value-of select="substring-after(//message[contains(text(),'ant.file')], '->')"/></td></tr>
 		<tr class="b"><td width="1">ant.version</td><td><xsl:value-of select="substring-after(//message[contains(text(),'ant.version')], '->')"/></td></tr>
     <tr class="a"><td width="1">java.version</td><td><xsl:value-of select="substring-after(//message[contains(text(),'java.vm.version')], '->')"/></td></tr>
     <tr class="b"><td width="1">os.name</td><td><xsl:value-of select="substring-after(//message[contains(text(),'os.name')], '->')"/></td></tr>
   </table>
 
-	<br/>
+	<br/> -->
 
   <!-- build information -->
-  <h3>Build events (Info Level)</h3>
-  <table border="1" cellspacing="2" cellpadding="3" width="100%">
+  <h3>Build events (Warnings and Errors)</h3>
+  <table border="1" cellspacing="2" cellpadding="3" width="98%">
 		<colgroup span="3" nowrap="yes" align="left" width="1%"></colgroup>
 		<colgroup span="1" nowrap="no" align="left"></colgroup>
 	  <tr>
@@ -188,18 +188,19 @@
 	    <th nowrap="yes" align="left">message</th>
 	  </tr>
 
-		<xsl:apply-templates select=".//message[@priority != 'debug']"/>
+		<xsl:apply-templates select=".//message[@priority = 'error']" />
+		<xsl:apply-templates select=".//message[@priority = 'warn']" />
 		
   </table>
 	
-	<br/>
- 
+<!-- 	<br/>
+ --> 
   <!-- stacktrace -->
   <p>
   <xsl:if test="stacktrace">
   <a name="stacktrace"/>
   <h3>Error details</h3>
-  <table width="100%">
+  <table width="98%">
     <tr><td>
       <pre><xsl:value-of select="stacktrace"/></pre>
     </td></tr>
@@ -207,10 +208,10 @@
   </xsl:if>
   </p>
 
-	<br/>
+<!-- 	<br/> -->
 	
   <!-- build information -->
-  <h3>Build events (Debug Level)</h3>
+<!--   <h3>Build events (Debug Level)</h3>
   <table border="1" cellspacing="2" cellpadding="3" width="100%">
 		<colgroup span="3" nowrap="yes" align="left" width="1%"></colgroup>
 		<colgroup span="1" nowrap="no" align="left"></colgroup>
@@ -222,7 +223,7 @@
 	  </tr>
 
 		<xsl:apply-templates select=".//message"/>
-  </table>
+  </table> -->
 
 </xsl:template>
 
