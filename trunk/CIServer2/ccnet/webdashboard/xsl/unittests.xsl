@@ -22,6 +22,10 @@
     <xsl:variable name="junit.failure.count" select="count($junit.failure.list)"/>
     <xsl:variable name="junit.error.list" select="$junit.case.list/error"/>
     <xsl:variable name="junit.error.count" select="count($junit.error.list)"/>
+    <xsl:variable name="junit.system.out" select="$junit.suite.list/system-out"/>
+    <xsl:variable name="junit.system.out.count" select="count($junit.system.out)"/>
+    <xsl:variable name="junit.system.err" select="$junit.suite.list/system-err"/>
+    <xsl:variable name="junit.system.err.count" select="count($junit.system.err)"/>
 
     <xsl:variable name="total.time" select="$nunit2.time + $junit.time"/>
     <xsl:variable name="total.notrun.count" select="$nunit2.notrun.count"/>
@@ -88,6 +92,10 @@
                 </xsl:call-template>
                 <tr><td colspan="2"> </td></tr>
             </xsl:if>
+			
+            <xsl:apply-templates select="$junit.system.out"/>
+            <xsl:apply-templates select="$junit.system.err"/>
+			
         </table>
     </xsl:template>
 
@@ -122,6 +130,26 @@
             <td class="section-data">Warning</td>
             <td class="section-data"><xsl:value-of select="../@name"/></td>
         </tr>
+    </xsl:template>
+
+    <!-- Unit Test System Out -->
+    <xsl:template match="system-out">
+		<tr>
+			<td>System Out</td>
+			<td class="section-data">
+				<pre><xsl:copy-of select="."/></pre>
+			</td>
+		</tr>
+    </xsl:template>
+
+    <!-- Unit Test System Err -->
+    <xsl:template match="system-err">
+		<tr>
+			<td>System Error</td>
+			<td class="section-error">
+				<pre><xsl:copy-of select="."/></pre>
+			</td>
+		</tr>
     </xsl:template>
 
     <!-- JUnit Test Errors And Failures Detail Template -->
