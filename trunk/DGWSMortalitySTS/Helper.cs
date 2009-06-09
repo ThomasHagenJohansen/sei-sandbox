@@ -5,6 +5,56 @@ namespace DGWSMortalitySTS
 {
 	public static class Helper
 	{
+		public static MortalityReasonType CreateTestDocument_Part1()
+		{
+			MortalityReasonType mortalityReason   = new MortalityReasonType();
+			mortalityReason.SchemaID              = Guid.Empty.ToString();
+			mortalityReason.PersonIdentifier      = new PersonIdentifierType();
+			mortalityReason.PersonIdentifier.id   = "cprid";
+			mortalityReason.PersonIdentifier.Item = "0703614116";
+
+			mortalityReason.Part1And2       = new Part1And2Type();
+			mortalityReason.Part1And2.Items = new Object[1];
+
+			mortalityReason.Part1And2.Items[0] = new Part1Type();
+			Part1Type part1                    = (Part1Type)mortalityReason.Part1And2.Items[0];
+			part1.Created                      = DateTime.Now;			
+
+/*			part1.AlternativeDoctor                                        = new AlternativeDoctorType();
+			part1.AlternativeDoctor.DoctorAddress                          = new AddressPostalType();
+			part1.AlternativeDoctor.DoctorAddress.StreetName               = "Test_Street";
+			part1.AlternativeDoctor.DoctorAddress.StreetBuildingIdentifier = "45A";
+			part1.AlternativeDoctor.DoctorAddress.PostCodeIdentifier       = "1660";
+			part1.AlternativeDoctor.DoctorAddress.DistrictName             = "Test_District";
+			part1.AlternativeDoctor.PersonNameStructure                    = new PersonNameStructureType();
+			part1.AlternativeDoctor.PersonNameStructure.PersonGivenName    = "Test_Fornavn";
+			part1.AlternativeDoctor.PersonNameStructure.PersonMiddleName   = "Test_Mellemnavn";
+			part1.AlternativeDoctor.PersonNameStructure.PersonSurnameName  = "Test_Efternavn";
+*/
+			part1.BornDead     = false;
+			part1.BornDeadData = null;//Test om script fanger den her. (hvis den skal fanges!?) - update: Script fanger fejl når BornDead = true.
+
+			part1.HealthInsuranceNumber = "1";
+			part1.Implants              = ImplantsType.Unknown;
+			part1.InquestDate           = DateTime.Now.AddDays(-1);
+
+			part1.Item                                     = new TimeOfDeathType();
+			TimeOfDeathType timeOfDeathType                = (TimeOfDeathType)part1.Item;
+			timeOfDeathType.DateTimeOrDate                 = new DateTimeOrDateType();
+			timeOfDeathType.DateTimeOrDate.ItemElementName = ItemChoiceType.DateTime;
+			timeOfDeathType.DateTimeOrDate.Item            = DateTime.Now.AddDays(-2);
+			timeOfDeathType.DeathSite      = new DeathSiteType();
+			timeOfDeathType.DeathSite.Item = new ResidenceType();
+			timeOfDeathType.DeathSite.Item = ResidenceType.NurseryHome;
+
+			part1.Page2WillFollow   = true;
+			part1.PoliceContact     = true;
+			part1.PoliceStationName = "";
+			part1.SignOfDeath       = SignOfDeathType.MaceratioAndCadaverositasAndLivoresAndRigor;
+
+			return mortalityReason;
+		}
+
 		public static MortalityReasonType CreateTestDocument_Part2()
 		{
 			MortalityReasonType mortalityReason   = new MortalityReasonType();

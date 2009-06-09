@@ -43,7 +43,8 @@ namespace DGWSMortalitySTS
 
 				MortalityRegistrationService service = new MortalityRegistrationService();
 				service.SetPolicy(new DGWSPolicy(card, sksVOCESCert));
-				MortalityReasonType mort = Helper.CreateTestDocument_Part1And2();
+//				MortalityReasonType mort = Helper.CreateTestDocument_Part1And2();
+				MortalityReasonType mort = Helper.CreateTestDocument_Part1();
 				String s = service.Report(mort);
 				System.Diagnostics.Debug.WriteLine(s);
 			}
