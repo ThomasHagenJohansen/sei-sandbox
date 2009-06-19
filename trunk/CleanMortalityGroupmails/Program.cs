@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Data;
+using System.IO;
 using TietoEnator.Data.SqlClient.Builder;
 using TietoEnator.Data.SqlClient.Builder.Aggregates;
 using TietoEnator.Data.SqlClient.Builder.Criterias;
@@ -21,7 +23,7 @@ namespace CleanMortalityGroupmails
 				// Open connection to the database
 				Output("Open connection to database");
 
-				IConnectionInfo connInfo = new DB2_ConnectionInfo("sei-backend", "EISST", "EISST", "EISSTEISST");
+				IConnectionInfo connInfo = new DB2_ConnectionInfo("vagn", "EISST", "EISST", "EISSTEISST");
 				DBConnection connection  = runner.OpenConnection(executer, database, connInfo);
 
 				try
@@ -105,8 +107,7 @@ namespace CleanMortalityGroupmails
 		{
 			SQL_SelectStatement sqlSelect = new SQL_SelectStatement();
 			sqlSelect.AddColumn(gruppeTable, "uiGruppeID");
-//			sqlSelect.AddCriteria(new Crit_MatchCriteria(gruppeTable, "txNavn", MatchType.Equal, "Dødsattester midlertidig opbevaring"));
-			sqlSelect.AddCriteria(new Crit_MatchCriteria(gruppeTable, "txNavn", MatchType.Equal, "HOB"));
+			sqlSelect.AddCriteria(new Crit_MatchCriteria(gruppeTable, "txNavn", MatchType.Equal, "Dødsattester midlertidig opbevaring"));
 			DBRow row = runner.SelectAndReturnFirstRow(executer, connection, sqlSelect);
 			if (row == null)
 				return Guid.Empty;
@@ -125,23 +126,32 @@ namespace CleanMortalityGroupmails
 			using (DBReader reader = runner.GetReader(executer, connection, sqlSelect))
 			{
 				DBRow row;
+                int count = 0;
 
-				while ((row = reader.GetNextRow()) != null)
-				{
-					Guid documentID = (Guid)row["uiSkemaID"];
+                try
+                {
+                    while ((row = reader.GetNextRow()) != null)
+                    {
+                        Guid documentID = (Guid)row["uiSkemaID"];
 
-					if (HasID(side1Table, documentID, runner, executer, connection))
-					{
-						if (HasID(side2Table, documentID, runner, executer, connection) || OnlyOnePage((String)row["txBesked"]))
-						{
-							// Delete the document
-							Output("Delete document " + documentID);
-							SQL_DeleteStatement sqlDelete = new SQL_DeleteStatement(gruppePostkasseTable);
-							sqlDelete.AddCriteria(new Crit_MatchCriteria(gruppePostkasseTable, "uiBrevID", MatchType.Equal, row["uiBrevID"]));
-							//runner.Delete(executer, connection, sqlDelete);
-						}
-					}
-				}
+                        if (HasID(side1Table, documentID, runner, executer, connection))
+                        {
+                            if (HasID(side2Table, documentID, runner, executer, connection) || OnlyOnePage((String)row["txBesked"]))
+                            {
+                                // Delete the document
+                                Output("Delete document " + documentID);
+                                SQL_DeleteStatement sqlDelete = new SQL_DeleteStatement(gruppePostkasseTable);
+                                sqlDelete.AddCriteria(new Crit_MatchCriteria(gruppePostkasseTable, "uiBrevID", MatchType.Equal, row["uiBrevID"]));
+                                //runner.Delete(executer, connection, sqlDelete);
+                                count++;
+                            }
+                        }
+                    }
+                }
+                finally
+                {
+                    Output("Deleted " + count + " documents");
+                }
 			}
 		}
 
@@ -159,7 +169,34 @@ namespace CleanMortalityGroupmails
 
 		private static bool OnlyOnePage(String xml)
 		{
-			return false;
-		}
+            DataSet ds = new DataSet();
+
+            using (StringReader sr = new StringReader(xml))
+            {
+                ds.ReadXml(sr);
+                ds.AcceptChanges();
+            }
+
+            try
+            {
+                DataTable side1 = ds.Tables["Mortality_Side1"];
+                if (side1.Columns.Contains("bSide2"))
+                    return !((bool)side1.Rows[0]["bSide2"]);
+
+                DataTable side2 = ds.Tables["Mortality_Side2"];
+                if (side2.Rows.Count == 0)
+                    return true;
+
+                DataRow row2 = side2.Rows[0];
+                if (row2["txDodsaarsagA"].Equals("") && row2["txDodsaarsagB"].Equals("") && row2["txDodsaarsagC"].Equals("") && row2["txDodsaarsagD"].Equals(""))
+                    return true;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+
+            return false;
+        }
 	}
 }
