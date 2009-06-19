@@ -56,7 +56,7 @@ namespace CleanMortalityGroupmails
 						return;
 					}
 
-					Output("Plug-in ID: " + pluginID);
+					Output("Plug-in ID: " + pluginID.ToString("B").ToUpper());
 
 					// Find the group id where the documents are stored
 					Guid groupID = FindGroupID(grupperTable, runner, executer, connection);
@@ -66,7 +66,7 @@ namespace CleanMortalityGroupmails
 						return;
 					}
 
-					Output("Group ID: " + groupID);
+					Output("Group ID: " + groupID.ToString("B").ToUpper());
 
 					Output("Delete documents that are stored in the database");
 					FixMailBox(pluginID, groupID, gruppePostkasseTable, side1Table, side2Table, runner, executer, connection);
@@ -119,39 +119,52 @@ namespace CleanMortalityGroupmails
 		private static void FixMailBox(Guid pluginID, Guid groupID, DBTable gruppePostkasseTable, DBTable side1Table, DBTable side2Table, DBRunner runner, ISQLExecuter executer, DBConnection connection)
 		{
 			SQL_SelectStatement sqlSelect = new SQL_SelectStatement();
-			sqlSelect.AddColumns(gruppePostkasseTable, "uiBrevID", "uiSkemaID", "txBesked");
+			sqlSelect.AddColumns(gruppePostkasseTable, "uiBrevID", "uiSkemaID", "txCPRNr", "txBesked");
 			sqlSelect.AddCriteria(new Crit_MatchCriteria(gruppePostkasseTable, "uiGruppeID", MatchType.Equal, groupID));
 			sqlSelect.AddCriteria(new Crit_MatchCriteria(gruppePostkasseTable, "uiPluginID", MatchType.Equal, pluginID));
 
 			using (DBReader reader = runner.GetReader(executer, connection, sqlSelect))
 			{
 				DBRow row;
-                int count = 0;
+				int count = 0;
 
-                try
-                {
-                    while ((row = reader.GetNextRow()) != null)
-                    {
-                        Guid documentID = (Guid)row["uiSkemaID"];
+				try
+				{
+					while ((row = reader.GetNextRow()) != null)
+					{
+						Guid documentID = (Guid)row["uiSkemaID"];
+						bool deleteIt = false;
+						int option = 0;
 
-                        if (HasID(side1Table, documentID, runner, executer, connection))
-                        {
-                            if (HasID(side2Table, documentID, runner, executer, connection) || OnlyOnePage((String)row["txBesked"]))
-                            {
-                                // Delete the document
-                                Output("Delete document " + documentID);
-                                SQL_DeleteStatement sqlDelete = new SQL_DeleteStatement(gruppePostkasseTable);
-                                sqlDelete.AddCriteria(new Crit_MatchCriteria(gruppePostkasseTable, "uiBrevID", MatchType.Equal, row["uiBrevID"]));
-                                //runner.Delete(executer, connection, sqlDelete);
-                                count++;
-                            }
-                        }
-                    }
-                }
-                finally
-                {
-                    Output("Deleted " + count + " documents");
-                }
+						if (HasID(side1Table, documentID, runner, executer, connection))
+						{
+							if (HasID(side2Table, documentID, runner, executer, connection))
+							{
+								option = 1;
+								deleteIt = true;
+							}
+							else if (OnlyOnePage((String)row["txBesked"]))
+							{
+								option = 2;
+								deleteIt = true;
+							}
+
+							if (deleteIt)
+							{
+								// Delete the document
+								Output(option + "," + row["txCPRNr"] + "," + documentID.ToString("B").ToUpper());
+								SQL_DeleteStatement sqlDelete = new SQL_DeleteStatement(gruppePostkasseTable);
+								sqlDelete.AddCriteria(new Crit_MatchCriteria(gruppePostkasseTable, "uiBrevID", MatchType.Equal, row["uiBrevID"]));
+								runner.Delete(executer, connection, sqlDelete);
+								count++;
+							}
+						}
+					}
+				}
+				finally
+				{
+					Output("Deleted " + count + " documents");
+				}
 			}
 		}
 
@@ -169,34 +182,34 @@ namespace CleanMortalityGroupmails
 
 		private static bool OnlyOnePage(String xml)
 		{
-            DataSet ds = new DataSet();
+			DataSet ds = new DataSet();
 
-            using (StringReader sr = new StringReader(xml))
-            {
-                ds.ReadXml(sr);
-                ds.AcceptChanges();
-            }
+			using (StringReader sr = new StringReader(xml))
+			{
+				ds.ReadXml(sr);
+				ds.AcceptChanges();
+			}
 
-            try
-            {
-                DataTable side1 = ds.Tables["Mortality_Side1"];
-                if (side1.Columns.Contains("bSide2"))
-                    return !((bool)side1.Rows[0]["bSide2"]);
+			try
+			{
+				DataTable side1 = ds.Tables["Mortality_Side1"];
+				if (side1.Columns.Contains("bSide2"))
+					return !((bool)side1.Rows[0]["bSide2"]);
 
-                DataTable side2 = ds.Tables["Mortality_Side2"];
-                if (side2.Rows.Count == 0)
-                    return true;
+				DataTable side2 = ds.Tables["Mortality_Side2"];
+				if (side2.Rows.Count == 0)
+					return true;
 
-                DataRow row2 = side2.Rows[0];
-                if (row2["txDodsaarsagA"].Equals("") && row2["txDodsaarsagB"].Equals("") && row2["txDodsaarsagC"].Equals("") && row2["txDodsaarsagD"].Equals(""))
-                    return true;
-            }
-            catch (Exception ex)
-            {
-                throw;
-            }
+				DataRow row2 = side2.Rows[0];
+				if (row2["txDodsaarsagA"].Equals("") && row2["txDodsaarsagB"].Equals("") && row2["txDodsaarsagC"].Equals("") && row2["txDodsaarsagD"].Equals(""))
+					return true;
+			}
+			catch (Exception ex)
+			{
+				throw;
+			}
 
-            return false;
-        }
+			return false;
+		}
 	}
 }
