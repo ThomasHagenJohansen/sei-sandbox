@@ -65,13 +65,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Certificates\SKSMedarbejder.p12">
+    <None Include="Certificates\TestMOCES1.p12">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Certificates\SKSVirksomhed.p12">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Include="Certificates\TestMOCES1.p12" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -82,10 +78,10 @@
     <WebReferences Include="Web References\" />
   </ItemGroup>
   <ItemGroup>
-    <WebReferenceUrl Include="http://seifstest/DGWS/MortalityRegistrationService.asmx">
+    <WebReferenceUrl Include="http://sei-frontend/DGWS/MortalityRegistrationService.asmx">
       <UrlBehavior>Dynamic</UrlBehavior>
       <RelPath>Web References\Mortality\</RelPath>
-      <UpdateFromURL>http://seifstest/DGWS/MortalityRegistrationService.asmx</UpdateFromURL>
+      <UpdateFromURL>http://sei-frontend/DGWS/MortalityRegistrationService.asmx</UpdateFromURL>
       <ServiceLocationURL>
       </ServiceLocationURL>
       <CachedDynamicPropName>
@@ -95,6 +91,15 @@
     </WebReferenceUrl>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Certificates\STSMedarbejder.p12">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Certificates\STSVirksomhed.p12">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Certificates\TestVOCES1.p12">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Web References\Mortality\MortalityRegistrationService.disco" />
     <None Include="Web References\Mortality\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>

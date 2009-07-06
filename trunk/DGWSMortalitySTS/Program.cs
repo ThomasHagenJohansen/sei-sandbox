@@ -20,15 +20,19 @@ namespace DGWSMortalitySTS
 			{
 				bool useSTS = true;
 
-				X509Certificate2 sksMOCESCert = GetSKSMOCESCertificate();
-				X509Certificate2 sksVOCESCert = GetSKSVOCESCertificate();
+//				X509Certificate2 MOCESCert = GetMOCESCertificate();
+//				X509Certificate2 VOCESCert = GetVOCESCertificate();
+				X509Certificate2 MOCESCert = GetSTSMOCESCertificate();
+				X509Certificate2 VOCESCert = GetSTSVOCESCertificate();
 
 				DGWSCard10Type card;
 
 				if (useSTS)
 				{
 					DGWSCard101Type idCard = GetIDCardVersion101();
-                    idCard.Sign(sksMOCESCert);
+					idCard.Sign(MOCESCert);
+//					DGWSCard101Type idCard = GetSystemIDCardVersion101();
+//					idCard.Sign(VOCESCert);
 
 					XElement x = IDP.CallIdp(idCard, "SEI", "http://pan.certifikat.dk/sts/services/SecurityTokenService");
 
@@ -37,14 +41,17 @@ namespace DGWSMortalitySTS
 				else
 				{
 //					card = GetIDCardVersion101();
-					card = GetIDCardVersion11();
-					card.Sign(sksMOCESCert);
+//					card = GetIDCardVersion11();
+					card = GetSystemIDCardVersion101();
+//					card.Sign(MOCESCert);
+					card.Sign(VOCESCert);
 				}
 
 				MortalityRegistrationService service = new MortalityRegistrationService();
-				service.SetPolicy(new DGWSPolicy(card, sksVOCESCert));
-//				MortalityReasonType mort = Helper.CreateTestDocument_Part1And2();
-				MortalityReasonType mort = Helper.CreateTestDocument_Part1();
+				service.SetPolicy(new DGWSPolicy(card, VOCESCert));
+//				service.SetPolicy(new DGWSPolicy(card, MOCESCert));
+				MortalityReasonType mort = Helper.CreateTestDocument_Part1And2();
+//				MortalityReasonType mort = Helper.CreateTestDocument_Part1();
 				String s = service.Report(mort);
 				System.Diagnostics.Debug.WriteLine(s);
 			}
@@ -54,15 +61,27 @@ namespace DGWSMortalitySTS
 			}
 		}
 
-		private static X509Certificate2 GetSKSMOCESCertificate()
+		private static X509Certificate2 GetMOCESCertificate()
 		{
-			String path = Path.Combine(Directory.GetCurrentDirectory(), "Certificates\\SKSMedarbejder.p12");
+			String path = Path.Combine(Directory.GetCurrentDirectory(), "Certificates\\TestMOCES1.p12");
 			return new X509Certificate2(path, "Test1234");
 		}
 
-		private static X509Certificate2 GetSKSVOCESCertificate()
+		private static X509Certificate2 GetVOCESCertificate()
 		{
-			String path = Path.Combine(Directory.GetCurrentDirectory(), "Certificates\\SKSVirksomhed.p12");
+			String path = Path.Combine(Directory.GetCurrentDirectory(), "Certificates\\TestVOCES1.p12");
+			return new X509Certificate2(path, "Test1234");
+		}
+
+		private static X509Certificate2 GetSTSMOCESCertificate()
+		{
+			String path = Path.Combine(Directory.GetCurrentDirectory(), "Certificates\\STSMedarbejder.p12");
+			return new X509Certificate2(path, "Test1234");
+		}
+
+		private static X509Certificate2 GetSTSVOCESCertificate()
+		{
+			String path = Path.Combine(Directory.GetCurrentDirectory(), "Certificates\\STSVirksomhed.p12");
 			return new X509Certificate2(path, "Test1234");
 		}
 
@@ -118,6 +137,30 @@ namespace DGWSMortalitySTS
 			card.Role = "SEI User";
 			card.Occupation = "?";
 			card.AuthorizationCode = "19901";
+
+			card.ITSystemName = "SEI Client";
+			card.OrganisationID = "12070918";
+			card.OrganisationIDFormat = FormatIds.cvrnumber;
+			card.OrganisationName = "SST";
+
+//			card.AuthenticatingAuthority = "http://sosi.dk";
+
+			return card;
+		}
+
+		private static DGWSCard101Type GetSystemIDCardVersion101()
+		{
+			DGWSCard101Type card = new DGWSCard101Type();
+
+			card.Issuer = "SEI Client";
+
+			card.NameID = "12070918";
+			card.NameIDFormat = FormatIds.cvrnumber;
+
+			card.CardLifeTime = CardLifeTimeType.Hours24;
+
+			card.IDCardType = CardType.system;
+			card.AuthenticationLevel = 3;
 
 			card.ITSystemName = "SEI Client";
 			card.OrganisationID = "12070918";
