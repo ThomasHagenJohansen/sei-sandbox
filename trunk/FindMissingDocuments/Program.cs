@@ -39,8 +39,26 @@ namespace FindMissingDocuments
 					DBTable revisionssporTable = runner.GetTableMetaData(executer, connection, database, "EISST", "Revisionsspor");
 					database.AddTable(revisionssporTable);
 
-					FindDocuments(pluginsTable, gruppePostkasseTable, revisionssporTable, runner, executer, connection, "dk.hob.ei.mortality.Plugin", "Mortality_Side1", "Mortality_Side2");
+//					FindDocuments(pluginsTable, gruppePostkasseTable, revisionssporTable, runner, executer, connection, "dk.hob.ei.abort.Plugin", "Abort_Grundoplysninger");
+//					FindDocuments(pluginsTable, gruppePostkasseTable, revisionssporTable, runner, executer, connection, "dk.hob.ei.bdb.Plugin", "BDB_Grundoplysninger");
+//					FindDocuments(pluginsTable, gruppePostkasseTable, revisionssporTable, runner, executer, connection, "dk.hob.ei.cancer.Plugin", "Cancer");
+//					FindDocuments(pluginsTable, gruppePostkasseTable, revisionssporTable, runner, executer, connection, "dk.hob.ei.commoncancer.Plugin", "CommonCancer");
+//					FindDocuments(pluginsTable, gruppePostkasseTable, revisionssporTable, runner, executer, connection, "dk.hob.ei.genoptraening.Plugin", "Genoptraening_Grundoplysninger");
+//					FindDocuments(pluginsTable, gruppePostkasseTable, revisionssporTable, runner, executer, connection, "dk.hob.ei.hbs.Plugin", "HBS_Grundoplysninger");
+//					FindDocuments(pluginsTable, gruppePostkasseTable, revisionssporTable, runner, executer, connection, "dk.hob.ei.injicerbarheroin.Plugin", "InjicerbarHeroin_Grundoplysninger");
+//					FindDocuments(pluginsTable, gruppePostkasseTable, revisionssporTable, runner, executer, connection, "dk.hob.ei.ivf.Plugin", "IVF_Grundoplysninger");
+//					FindDocuments(pluginsTable, gruppePostkasseTable, revisionssporTable, runner, executer, connection, "dk.hob.ei.minipas.Plugin", "MiniPas_Skema1_Grundoplysninger");
+//					FindDocuments(pluginsTable, gruppePostkasseTable, revisionssporTable, runner, executer, connection, "dk.hob.ei.nab.Plugin", "NAB_Grundoplysninger");
+//					FindDocuments(pluginsTable, gruppePostkasseTable, revisionssporTable, runner, executer, connection, "dk.hob.ei.mortality.Plugin", "Mortality_Side1", "Mortality_Side2");
+//					FindDocuments(pluginsTable, gruppePostkasseTable, revisionssporTable, runner, executer, connection, "dk.hob.ei.patologi.Plugin", "Patologi_Skema1");
+//					FindDocuments(pluginsTable, gruppePostkasseTable, revisionssporTable, runner, executer, connection, "dk.hob.ei.psykiatrilovensp3.Plugin", "Psykiatrilovensp3_Grundoplysninger");
 //					FindDocuments(pluginsTable, gruppePostkasseTable, revisionssporTable, runner, executer, connection, "dk.hob.ei.sengepladser.Plugin", "Sengepladser_Grundoplysninger");
+//					FindDocuments(pluginsTable, gruppePostkasseTable, revisionssporTable, runner, executer, connection, "dk.hob.ei.sib.Plugin", "SIB_Grundoplysninger");
+//					FindDocuments(pluginsTable, gruppePostkasseTable, revisionssporTable, runner, executer, connection, "dk.hob.ei.tvang1.Plugin", "Tvang_Skema1_Head");
+//					FindDocuments(pluginsTable, gruppePostkasseTable, revisionssporTable, runner, executer, connection, "dk.hob.ei.tvang2.Plugin", "Tvang_Skema2_Head");
+					FindDocuments(pluginsTable, gruppePostkasseTable, revisionssporTable, runner, executer, connection, "dk.hob.ei.tvang3.Plugin", "Tvang_Skema3_Head");
+//					FindDocuments(pluginsTable, gruppePostkasseTable, revisionssporTable, runner, executer, connection, "dk.hob.ei.tvang4.Plugin", "Tvang_Skema4_Head");
+//					FindDocuments(pluginsTable, gruppePostkasseTable, revisionssporTable, runner, executer, connection, "dk.hob.ei.tvang5.Plugin", "Tvang_Skema5_Head");
 				}
 				finally
 				{
@@ -128,8 +146,11 @@ namespace FindMissingDocuments
 
 				while ((row = reader.GetNextRow()) != null)
 				{
-					Guid id = (Guid)row["uiSkemaID"];
-					ids[id] = null;
+					if (row["uiSkemaID"] != null)
+					{
+						Guid id = (Guid)row["uiSkemaID"];
+						ids[id] = null;
+					}
 				}
 			}
 		}
