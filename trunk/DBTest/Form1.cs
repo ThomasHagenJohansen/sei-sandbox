@@ -225,11 +225,11 @@ namespace DBTest
 
 						try
 						{
-							SQL_CreateTableStatement sqlCreate = new SQL_CreateTableStatement(table1);
-							runner.CreateTable(executer, conn, sqlCreate);
+							Stmt_CreateTable stmtCreate = new Stmt_CreateTable(table1);
+							runner.CreateTable(executer, conn, stmtCreate);
 
-							sqlCreate = new SQL_CreateTableStatement(table2);
-							runner.CreateTable(executer, conn, sqlCreate);
+							stmtCreate = new Stmt_CreateTable(table2);
+							runner.CreateTable(executer, conn, stmtCreate);
 						}
 						finally
 						{
@@ -254,11 +254,11 @@ namespace DBTest
 
 						try
 						{
-							SQL_DropTableStatement sqlDrop = new SQL_DropTableStatement(table1);
-							runner.DropTable(executer, conn, sqlDrop);
+							Stmt_DropTable stmtDrop = new Stmt_DropTable(table1);
+							runner.DropTable(executer, conn, stmtDrop);
 
-							sqlDrop = new SQL_DropTableStatement(table2);
-							runner.DropTable(executer, conn, sqlDrop);
+							stmtDrop = new Stmt_DropTable(table2);
+							runner.DropTable(executer, conn, stmtDrop);
 						}
 						finally
 						{
@@ -375,9 +375,9 @@ namespace DBTest
 					Output("");
 
 					Output("Create table " + name);
-					SQL_CreateTableStatement sqlCreate = new SQL_CreateTableStatement(table);
-					Output(builder.ToSQL(sqlCreate));
-					runner.CreateTable(executer, conn, sqlCreate);
+					Stmt_CreateTable stmtCreate = new Stmt_CreateTable(table);
+					Output(builder.ToSQL(stmtCreate));
+					runner.CreateTable(executer, conn, stmtCreate);
 					Output("Table created");
 					Output("");
 
@@ -388,9 +388,9 @@ namespace DBTest
 					if (result)
 					{
 						Output("Drop table " + name);
-						SQL_DropTableStatement sqlDrop = new SQL_DropTableStatement(table);
-						Output(builder.ToSQL(sqlDrop));
-						runner.DropTable(executer, conn, sqlDrop);
+						Stmt_DropTable stmtDrop = new Stmt_DropTable(table);
+						Output(builder.ToSQL(stmtDrop));
+						runner.DropTable(executer, conn, stmtDrop);
 						Output("Table dropped");
 						Output("");
 
@@ -470,11 +470,11 @@ namespace DBTest
 				try
 				{
 					Output("Insert single row");
-					SQL_InsertStatement sqlInsert = new SQL_InsertStatement(table);
-					sqlInsert.AddColumns("uiNoegle", "iTal", "lStortTal", "dtDato", "bValg");
-					sqlInsert.AddValues(Guid.NewGuid(), 87, (long)2394287487, DateTime.Now, false);
-					Output(builder.ToSQL(sqlInsert));
-					runner.Insert(executer, conn, sqlInsert);
+					Stmt_Insert stmtInsert = new Stmt_Insert(table);
+					stmtInsert.AddColumns("uiNoegle", "iTal", "lStortTal", "dtDato", "bValg");
+					stmtInsert.AddValues(Guid.NewGuid(), 87, (long)2394287487, DateTime.Now, false);
+					Output(builder.ToSQL(stmtInsert));
+					runner.Insert(executer, conn, stmtInsert);
 					Output("Row inserted");
 				}
 				finally
@@ -506,11 +506,11 @@ namespace DBTest
 				try
 				{
 					Output("Get count");
-					SQL_SelectStatement sqlSelect = new SQL_SelectStatement();
-					sqlSelect.AddTable(table);
-					sqlSelect.AddAggregate(new Aggre_Count());
-					Output(builder.ToSQL(sqlSelect));
-					long result = runner.SelectWithSingleAggregate(executer, conn, sqlSelect);
+					Stmt_Select stmtSelect = new Stmt_Select();
+					stmtSelect.AddTable(table);
+					stmtSelect.AddAggregate(new Aggre_Count());
+					Output(builder.ToSQL(stmtSelect));
+					long result = runner.SelectWithSingleAggregate(executer, conn, stmtSelect);
 					Output("Count: " + result + " / 1");
 				}
 				finally
@@ -542,15 +542,15 @@ namespace DBTest
 				try
 				{
 					Output("Delete all rows");
-					SQL_DeleteStatement sqlDelete = new SQL_DeleteStatement(table);
-					Output(builder.ToSQL(sqlDelete));
-					runner.Delete(executer, conn, sqlDelete);
+					Stmt_Delete stmtDelete = new Stmt_Delete(table);
+					Output(builder.ToSQL(stmtDelete));
+					runner.Delete(executer, conn, stmtDelete);
 					Output("Rows deleted");
 
-					SQL_SelectStatement sqlSelect = new SQL_SelectStatement();
-					sqlSelect.AddTable(table);
-					sqlSelect.AddAggregate(new Aggre_Count());
-					long result = runner.SelectWithSingleAggregate(executer, conn, sqlSelect);
+					Stmt_Select stmtSelect = new Stmt_Select();
+					stmtSelect.AddTable(table);
+					stmtSelect.AddAggregate(new Aggre_Count());
+					long result = runner.SelectWithSingleAggregate(executer, conn, stmtSelect);
 					Output("Count: " + result + " / 0");
 				}
 				finally
@@ -581,8 +581,8 @@ namespace DBTest
 
 				try
 				{
-					SQL_InsertStatement sqlInsert;
-					SQL_SelectStatement sqlSelect;
+					Stmt_Insert stmtInsert;
+					Stmt_Select stmtSelect;
 					long result;
 
 					Output("Begin transaction");
@@ -592,15 +592,15 @@ namespace DBTest
 					try
 					{
 						Output("Insert row");
-						sqlInsert = new SQL_InsertStatement(table);
-						sqlInsert.AddColumns("uiNoegle", "iTal", "lStortTal", "dtDato", "bValg");
-						sqlInsert.AddValues(Guid.NewGuid(), 87, (long)2394287487, DateTime.Now, false);
-						runner.Insert(executer, conn, sqlInsert);
+						stmtInsert = new Stmt_Insert(table);
+						stmtInsert.AddColumns("uiNoegle", "iTal", "lStortTal", "dtDato", "bValg");
+						stmtInsert.AddValues(Guid.NewGuid(), 87, (long)2394287487, DateTime.Now, false);
+						runner.Insert(executer, conn, stmtInsert);
 
-						sqlSelect = new SQL_SelectStatement();
-						sqlSelect.AddTable(table);
-						sqlSelect.AddAggregate(new Aggre_Count());
-						result = runner.SelectWithSingleAggregate(executer, conn, sqlSelect);
+						stmtSelect = new Stmt_Select();
+						stmtSelect.AddTable(table);
+						stmtSelect.AddAggregate(new Aggre_Count());
+						result = runner.SelectWithSingleAggregate(executer, conn, stmtSelect);
 						Output("Count: " + result + " / 1");
 
 						Output("Rollback");
@@ -612,10 +612,10 @@ namespace DBTest
 						throw;
 					}
 
-					sqlSelect = new SQL_SelectStatement();
-					sqlSelect.AddTable(table);
-					sqlSelect.AddAggregate(new Aggre_Count());
-					result = runner.SelectWithSingleAggregate(executer, conn, sqlSelect);
+					stmtSelect = new Stmt_Select();
+					stmtSelect.AddTable(table);
+					stmtSelect.AddAggregate(new Aggre_Count());
+					result = runner.SelectWithSingleAggregate(executer, conn, stmtSelect);
 					Output("Count: " + result + " / 0");
 					Output("");
 
@@ -626,15 +626,15 @@ namespace DBTest
 					try
 					{
 						Output("Insert row");
-						sqlInsert = new SQL_InsertStatement(table);
-						sqlInsert.AddColumns("uiNoegle", "iTal", "lStortTal", "dtDato", "bValg");
-						sqlInsert.AddValues(Guid.NewGuid(), 87, (long)2394287487, DateTime.Now, false);
-						runner.Insert(executer, conn, sqlInsert);
+						stmtInsert = new Stmt_Insert(table);
+						stmtInsert.AddColumns("uiNoegle", "iTal", "lStortTal", "dtDato", "bValg");
+						stmtInsert.AddValues(Guid.NewGuid(), 87, (long)2394287487, DateTime.Now, false);
+						runner.Insert(executer, conn, stmtInsert);
 
-						sqlSelect = new SQL_SelectStatement();
-						sqlSelect.AddTable(table);
-						sqlSelect.AddAggregate(new Aggre_Count());
-						result = runner.SelectWithSingleAggregate(executer, conn, sqlSelect);
+						stmtSelect = new Stmt_Select();
+						stmtSelect.AddTable(table);
+						stmtSelect.AddAggregate(new Aggre_Count());
+						result = runner.SelectWithSingleAggregate(executer, conn, stmtSelect);
 						Output("Count: " + result + " / 1");
 
 						Output("Commit");
@@ -646,10 +646,10 @@ namespace DBTest
 						throw;
 					}
 
-					sqlSelect = new SQL_SelectStatement();
-					sqlSelect.AddTable(table);
-					sqlSelect.AddAggregate(new Aggre_Count());
-					result = runner.SelectWithSingleAggregate(executer, conn, sqlSelect);
+					stmtSelect = new Stmt_Select();
+					stmtSelect.AddTable(table);
+					stmtSelect.AddAggregate(new Aggre_Count());
+					result = runner.SelectWithSingleAggregate(executer, conn, stmtSelect);
 					Output("Count: " + result + " / 1");
 				}
 				finally
@@ -673,13 +673,13 @@ namespace DBTest
 		{
 			Output("Display contents of table " + table.TableName);
 
-			SQL_SelectStatement sqlSelect = new SQL_SelectStatement();
-			sqlSelect.AddAllColumns(table);
+			Stmt_Select stmtSelect = new Stmt_Select();
+			stmtSelect.AddAllColumns(table);
 
-			ShowContents(sqlSelect, runner, executer, conn);
+			ShowContents(stmtSelect, runner, executer, conn);
 		}
 
-		private void ShowContents(SQL_SelectStatement statement, DBRunner runner, ISQLExecuter executer, DBConnection conn)
+		private void ShowContents(Stmt_Select statement, DBRunner runner, ISQLExecuter executer, DBConnection conn)
 		{
 			DBRowCollection coll = runner.Select(executer, conn, statement);
 
@@ -712,14 +712,14 @@ namespace DBTest
 				try
 				{
 					Output("Insert more rows");
-					SQL_InsertStatement sqlInsert = new SQL_InsertStatement(table);
-					sqlInsert.AddAllColumns();
-					sqlInsert.AddValues(Guid.NewGuid(), "Dette er en tekst", 42, DateTime.Now, null, 6576547634);
-					sqlInsert.AddParameter("MEGET STOR TEKST");
-					sqlInsert.AddValue(true);
-					sqlInsert.AddParameter(new byte[432]);
-					Output(builder.ToSQL(sqlInsert));
-					runner.Insert(executer, conn, sqlInsert);
+					Stmt_Insert stmtInsert = new Stmt_Insert(table);
+					stmtInsert.AddAllColumns();
+					stmtInsert.AddValues(Guid.NewGuid(), "Dette er en tekst", 42, DateTime.Now, null, 6576547634);
+					stmtInsert.AddParameter("MEGET STOR TEKST");
+					stmtInsert.AddValue(true);
+					stmtInsert.AddParameter(new byte[432]);
+					Output(builder.ToSQL(stmtInsert));
+					runner.Insert(executer, conn, stmtInsert);
 					Output("Rows inserted");
 					Output("");
 
@@ -727,41 +727,41 @@ namespace DBTest
 					Output("");
 
 					Output("Update 1");
-					SQL_UpdateStatement sqlUpdate = new SQL_UpdateStatement(table);
-					sqlUpdate.AddColumns("txTekst", "iTal");
-					sqlUpdate.AddValues("En ny tekst", 534);
-					sqlUpdate.AddCriteria(new Crit_MatchCriteria(table, "iTal", MatchType.Equal, 42));
-					Output(builder.ToSQL(sqlUpdate));
-					runner.Update(executer, conn, sqlUpdate);
+					Stmt_Update stmtUpdate = new Stmt_Update(table);
+					stmtUpdate.AddColumns("txTekst", "iTal");
+					stmtUpdate.AddValues("En ny tekst", 534);
+					stmtUpdate.AddCriteria(new Crit_Match(table, "iTal", MatchType.Equal, 42));
+					Output(builder.ToSQL(stmtUpdate));
+					runner.Update(executer, conn, stmtUpdate);
 					Output("");
 
 					ShowContents(runner, executer, conn, table);
 					Output("");
 
 					Output("Update 2");
-					sqlUpdate = new SQL_UpdateStatement(table);
-					sqlUpdate.AddColumn("txStorTekst");
-					sqlUpdate.AddParameter("DETTE STÅR MED STORT!");
-					sqlUpdate.AddCriteria(new Crit_MatchCriteria(table, "txStorTekst", MatchType.IsNull));
-					Output(builder.ToSQL(sqlUpdate));
-					runner.Update(executer, conn, sqlUpdate);
+					stmtUpdate = new Stmt_Update(table);
+					stmtUpdate.AddColumn("txStorTekst");
+					stmtUpdate.AddParameter("DETTE STÅR MED STORT!");
+					stmtUpdate.AddCriteria(new Crit_Match(table, "txStorTekst", MatchType.IsNull));
+					Output(builder.ToSQL(stmtUpdate));
+					runner.Update(executer, conn, stmtUpdate);
 					Output("");
 
 					ShowContents(runner, executer, conn, table);
 					Output("");
 
-					SQL_SelectStatement sqlSelect = new SQL_SelectStatement();
-					sqlSelect.AddTable(table);
-					sqlSelect.AddFunction(new Func_SubString(table, "txTekst", 3, 8));
-					Output(builder.ToSQL(sqlSelect));
-					ShowContents(sqlSelect, runner, executer, conn);
+					Stmt_Select stmtSelect = new Stmt_Select();
+					stmtSelect.AddTable(table);
+					stmtSelect.AddFunction(new Func_SubString(table, "txTekst", 3, 8));
+					Output(builder.ToSQL(stmtSelect));
+					ShowContents(stmtSelect, runner, executer, conn);
 					Output("");
 
 					Output("Delete");
-					SQL_DeleteStatement sqlDelete = new SQL_DeleteStatement(table);
-					sqlDelete.AddCriteria(new Crit_MatchCriteria(table, "bValg", MatchType.Equal, false));
-					Output(builder.ToSQL(sqlDelete));
-					runner.Delete(executer, conn, sqlDelete);
+					Stmt_Delete stmtDelete = new Stmt_Delete(table);
+					stmtDelete.AddCriteria(new Crit_Match(table, "bValg", MatchType.Equal, false));
+					Output(builder.ToSQL(stmtDelete));
+					runner.Delete(executer, conn, stmtDelete);
 					Output("");
 
 					ShowContents(runner, executer, conn, table);
@@ -795,43 +795,43 @@ namespace DBTest
 				try
 				{
 					Output("Insert single row");
-					SQL_InsertStatement sqlInsert = new SQL_InsertStatement(table);
-					sqlInsert.AddColumns("uiNoegle", "iTal", "lStortTal", "dtDato", "bValg");
-					sqlInsert.AddValues(Guid.NewGuid(), 87, (long)2394287487, DateTime.Now, false);
-					Output(builder.ToSQL(sqlInsert));
-					runner.Insert(executer, conn, sqlInsert);
+					Stmt_Insert stmtInsert = new Stmt_Insert(table);
+					stmtInsert.AddColumns("uiNoegle", "iTal", "lStortTal", "dtDato", "bValg");
+					stmtInsert.AddValues(Guid.NewGuid(), 87, (long)2394287487, DateTime.Now, false);
+					Output(builder.ToSQL(stmtInsert));
+					runner.Insert(executer, conn, stmtInsert);
 
-					sqlInsert = new SQL_InsertStatement(table);
-					sqlInsert.AddColumns("uiNoegle", "txTekst", "iTal", "lStortTal", "dtDato", "bValg");
-					sqlInsert.AddValues(Guid.NewGuid(), "Blåbærgrød", 87, (long)2394287487, DateTime.Now, false);
-					Output(builder.ToSQL(sqlInsert));
-					runner.Insert(executer, conn, sqlInsert);
+					stmtInsert = new Stmt_Insert(table);
+					stmtInsert.AddColumns("uiNoegle", "txTekst", "iTal", "lStortTal", "dtDato", "bValg");
+					stmtInsert.AddValues(Guid.NewGuid(), "Blåbærgrød", 87, (long)2394287487, DateTime.Now, false);
+					Output(builder.ToSQL(stmtInsert));
+					runner.Insert(executer, conn, stmtInsert);
 					Output("Rows inserted");
 					Output("");
 
 					ShowContents(runner, executer, conn, table);
 					Output("");
 
-					SQL_SelectStatement sqlSelect = new SQL_SelectStatement();
-					sqlSelect.AddTable(table);
+					Stmt_Select stmtSelect = new Stmt_Select();
+					stmtSelect.AddTable(table);
 					IFunction func = new Func_SubString(table, "txTekst", 3, 8);
-					sqlSelect.AddFunction(new Func_SubString(func, 0, 2));
-					Output(builder.ToSQL(sqlSelect));
-					ShowContents(sqlSelect, runner, executer, conn);
+					stmtSelect.AddFunction(new Func_SubString(func, 0, 2));
+					Output(builder.ToSQL(stmtSelect));
+					ShowContents(stmtSelect, runner, executer, conn);
 					Output("");
 
-					sqlSelect = new SQL_SelectStatement();
-					sqlSelect.AddTable(table);
-					sqlSelect.AddFunction(new Func_ToLower(table, "txTekst"));
-					Output(builder.ToSQL(sqlSelect));
-					ShowContents(sqlSelect, runner, executer, conn);
+					stmtSelect = new Stmt_Select();
+					stmtSelect.AddTable(table);
+					stmtSelect.AddFunction(new Func_ToLower(table, "txTekst"));
+					Output(builder.ToSQL(stmtSelect));
+					ShowContents(stmtSelect, runner, executer, conn);
 					Output("");
 
-					sqlSelect = new SQL_SelectStatement();
-					sqlSelect.AddTable(table);
-					sqlSelect.AddFunction(new Func_ToUpper(table, "txTekst"));
-					Output(builder.ToSQL(sqlSelect));
-					ShowContents(sqlSelect, runner, executer, conn);
+					stmtSelect = new Stmt_Select();
+					stmtSelect.AddTable(table);
+					stmtSelect.AddFunction(new Func_ToUpper(table, "txTekst"));
+					Output(builder.ToSQL(stmtSelect));
+					ShowContents(stmtSelect, runner, executer, conn);
 				}
 				finally
 				{
@@ -862,11 +862,11 @@ namespace DBTest
 				try
 				{
 					Output("Insert more test rows");
-					SQL_InsertStatement sqlInsert = new SQL_InsertStatement(table1);
-					sqlInsert.AddColumns("uiNoegle", "txTekst", "iTal", "lStortTal", "dtDato", "bValg");
-					sqlInsert.AddValues(Guid.NewGuid(), "Giv mig en bog!", 123, (long)213142566, DateTime.Now, true);
-					Output(builder.ToSQL(sqlInsert));
-					runner.Insert(executer, conn, sqlInsert);
+					Stmt_Insert stmtInsert = new Stmt_Insert(table1);
+					stmtInsert.AddColumns("uiNoegle", "txTekst", "iTal", "lStortTal", "dtDato", "bValg");
+					stmtInsert.AddValues(Guid.NewGuid(), "Giv mig en bog!", 123, (long)213142566, DateTime.Now, true);
+					Output(builder.ToSQL(stmtInsert));
+					runner.Insert(executer, conn, stmtInsert);
 					Output("Rows inserted");
 					Output("");
 
@@ -875,19 +875,19 @@ namespace DBTest
 					ShowContents(runner, executer, conn, table2);
 					Output("");
 
-					SQL_SelectStatement sqlSelect1 = new SQL_SelectStatement();
-					sqlSelect1.AddColumns(table1, "uiNoegle", "txTekst", "iTal", "lStortTal");
+					Stmt_Select stmtSelect1 = new Stmt_Select();
+					stmtSelect1.AddColumns(table1, "uiNoegle", "txTekst", "iTal", "lStortTal");
 
-					SQL_SelectStatement sqlSelect2 = new SQL_SelectStatement();
-					sqlSelect2.AddColumns(table2, "uiNoegle", "txTekst", "iTal", "lStortTal");
+					Stmt_Select stmtSelect2 = new Stmt_Select();
+					stmtSelect2.AddColumns(table2, "uiNoegle", "txTekst", "iTal", "lStortTal");
 
-					SQL_SelectStatement sqlUnion = new SQL_SelectStatement();
-					sqlUnion.AddColumns(table1, "uiNoegle", "txTekst", "iTal", "lStortTal");
-					sqlUnion.AddUnion(sqlSelect1);
-					sqlUnion.AddUnion(sqlSelect2);
-					sqlUnion.AddSort(table1, "iTal", Order.Ascending);
-					Output(builder.ToSQL(sqlUnion));
-					ShowContents(sqlUnion, runner, executer, conn);
+					Stmt_Select stmtUnion = new Stmt_Select();
+					stmtUnion.AddColumns(table1, "uiNoegle", "txTekst", "iTal", "lStortTal");
+					stmtUnion.AddUnion(stmtSelect1);
+					stmtUnion.AddUnion(stmtSelect2);
+					stmtUnion.AddSort(table1, "iTal", Order.Ascending);
+					Output(builder.ToSQL(stmtUnion));
+					ShowContents(stmtUnion, runner, executer, conn);
 				}
 				finally
 				{
@@ -914,80 +914,80 @@ namespace DBTest
 			try
 			{
 				Output("Criterias:");
-				ICriteria crit1 = new Crit_MatchCriteria(table, "lStortTal", MatchType.Equal, 6576547634);
-				ICriteria crit2 = new Crit_MatchCriteria(table, "txTekst", MatchType.Different, "Bent");
-				ICriteria crit3 = new Crit_MatchCriteria(table, "sLilleTal", MatchType.IsNull);
+				ICriteria crit1 = new Crit_Match(table, "lStortTal", MatchType.Equal, 6576547634);
+				ICriteria crit2 = new Crit_Match(table, "txTekst", MatchType.Different, "Bent");
+				ICriteria crit3 = new Crit_Match(table, "sLilleTal", MatchType.IsNull);
 
-				SQL_SelectStatement sqlSelect = new SQL_SelectStatement();
-				sqlSelect.AddAllColumns(table);
-				sqlSelect.AddCriteria(crit1);
-				sqlSelect.AddCriteria(crit2);
-				sqlSelect.AddCriteria(crit3);
-				Output(builder.ToSQL(sqlSelect));
+				Stmt_Select stmtSelect = new Stmt_Select();
+				stmtSelect.AddAllColumns(table);
+				stmtSelect.AddCriteria(crit1);
+				stmtSelect.AddCriteria(crit2);
+				stmtSelect.AddCriteria(crit3);
+				Output(builder.ToSQL(stmtSelect));
 
-				sqlSelect = new SQL_SelectStatement();
-				sqlSelect.AddAllColumns(table);
-				sqlSelect.AddCriteria(new Crit_Or(crit1, crit2));
-				sqlSelect.AddCriteria(crit3);
-				Output(builder.ToSQL(sqlSelect));
+				stmtSelect = new Stmt_Select();
+				stmtSelect.AddAllColumns(table);
+				stmtSelect.AddCriteria(new Crit_Or(crit1, crit2));
+				stmtSelect.AddCriteria(crit3);
+				Output(builder.ToSQL(stmtSelect));
 
-				sqlSelect = new SQL_SelectStatement();
-				sqlSelect.AddAllColumns(table);
+				stmtSelect = new Stmt_Select();
+				stmtSelect.AddAllColumns(table);
 				ICriteria tempCrit = new Crit_And(crit2, crit3);
-				sqlSelect.AddCriteria(new Crit_Or(crit1, tempCrit));
-				Output(builder.ToSQL(sqlSelect));
+				stmtSelect.AddCriteria(new Crit_Or(crit1, tempCrit));
+				Output(builder.ToSQL(stmtSelect));
 
-				sqlSelect = new SQL_SelectStatement();
-				sqlSelect.AddAllColumns(table);
-				sqlSelect.AddCriteria(new Crit_Or(new Crit_Or(crit1, crit2), crit3));
-				Output(builder.ToSQL(sqlSelect));
+				stmtSelect = new Stmt_Select();
+				stmtSelect.AddAllColumns(table);
+				stmtSelect.AddCriteria(new Crit_Or(new Crit_Or(crit1, crit2), crit3));
+				Output(builder.ToSQL(stmtSelect));
 
-				sqlSelect = new SQL_SelectStatement();
-				sqlSelect.AddAllColumns(table);
-				sqlSelect.AddCriteria(crit1);
-				sqlSelect.AddCriteria(crit2);
-				sqlSelect.AddCriteria(new Crit_InCriteria(table, "iTal", true, 3, 5, 254, 31));
-				Output(builder.ToSQL(sqlSelect));
+				stmtSelect = new Stmt_Select();
+				stmtSelect.AddAllColumns(table);
+				stmtSelect.AddCriteria(crit1);
+				stmtSelect.AddCriteria(crit2);
+				stmtSelect.AddCriteria(new Crit_In(table, "iTal", true, 3, 5, 254, 31));
+				Output(builder.ToSQL(stmtSelect));
 
-				SQL_SelectStatement sqlSelect1 = new SQL_SelectStatement();
-				sqlSelect1.AddColumn(table, "iTal");
+				Stmt_Select stmtSelect1 = new Stmt_Select();
+				stmtSelect1.AddColumn(table, "iTal");
 
-				sqlSelect = new SQL_SelectStatement();
-				sqlSelect.AddAllColumns(table);
-				sqlSelect.AddCriteria(new Crit_SubQueryCriteria(table, "iTal", sqlSelect1));
-				Output(builder.ToSQL(sqlSelect));
+				stmtSelect = new Stmt_Select();
+				stmtSelect.AddAllColumns(table);
+				stmtSelect.AddCriteria(new Crit_SubQuery(table, "iTal", stmtSelect1));
+				Output(builder.ToSQL(stmtSelect));
 
-				sqlSelect = new SQL_SelectStatement();
-				sqlSelect.AddAllColumns(table);
-				sqlSelect.AddCriteria(new Crit_SubQueryCriteria(table, "iTal", true, sqlSelect1));
-				Output(builder.ToSQL(sqlSelect));
+				stmtSelect = new Stmt_Select();
+				stmtSelect.AddAllColumns(table);
+				stmtSelect.AddCriteria(new Crit_SubQuery(table, "iTal", true, stmtSelect1));
+				Output(builder.ToSQL(stmtSelect));
 				Output("");
 
 				Output("Aggregates:");
-				sqlSelect = new SQL_SelectStatement();
-				sqlSelect.AddColumn(table, "iTal");
-				sqlSelect.Distinct = true;
-				Output(builder.ToSQL(sqlSelect));
+				stmtSelect = new Stmt_Select();
+				stmtSelect.AddColumn(table, "iTal");
+				stmtSelect.Distinct = true;
+				Output(builder.ToSQL(stmtSelect));
 
-				sqlSelect = new SQL_SelectStatement();
-				sqlSelect.AddTable(table);
-				sqlSelect.AddAggregate(new Aggre_Count());
-				Output(builder.ToSQL(sqlSelect));
+				stmtSelect = new Stmt_Select();
+				stmtSelect.AddTable(table);
+				stmtSelect.AddAggregate(new Aggre_Count());
+				Output(builder.ToSQL(stmtSelect));
 
-				sqlSelect = new SQL_SelectStatement();
-				sqlSelect.AddTable(table);
-				sqlSelect.AddAggregate(new Aggre_Count(table, "iTal"));
-				Output(builder.ToSQL(sqlSelect));
+				stmtSelect = new Stmt_Select();
+				stmtSelect.AddTable(table);
+				stmtSelect.AddAggregate(new Aggre_Count(table, "iTal"));
+				Output(builder.ToSQL(stmtSelect));
 
-				sqlSelect = new SQL_SelectStatement();
-				sqlSelect.AddTable(table);
-				sqlSelect.AddAggregate(new Aggre_Max(table, "iTal"));
-				Output(builder.ToSQL(sqlSelect));
+				stmtSelect = new Stmt_Select();
+				stmtSelect.AddTable(table);
+				stmtSelect.AddAggregate(new Aggre_Max(table, "iTal"));
+				Output(builder.ToSQL(stmtSelect));
 
-				sqlSelect = new SQL_SelectStatement();
-				sqlSelect.AddTable(table);
-				sqlSelect.AddAggregate(new Aggre_Min(table, "iTal"));
-				Output(builder.ToSQL(sqlSelect));
+				stmtSelect = new Stmt_Select();
+				stmtSelect.AddTable(table);
+				stmtSelect.AddAggregate(new Aggre_Min(table, "iTal"));
+				Output(builder.ToSQL(stmtSelect));
 				Output("");
 
 				Output("Create tables:");
@@ -1005,39 +1005,39 @@ namespace DBTest
 				storage.AddColumn("Prod_ID", ColumnType.Int, ColumnFlag.NotNull);
 				storage.AddColumn("Count", ColumnType.Int, ColumnFlag.NotNull | ColumnFlag.IndexDesc);
 
-				SQL_CreateTableStatement sqlCreate = new SQL_CreateTableStatement(employees);
-				Output(builder.ToSQL(sqlCreate));
+				Stmt_CreateTable stmtCreate = new Stmt_CreateTable(employees);
+				Output(builder.ToSQL(stmtCreate));
 
-				sqlCreate = new SQL_CreateTableStatement(orders);
-				Output(builder.ToSQL(sqlCreate));
+				stmtCreate = new Stmt_CreateTable(orders);
+				Output(builder.ToSQL(stmtCreate));
 
-				sqlCreate = new SQL_CreateTableStatement(storage);
-				Output(builder.ToSQL(sqlCreate));
+				stmtCreate = new Stmt_CreateTable(storage);
+				Output(builder.ToSQL(stmtCreate));
 				Output("");
 
 				Output("Joins:");
-				sqlSelect = new SQL_SelectStatement();
-				sqlSelect.AddColumn(employees, "Name");
-				sqlSelect.AddColumn(orders, "Product");
-				sqlSelect.AddJoin(new Join_Inner(employees, "Employee_ID", orders, "Employee_ID"));
-				sqlSelect.AddColumn(storage, "Count");
-				sqlSelect.AddJoin(new Join_Inner(orders, "Prod_ID", storage, "Prod_ID"));
-				sqlSelect.AddCriteria(new Crit_MatchCriteria(storage, "Count", MatchType.Bigger, 10));
-				sqlSelect.AddSort(employees, "Name", Order.Ascending);
-				sqlSelect.AddSort(orders, "Product", Order.Descending);
-				Output(builder.ToSQL(sqlSelect));
+				stmtSelect = new Stmt_Select();
+				stmtSelect.AddColumn(employees, "Name");
+				stmtSelect.AddColumn(orders, "Product");
+				stmtSelect.AddJoin(new Join_Inner(employees, "Employee_ID", orders, "Employee_ID"));
+				stmtSelect.AddColumn(storage, "Count");
+				stmtSelect.AddJoin(new Join_Inner(orders, "Prod_ID", storage, "Prod_ID"));
+				stmtSelect.AddCriteria(new Crit_Match(storage, "Count", MatchType.Bigger, 10));
+				stmtSelect.AddSort(employees, "Name", Order.Ascending);
+				stmtSelect.AddSort(orders, "Product", Order.Descending);
+				Output(builder.ToSQL(stmtSelect));
 
-				sqlSelect = new SQL_SelectStatement();
-				sqlSelect.AddColumn(employees, "Name");
-				sqlSelect.AddColumn(orders, "Product");
-				sqlSelect.AddJoin(new Join_Left(employees, "Employee_ID", orders, "Employee_ID"));
-				Output(builder.ToSQL(sqlSelect));
+				stmtSelect = new Stmt_Select();
+				stmtSelect.AddColumn(employees, "Name");
+				stmtSelect.AddColumn(orders, "Product");
+				stmtSelect.AddJoin(new Join_Left(employees, "Employee_ID", orders, "Employee_ID"));
+				Output(builder.ToSQL(stmtSelect));
 
-				sqlSelect = new SQL_SelectStatement();
-				sqlSelect.AddColumn(employees, "Name");
-				sqlSelect.AddColumn(orders, "Product");
-				sqlSelect.AddJoin(new Join_Right(employees, "Employee_ID", orders, "Employee_ID"));
-				Output(builder.ToSQL(sqlSelect));
+				stmtSelect = new Stmt_Select();
+				stmtSelect.AddColumn(employees, "Name");
+				stmtSelect.AddColumn(orders, "Product");
+				stmtSelect.AddJoin(new Join_Right(employees, "Employee_ID", orders, "Employee_ID"));
+				Output(builder.ToSQL(stmtSelect));
 				Output("");
 
 				Output("Misc");
@@ -1045,11 +1045,11 @@ namespace DBTest
 				employees1.AddColumn("Employee_ID", ColumnType.String, 2, ColumnFlag.PrimaryKey | ColumnFlag.NotNull);
 				employees1.AddColumn("Name", ColumnType.String, 50, ColumnFlag.NotNull);
 
-				sqlSelect = new SQL_SelectStatement();
-				sqlSelect.AddAllColumns(employees);
-				SQL_InsertStatement sqlInsert = new SQL_InsertStatement(employees1);
-				sqlInsert.InsertFromSelect = sqlSelect;
-				Output(builder.ToSQL(sqlInsert));
+				stmtSelect = new Stmt_Select();
+				stmtSelect.AddAllColumns(employees);
+				Stmt_Insert stmtInsert = new Stmt_Insert(employees1);
+				stmtInsert.InsertFromSelect = stmtSelect;
+				Output(builder.ToSQL(stmtInsert));
 			}
 			catch(Exception ex)
 			{
