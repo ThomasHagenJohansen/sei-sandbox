@@ -25,12 +25,13 @@ namespace DGWSBDB
 			try
 			{
 				String path = Path.Combine(Directory.GetCurrentDirectory(), "TestMOCES1.pfx");
-				X509Certificate2 moces = new X509Certificate2(path, "Underskriv3");
+				X509Certificate2 moces = new X509Certificate2(path, "Underskriv2");
 
-				path = Path.Combine(Directory.GetCurrentDirectory(), "TestVOCES1.pfx");
-				X509Certificate2 voces = new X509Certificate2(path, "Test1234");
+//				path = Path.Combine(Directory.GetCurrentDirectory(), "TestVOCES1.pfx");
+//				X509Certificate2 voces = new X509Certificate2(path, "Test1234");
 
 				BDBNonGPChildReport service = new BDBNonGPChildReport();
+//				service.Url = @"http://localhost:2245/BDBNonGPChildReport.asmx";
 //				service.SetPolicy(new DGWSPolicy(moces, voces));
 				service.SetPolicy(new DGWSPolicy(moces, moces));
 
@@ -42,7 +43,10 @@ namespace DGWSBDB
 				report.ChildMeasurement.PersonHeight = 1.11M;
 				report.ChildMeasurement.PersonWeight = 22.2M;
 				report.ChildMeasurement.PersonCivilRegistrationIdentifier = "1901075766";
-				report.ChildMeasurement.InstitutionIdentifier = "031011";
+//				report.ChildMeasurement.InstitutionIdentifier = "157";
+//				report.ChildMeasurement.InstitutionIdentifier = "101168";
+//				report.ChildMeasurement.InstitutionIdentifier = "031011";
+				report.ChildMeasurement.InstitutionIdentifier = "12";
 				String s = service.CreateChildMeasurementReport(report);
 				System.Diagnostics.Debug.WriteLine(s);
 
