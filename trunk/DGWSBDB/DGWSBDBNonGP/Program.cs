@@ -4,6 +4,7 @@ using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Web.Services.Protocols;
+using System.Windows.Forms;
 using System.Xml;
 using DgwsWse.HeaderTypes;
 using Medcom.DgwsWse;
@@ -24,6 +25,9 @@ namespace DGWSBDB
 		{
 			try
 			{
+				Tieto.HCW.Framework.Net.Policy.SetPolicy();
+				Tieto.HCW.Framework.Net.Policy.ValidationFailed += Policy_ValidationFailed;
+
 				String path = Path.Combine(Directory.GetCurrentDirectory(), "TestMOCES1.pfx");
 				X509Certificate2 moces = new X509Certificate2(path, "Underskriv2");
 
@@ -31,7 +35,6 @@ namespace DGWSBDB
 //				X509Certificate2 voces = new X509Certificate2(path, "Test1234");
 
 				BDBNonGPChildReport service = new BDBNonGPChildReport();
-//				service.Url = @"http://localhost:2245/BDBNonGPChildReport.asmx";
 //				service.SetPolicy(new DGWSPolicy(moces, voces));
 				service.SetPolicy(new DGWSPolicy(moces, moces));
 
@@ -95,6 +98,12 @@ namespace DGWSBDB
 			{
 				System.Diagnostics.Debug.WriteLine(ex.ToString());
 			}
+		}
+
+		private static void Policy_ValidationFailed(object sender, Tieto.HCW.Framework.Net.Policy.ValidationFailedEventArgs vfea)
+		{
+			MessageBox.Show(vfea.Message);
+			vfea.AcceptCertificate = true;
 		}
 	}
 
