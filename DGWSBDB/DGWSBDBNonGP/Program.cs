@@ -6,15 +6,12 @@ using System.Text;
 using System.Web.Services.Protocols;
 using System.Windows.Forms;
 using System.Xml;
-using DgwsWse.HeaderTypes;
-using Medcom.DgwsWse;
-using Microsoft.Web.Services3;
-using Microsoft.Web.Services3.Addressing;
-using Microsoft.Web.Services3.Design;
-using DGWSAssertion = Medcom.DgwsWse.DGWSAssertion;
-using MessageSignAssertion = Medcom.DgwsWse.MessageSignAssertion;
 
 using DGWSBDBNonGP.BDBNonGPChildReport;
+using Microsoft.Web.Services3;
+using Microsoft.Web.Services3.Design;
+using SDSD.SealApi;
+using SDSD.SealApi.Assertion;
 
 
 namespace DGWSBDB
@@ -25,8 +22,8 @@ namespace DGWSBDB
 		{
 			try
 			{
-				Tieto.HCW.Framework.Net.Policy.SetPolicy();
-				Tieto.HCW.Framework.Net.Policy.ValidationFailed += Policy_ValidationFailed;
+//				Tieto.HCW.Framework.Net.Policy.SetPolicy();
+//				Tieto.HCW.Framework.Net.Policy.ValidationFailed += Policy_ValidationFailed;
 
 				String path = Path.Combine(Directory.GetCurrentDirectory(), "TestMOCES1.pfx");
 				X509Certificate2 moces = new X509Certificate2(path, "Underskriv2");
@@ -100,12 +97,12 @@ namespace DGWSBDB
 			}
 		}
 
-		private static void Policy_ValidationFailed(object sender, Tieto.HCW.Framework.Net.Policy.ValidationFailedEventArgs vfea)
+/*		private static void Policy_ValidationFailed(object sender, Tieto.HCW.Framework.Net.Policy.ValidationFailedEventArgs vfea)
 		{
 			MessageBox.Show(vfea.Message);
 			vfea.AcceptCertificate = true;
 		}
-	}
+*/	}
 
 	public class DGWSPolicy : Policy
 	{
@@ -122,7 +119,7 @@ namespace DGWSBDB
 			Assertions.Add(new MessageIDChanger());
 
 			DGWSAssertion dgwsAss = new DGWSAssertion();
-			dgwsAss.Card = GetIDCard();
+			dgwsAss.GetIDCard = GetIDCard;
 			Assertions.Add(dgwsAss);
 
 			Assertions.Add(new AddressingConverterAssertion());
@@ -134,50 +131,37 @@ namespace DGWSBDB
 			Assertions.Add(msgAss);
 		}
 
-		private IDCardType GetIDCard()
+		private DGWSCard10Type GetIDCard(String version)
 		{
-			IDCardType card = new IDCardType();
-			AuthenticityType auth = new AuthenticityType();
-			IDCardDataType data = new IDCardDataType();
-
-			card.Authenticity = auth;
-			card.IDCardData = data;
-//			card.leveTid = new TimeSpan(24, 0, 0);
-
-			data.IDCardType = "IdCardSignature";
-			data.IDCardVersion = "1.1";
+			DGWSCard11Type card = new DGWSCard11Type();
 
 			// Issuer
-			card.Issuer = "SEI Client";
+			card.Issuer                  = "SEI Client";
 
 			// Subject
-			auth.NameID = "1111111118";
-			//			card.NameIDFormat            = FormatIds.cprnumber;
-			auth.MakeCertificate = new CertificateMaker(GetCertificate);
+			card.NameID                  = "1111111118";
+			card.NameIDFormat            = FormatIds.cprnumber;
 
 			// Conditions
-			//			card.CardLifeTime            = CardLifeTimeType.Hours8;
+			card.CardLifeTime            = CardLifeTimeType.Hours8;
 
 			// Authentication (STS)
 
 			// Attributes
-			data.IDCardType = "user";
-			data.AuthenticationLevel = 3;
-			data.UserCivilRegistrationNumber = "2207712801";
-//			data.UserCivilRegistrationNumber = "1111111118";
-			data.UserGivenName = "Bent";
-			data.UserSurName = "Hansen";
-			data.UserEmailAddress = "bent@hansen.dk";
-			data.UserRole = "SEI User";
-			data.UserOccupation = "?";
+			card.IDCardType              = CardType.user;
+			card.AuthenticationLevel     = 3;
+			card.CivilRegistrationNumber = "1111111118";
+			card.GivenName               = "Bent";
+			card.SurName                 = "Hansen";
+			card.EmailAddress            = "bent@hansen.dk";
+			card.Role                    = "SEI User";
+			card.Occupation              = "?";
 
 			// System log
-			data.ITSystemName = "SEI Client";
-			data.CareProviderID = "12070918";
-			data.CareProviderIDFormat = "medcom:cvrnumber";
-			data.CareProviderName = "SST";
-
-			//card.IDCardData.IDCardID = "urn:uuid:4C63D7C9-96BA-4022-BA43-ED862E10E2E3";
+			card.ITSystemName            = "SEI Client";
+			card.OrganisationID          = "12070918";
+			card.OrganisationIDFormat    = FormatIds.cvrnumber;
+			card.OrganisationName        = "SST";
 
 			return card;
 		}

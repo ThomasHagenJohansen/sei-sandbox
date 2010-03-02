@@ -4,12 +4,11 @@ using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Web.Services.Protocols;
+using System.Windows.Forms;
 using DGWSBDB.BDBChildMeasurementReport;
-using DgwsWse.HeaderTypes;
-using Medcom.DgwsWse;
 using Microsoft.Web.Services3.Design;
-using DGWSAssertion=Medcom.DgwsWse.DGWSAssertion;
-using MessageSignAssertion=Medcom.DgwsWse.MessageSignAssertion;
+using SDSD.SealApi;
+using SDSD.SealApi.Assertion;
 
 namespace DGWSBDB
 {
@@ -19,6 +18,9 @@ namespace DGWSBDB
 		{
 			try
 			{
+				Tieto.HCW.Framework.Net.Policy.SetPolicy();
+				Tieto.HCW.Framework.Net.Policy.ValidationFailed += Policy_ValidationFailed;
+
 				String path = Path.Combine(Directory.GetCurrentDirectory(), "TestMOCES1.pfx");
 				X509Certificate2 moces = new X509Certificate2(path, "Test1234");
 
@@ -27,11 +29,14 @@ namespace DGWSBDB
 				report.ChildMeasurement.MeasurementDate = DateTime.Parse("2009-03-18");
 				report.ChildMeasurement.PersonHeight = 1.11M;
 				report.ChildMeasurement.PersonWeight = 22.2M;
-				report.ChildMeasurement.PersonCivilRegistrationIdentifier = "1901075766";
+				report.ChildMeasurement.PersonCivilRegistrationIdentifier = "xxxxxxxxxx";
 				report.ChildMeasurement.InstitutionIdentifier = "031011";
 
 				BDBChildMeasurementReport.BDBChildMeasurementReport service = new BDBChildMeasurementReport.BDBChildMeasurementReport();
 				service.SetPolicy(new DGWSPolicy(moces));
+//				service.Url = @"http://localhost:2245/BDBChildMeasurementReport.asmx";
+//				service.Url = @"https://testei.sst.dk/DGWS/BDBChildMeasurementReport.asmx";
+//				service.Url = @"https://seidgws.sst.dk/DGWS/BDBChildMeasurementReport.asmx";
 				String s = service.CreateChildMeasurementReport(report);
 				System.Diagnostics.Debug.WriteLine(s);
 			}
@@ -48,20 +53,26 @@ namespace DGWSBDB
 				System.Diagnostics.Debug.WriteLine(ex.ToString());
 			}
 		}
+
+		private static void Policy_ValidationFailed(object sender, Tieto.HCW.Framework.Net.Policy.ValidationFailedEventArgs vfea)
+		{
+			MessageBox.Show(vfea.Message);
+			vfea.AcceptCertificate = true;
+		}
 	}
 
 	public class DGWSPolicy : Policy
 	{
-		private readonly X509Certificate2 moces;
+		private X509Certificate2 cert;
 
 		public DGWSPolicy(X509Certificate2 moces)
 		{
-			this.moces = moces;
+			cert = moces;
 
 			Assertions.Add(new RequireActionHeaderAssertion());		// WSE policy
 
 			DGWSAssertion dgwsAss = new DGWSAssertion();
-			dgwsAss.Card = GetIDCard();
+			dgwsAss.GetIDCard = GetCard;
 			Assertions.Add(dgwsAss);
 
 			Assertions.Add(new AddressingConverterAssertion());
@@ -73,53 +84,48 @@ namespace DGWSBDB
 			Assertions.Add(msgAss);
 		}
 
-		private IDCardType GetIDCard()
+		private DGWSCard10Type GetCard(String version)
 		{
-			IDCardType card = new IDCardType();
-			AuthenticityType auth = new AuthenticityType();
-			IDCardDataType data = new IDCardDataType();
+			DGWSCard10Type card = GetIDCard();
+			card.Sign(cert);
 
-			card.Authenticity = auth;
-			card.IDCardData = data;
+			return card;
+		}
 
-			data.IDCardType = "IdCardSignature";
-			data.IDCardVersion = "1.1";
+		private DGWSCard10Type GetIDCard()
+		{
+			DGWSCard11Type card = new DGWSCard11Type();
 
 			// Issuer
 			card.Issuer                  = "SEI Client";
 
 			// Subject
-			auth.NameID                  = "1111111118";
-//			card.NameIDFormat            = FormatIds.cprnumber;
-			auth.MakeCertificate = new CertificateMaker(GetCertificate);
+			card.NameID                  = "1111111118";
+			card.NameIDFormat            = FormatIds.cprnumber;
 
 			// Conditions
-//			card.CardLifeTime            = CardLifeTimeType.Hours8;
+			card.CardLifeTime            = CardLifeTimeType.Hours8;
 
 			// Authentication (STS)
 
 			// Attributes
-			data.IDCardType              = "user";
-			data.AuthenticationLevel     = 3;
-			data.UserCivilRegistrationNumber = "1111111118";
-			data.UserGivenName               = "Bent";
-			data.UserSurName                 = "Hansen";
-			data.UserEmailAddress            = "bent@hansen.dk";
-			data.UserRole                    = "SEI User";
-			data.UserOccupation = "?";
+			card.IDCardType              = CardType.user;
+			card.AuthenticationLevel     = 3;
+			card.CivilRegistrationNumber = "1111111118";
+			card.GivenName               = "Bent";
+			card.SurName                 = "Hansen";
+			card.EmailAddress            = "bent@hansen.dk";
+			card.Role                    = "SEI User";
+			card.Occupation              = "?";
+			card.AuthorizationCode       = "19901";
 
 			// System log
-			data.ITSystemName            = "SEI Client";
-			data.CareProviderID          = "12070918";
-			data.CareProviderIDFormat    = "medcom:cvrnumber";
-			data.CareProviderName        = "SST";
+			card.ITSystemName            = "SEI Client";
+			card.OrganisationID          = "12070918";
+			card.OrganisationIDFormat    = FormatIds.cvrnumber;
+			card.OrganisationName        = "SST";
 
 			return card;
-		}
-
-		private X509Certificate2 GetCertificate()
-		{
-			return moces;
 		}
 	}
 }

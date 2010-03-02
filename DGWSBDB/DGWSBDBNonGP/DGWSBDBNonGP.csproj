@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>DGWSBDBNonGP</RootNamespace>
     <AssemblyName>DGWSBDBNonGP</AssemblyName>
-    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -33,9 +33,12 @@
   <ItemGroup>
     <Reference Include="Microsoft.Web.Services3, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\SST_2.0.0.x\Components\ThirdParty\WSE3.0\Microsoft.Web.Services3.dll</HintPath>
+      <HintPath>..\..\..\..\SST_2.1.1.x\Components\ThirdParty\WSE3.0\Microsoft.Web.Services3.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.EnterpriseServices" />
     <Reference Include="System.Web.Services" />
@@ -88,13 +91,9 @@
     <None Include="Web References\BDBNonGPChildReport\BDBNonGPChildReport.disco" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\SST_2.0.1.x\Components\ThirdParty\SealAPI1.1\SealAPI1.1.csproj">
-      <Project>{2E0EEC92-80A8-4C48-B496-3F867270F5B9}</Project>
-      <Name>SealAPI1.1</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\SST_2.1.0.x\Components\Tieto\Tieto.HCW.Framework.Net\Tieto.HCW.Framework.Net.csproj">
-      <Project>{56ACA07C-74DB-4080-B9FF-470E1DE35F7A}</Project>
-      <Name>Tieto.HCW.Framework.Net</Name>
+    <ProjectReference Include="..\..\..\..\SST_2.1.1.x\Components\ThirdParty\SealAPI2.0\SealApi2.0.csproj">
+      <Project>{EF0573D9-329B-45F9-9388-9EF7406C2115}</Project>
+      <Name>SealApi2.0</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
